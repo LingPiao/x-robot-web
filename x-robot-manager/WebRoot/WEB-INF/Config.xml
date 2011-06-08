@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="gb2312"?>
+<initial-context>
+	<!-- 系统运行 数据库设置 -->
+	<context name="Db_Connection_Config">
+	    <!-- oracle-->
+	    <entry name="driver" value="oracle.jdbc.driver.OracleDriver" />
+	    <entry name="url" value="jdbc:oracle:thin:@localhost:1521:orcl" />
+	    <entry name="user" value="unicom" />
+	    <entry name="password" value="unicom" />
+	</context>
+</initial-context>

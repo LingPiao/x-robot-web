@@ -1,0 +1,106 @@
+
+<html>
+<head>
+<title>menu</title>
+<STYLE ID="JoustStyles" TYPE="text/css">
+<!--
+	.scrollbar {
+		scrollbar-face-color: #cccccc; 
+		scrollbar-highlight-color: #ffffff; 
+		scrollbar-shadow-color: #ffffff; 
+		scrollbar-3dlight-color: #ececec; 
+		scrollbar-arrow-color: #000000; 
+		scrollbar-track-color: #ffffff; 
+		scrollbar-darkshadow-color: #ececec;
+		font-size: 12px;
+		border: 1px inset #ffffff;
+		position: absolute;
+	}
+	
+	A:link { color: #666666; text-decoration: none; }
+	A:visited { color: #666666; text-decoration: none; }
+	A:active { color: #ff9900; text-decoration: none; }
+	A:hover { color: #ff9900; text-decoration: none; }
+
+-->
+</STYLE>
+<script src=js/list_nav.js></script>
+<script language="JavaScript">
+
+//**********************************************
+//菜单参数
+	var node = new Array();
+	node[0] = -1;
+	var delaultTitle;		//默认展开的标题
+	var delaultTarget;		//默认打开页面的位置,不定义则弹出新窗口
+
+	node[1]=outlookbar.addtitle("短信管理");
+		
+	node[2]=outlookbar.additem("<img src=images/23.gif border='0'><br>", node[1], 'message/category.jsp', '信息分类');			
+		
+	node[3]=outlookbar.additem("<img src=images/19.gif border='0'><br>", node[1], 'message/sms.jsp', '短信管理');			
+		
+	node[4]=outlookbar.additem("<img src=images/43.gif border='0'><br>", node[1], 'message/mms.jsp', '彩信管理');			
+		
+	//node[5]=outlookbar.additem("<img src=images/26.gif border='0'><br>", node[1], 'message/send_record.jsp', '发送记录');			
+		
+	node[6]=outlookbar.addtitle("业务咨询信息管理");			
+		
+	node[7]=outlookbar.additem("<img src=images/56.gif border='0'><br>", node[6], 'bc.jsp', '业务咨询信息管理');			
+		
+	node[8]=outlookbar.addtitle("投诉管理");
+		
+	node[9]=outlookbar.additem("<img src=images/60.gif border='0'><br>", node[8], 'sc/complaints.jsp', '投诉管理');			
+		
+	node[10]=outlookbar.addtitle("机器人平台");		
+		
+	node[11]=outlookbar.additem("<img src=images/58.gif border='0'><br>", node[10], 'http://www.x-robot.cn/robot/welcome.jsp', '欢迎语设置');			
+		
+	//node[12]=outlookbar.additem("<img src=images/16.gif border='0'><br>", node[10], '../project/doProjectQry.action', '自定义命令别名管理');			
+
+	//node[13]=outlookbar.additem("<img src=images/63.gif border='0'><br>", node[10], '../project/doProjectQry.action', '共用的自定义命令别名管理');
+		
+	//node[14]=outlookbar.additem("<img src=images/23.gif border='0'><br>", node[10], '../finance/displayCheck.action?op=qry', '菜单命令树管理');			
+		
+	node[12]=outlookbar.additem("<img src=images/19.gif border='0'><br>", node[10], 'http://www.x-robot.cn/robot/filtermsn.jsp', '禁止的MSN账号设置');			
+		
+	node[13]=outlookbar.additem("<img src=images/43.gif border='0'><br>", node[10], 'http://www.x-robot.cn/robot/filter.jsp', '禁止聊天内容设置');			
+
+	//node[17]=outlookbar.additem("<img src=images/26.gif border='0'><br>", node[10], '../finance/qryCheck.action', '帮助内容管理');
+		
+	node[14]=outlookbar.additem("<img src=images/56.gif border='0'><br>", node[10], 'http://www.x-robot.cn/robot/robotname.jsp', '机器人名称及签名设置');			
+		
+	//node[19]=outlookbar.additem("<img src=images/60.gif border='0'><br>", node[10], '../stat/entrustlist.action', '通过用聊天回答语句的设置');
+	
+	node[15]=outlookbar.addtitle("机器人聊天管理");	
+	node[16]=outlookbar.additem("<img src=images/60.gif border='0'><br>", node[15], 'http://www.x-robot.cn/robot/teach.jsp', '机器人聊天管理');	
+	node[21]=outlookbar.additem("<img src=images/63.gif border='0'><br>", node[15], 'http://www.x-robot.cn/robot/corpus.jsp', '机器人语料管理');	
+	node[22]=outlookbar.additem("<img src=images/23.gif border='0'><br>", node[15], 'http://www.x-robot.cn/robot/question.jsp', '机器人业务词库管理');
+	node[23]=outlookbar.additem("<img src=images/16.gif border='0'><br>", node[15], 'http://www.x-robot.cn/robot/synonymy.jsp', '机器人同义词库管理');
+	node[24]=outlookbar.additem("<img src=images/16.gif border='0'><br>", node[15], 'http://www.x-robot.cn/robot/properties.jsp', '机器人无法回答提示管理');
+	node[19]=outlookbar.addtitle("机器人BUG信息管理");	
+	node[20]=outlookbar.additem("<img src=images/60.gif border='0'><br>", node[19], 'bug/bug.jsp', '机器人BUG信息管理');	
+			
+	node[17]=outlookbar.addtitle("用户管理");	
+	node[18]=outlookbar.additem("<img src=images/60.gif border='0'><br>", node[17], 'user/user.jsp', '用户管理');			
+		
+	node[29]=outlookbar.addtitle("统计管理");
+	node[28]=outlookbar.additem("<img src=images/60.gif border='0'><br>", node[29], 'itemdata/itemdata.jsp', '用户统计');	
+node[27]=outlookbar.additem("<img src=images/60.gif border='0'><br>", node[29], 'itemdata/recordsdata.jsp', '统计');	
+delaultTitle = "机器人平台及业务系统管理"	//默认展开的标题
+delaultTarget = "mainFrame"		//默认打开页面的位置	
+//**************************************************
+</script>
+<body bgcolor="#f6f6f6" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" class="scrollbar">
+<TABLE align="center" class="scrollbar" id=mnuList style="WIDTH: 160px; HEIGHT: 100% ;border: 3px solid #CCCCCC; filter:progid:DXImageTransform.Microsoft.Gradient(startColorStr='#000000', endColorStr='#ececec', gradientType='0')" cellSpacing=0 cellPadding=0 border=0 > 
+<TBODY>
+  <TR> 
+	<TD id=outLookBarShow style="HEIGHT: 100%" vAlign=top align=middle name="outLookBarShow"> 
+	  <SCRIPT>
+		//默认展开项目
+		locatefold(delaultTitle, delaultTarget);
+		outlookbar.show();
+	  </SCRIPT> </TD>
+  </TR>
+</TBODY></TABLE>
+</body>

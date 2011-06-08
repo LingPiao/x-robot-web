@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName"><value>oracle.jdbc.driver.OracleDriver</value></property>
+		<property name="url"><value>jdbc:oracle:thin:@localhost:1521:orcl</value></property>
+		<property name="username"><value>unicom</value></property>
+		<property name="password"><value>unicom</value></property>
+		<property name="maxActive"><value>300</value></property>
+		<property name="maxIdle"><value>100</value></property>
+	</bean>
+	
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"> 
+         <property name="dataSource"><ref bean="dataSource"/></property> 
+     </bean> 
+	
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource"><ref bean="dataSource"/></property>
+    </bean>
+		
+	<bean id="cache" class="net.sf.robot.util.Cache"/>
+	
+	<bean id="sqlDao" class="net.sf.robot.util.db.TiSqlDao">
+		<property name="jdbcTemplate"><ref local="jdbcTemplate"/></property>
+	 	<property name="cache"><ref local="cache"/></property>
+	</bean>
+
+	
+<!-- 	
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host"><value>smtp.126.com</value></property>
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">true</prop>    
+			</props>  
+		</property>
+		<property name="username"><value>msn_robot</value></property>
+		<property name="password"><value>2615286</value></property>
+	</bean>
+		<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host"><value>tncomail01.turin.turinnetworks.com</value></property>
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">true</prop>    
+			</props>  
+		</property>
+		<property name="username"><value>yxu</value></property>
+		<property name="password"><value>qazwsx12</value></property>
+	</bean>
+	
+	<bean id="mailMessage" class="org.springframework.mail.SimpleMailMessage"/>
+	
+	<bean id="senderMail" class="net.sf.robot.util.SenderMail">  
+		<property name="mailSender"><ref bean="mailSender"/></property>  
+	</bean>
+	
+java -Xbootclasspath:/d:/newcatic/new/*.jar;d:/newcatic/new/*.jar;d:/newcatic/new/*.jar;d:/newcatic/new/*.jar;d:/newcatic/new/*.jar;d:/newcatic/new/*.jar;d:/newcatic/new/*.jar;d:/newcatic/new/*.jar;d:/newcatic/new/*.jar;d:/newcatic/new/*.jar;d:/newcatic/new/*.jar;d:/newcatic/new/*.jar;d:/newcatic/new/*.jar;d:/newcatic/new/*.jar;d:/newcatic/new/*.jar;d:/newcatic/new/*.jar;d:/newcatic/new/*.jar;d:/newcatic/new/*.jar;d:/newcatic/new/*.jar;d:/newcatic/new/*.jar;d:/newcatic/new/*.jar;d:/newcatic/new/*.jar;d:/newcatic/new/*.jar;d:/newcatic/new/*.jar;d:/newcatic/new/*.jar;d:/newcatic/new/*.jar;
+ -jar catic.jar
+	
+-->
+
+	
+</beans>
