@@ -1,0 +1,65 @@
+/* ============全局============ */
+div,ul,ol,form {margin:0;padding:0;}
+img {border:0;}
+li {list-style:none;}
+table {font-size:12px;}
+input {font-family:tahoma,Arial,Helvetica,sans-serif;font-size:12px;vertical-align:middle;}
+h1,h2,h3,h4,h5,h6,h7 {margin:0;padding:0;text-align:left;font-size:12px;font-weight:400;}
+p {margin:0;}
+
+html {overflow:hidden!important;overflow:auto;height:100%;}
+
+body {
+color: #222;
+text-align: center;
+margin:0;
+font-family:Arial,tahoma,Helvetica,sans-serif;
+font-size: 12px;
+height:100%;
+width:100%;
+overflow:hidden;
+line-height: 150%;
+background:#fff url("body_background.png") repeat-x left -20px;
+word-break:break-all;
+}
+a:link{text-decoration:none;color:#42414A;}
+a:visited {text-decoration:none;color:#42414A;}
+a:hover {text-decoration:none;color:#999;}
+a:active {text-decoration:none;color:#999;}
+
+/* ============常用============ */
+.left {float:left;}
+.right {float:right;}
+.clear {clear:both;}
+.block {display:block;}
+.none {display:none;}
+
+.red {color:#AA2015!important;}
+.blue {color:#319EEF!important;}
+.green {color:#090!important;}
+.strong {font-weight:600!important;}
+/* ============布局============ */
+/* 头部 */
+#header {margin:0;height:35px;clear:both;}
+#header dt {float:left;margin:7px 0 0 5px;width:180px;height:29px;background:url("logo.png") no-repeat left top;text-indent:-9999px;}
+#header dd {float:right;margin:5px 4px 0 0px;color:#fff;height:20px;}
+#header dd li {float:left;}
+#header dd a {color:#000;}
+#header dd a:hover {color:#000;text-decoration:underline;}
+
+
+/* 内容右层 */
+#contents .right {float:none;height:93%;margin:0 0 0 5px;text-align:left;}
+/* 当前操作页面 */
+#contents #TabPage1 {height:33px;margin:1px 0 -1px 0;position:relative;z-index:1;}
+#contents #TabPage1 li {float:left;margin:0 3px 0 0;padding:12px 0 0 0;width:86px;height:21px;background: url("tab.gif") no-repeat left 0;cursor:pointer;color:#fff;text-align:center;letter-spacing:3px;}
+#contents #TabPage1 li#Tab3 {display:block!important;display:none;}
+#contents #TabPage1 li.Selected {padding:10px 0 0 1px;width:86px;height:23px;background: url("tab.gif") no-repeat left -33px;font-size:14px;font-weight:600;color:#000;}
+/* 操作页面层 */
+#contents #cnt {position:relative;z-index:0;}
+#contents #cnt div {height:100%;border:1px #1A76B7 solid;background:#fff;}
+#contents #cnt div iframe {height:517px!important;height:100%;width:100%;}
+
+#contents #cnt div#dTab1 {}
+#contents #cnt div#dTab2 {display:none;}
+#contents #cnt div#dTab3 {display:none;}

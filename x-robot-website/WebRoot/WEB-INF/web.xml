@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<web-app version="2.4" xmlns="http://JAVA.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/xmlSchema-instance"
+	xsi:schemaLocation="http://JAVA.sun.com/xml/ns/j2ee http://JAVA.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+
+	<!-- 配置Spring -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+			classpath:applicationContext.xml
+		</param-value>
+	</context-param>
+
+	<!-- 配置字符过滤 -->
+	<filter>
+		<filter-name>setEncoding</filter-name>
+		<filter-class>
+			org.springframework.web.filter.CharacterEncodingFilter
+		</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>utf-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>setEncoding</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<!-- 配置监听器 -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>com.atlassian.xwork.ext.ResolverSetupServletContextListener</listener-class>
+	</listener>
+	
+	
+	<servlet>
+		<servlet-name>Download</servlet-name>
+		<servlet-class>com.catic.tool.Download</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Download</servlet-name>
+		<url-pattern>/Download</url-pattern>
+	</servlet-mapping>
+
+
+	<!-- 配置webWork -->
+	<servlet>
+		<servlet-name>velocity</servlet-name>
+		<servlet-class>com.opensymphony.webwork.views.velocity.WebWorkVelocityServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet>
+		<servlet-name>webwork</servlet-name>
+		<servlet-class>com.opensymphony.webwork.dispatcher.ServletDispatcher</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>webwork</servlet-name>
+		<url-pattern>*.action</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>velocity</servlet-name>
+		<url-pattern>*.vm</url-pattern>
+	</servlet-mapping>
+
+	<!-- 配置首页 -->
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+      <error-page>    
+         <error-code>400</error-code>    
+         <location>/error.jsp</location>    
+     </error-page>
+     <error-page>    
+         <error-code>404</error-code>    
+         <location>/error.jsp</location>    
+     </error-page>   
+     <error-page>    
+         <error-code>500</error-code>    
+         <location>/error.jsp</location>    
+	</error-page>    
+	<jsp-config>
+	 	<taglib>
+	        <taglib-uri>/xdevelop.net/taglibs/page</taglib-uri>
+	        <taglib-location>/WEB-INF/page.tld</taglib-location>
+	    </taglib>  
+		<!-- 配置Jstl -->
+		<taglib>
+			<taglib-uri>webwork</taglib-uri>
+			<taglib-location>/WEB-INF/webwork.tld</taglib-location>
+		</taglib>
+		<taglib>
+			<taglib-uri>c</taglib-uri>
+			<taglib-location>/WEB-INF/c.tld</taglib-location>
+		</taglib>
+	</jsp-config>
+</web-app>
+

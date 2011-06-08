@@ -1,0 +1,30 @@
+A:link {
+	COLOR: #42414a; TEXT-DECORATION: none
+}
+A:visited {
+	COLOR: #42414a; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: #999; TEXT-DECORATION: none
+}
+A:active {
+	COLOR: #999; TEXT-DECORATION: none
+}
+TD {
+	FONT-SIZE: 12px; FONT-FAMILY: "ËÎÌו"
+}
+.tableborder {
+	BORDER-RIGHT: #cccccc 1px solid; BORDER-TOP: #cccccc 1px solid; BORDER-LEFT: #cccccc 1px solid; BORDER-BOTTOM: #cccccc 1px solid
+}
+.font12-B {
+	FONT-WEIGHT: bold; FONT-SIZE: 12px; FONT-FAMILY: "ËÎÌו"
+}
+.select {
+	BORDER-RIGHT: #cccccc 1px solid; BORDER-TOP: #cccccc 1px solid; BORDER-LEFT: #cccccc 1px solid; BORDER-BOTTOM: #cccccc 1px solid
+}
+.department {
+	BORDER-RIGHT: #cccccc 1px solid; BORDER-TOP: #cccccc 1px solid; BORDER-LEFT: #cccccc 1px solid; WIDTH: 250px; BORDER-BOTTOM: #cccccc 1px solid; HEIGHT: 280px
+}
+.over {
+	BACKGROUND-COLOR: #e7e7e7
+}

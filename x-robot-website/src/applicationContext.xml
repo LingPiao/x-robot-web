@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+
+	<!-- 加载资源文件 -->
+	<bean id="configProperties"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location">
+			<value>classpath:config.properties</value>
+		</property>
+	</bean>
+	
+	<!-- 配置dataSource -->
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName">
+			<value>${db.driver}</value>
+		</property>
+		<property name="url">
+			<value>${db.url}</value>
+		</property>
+		<property name="username">
+			<value>${db.username}</value>
+		</property>
+		<property name="password">
+			<value>${db.password}</value>
+		</property>
+	</bean>
+	
+	<!-- 配置JDBC模板 -->
+	<bean id="jdbcTemplate"
+		class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+	</bean>
+	
+	<!-- 配置DAO -->
+	<bean id = "sqlDao" class = "org.project.impl.SqlImpl">
+		<property name="jdbcTemplate">
+			<ref bean = "jdbcTemplate"/>
+		</property>
+	</bean>
+	<bean id="msnDao" class="org.project.impl.Msn_certificationImpl">
+		<property name="sqlDao">
+			<ref bean="sqlDao" />
+		</property>
+	</bean>
+	<bean id="tuserDao" class="org.project.impl.TuserImpl">
+		<property name="sqlDao">
+			<ref bean="sqlDao" />
+		</property>
+	</bean>
+	<bean id="woknowDao" class="org.project.impl.WoknowImpl">
+		<property name="sqlDao">
+			<ref bean="sqlDao" />
+		</property>
+	</bean>
+	<bean id="vipmanagerDao" class="org.project.impl.VipManagerImpl">
+		<property name="sqlDao">
+			<ref bean="sqlDao" />
+		</property>
+	</bean>
+	<bean id="vipcustomerDao" class="org.project.impl.VipCustomerImpl">
+		<property name="sqlDao">
+			<ref bean="sqlDao" />
+		</property>
+	</bean>
+	<bean id="woanswerDao" class="org.project.impl.WoanswerImpl">
+		<property name="sqlDao">
+			<ref bean="sqlDao" />
+		</property>
+	</bean>
+	<bean id="wovisitDao" class="org.project.impl.WovisitImpl">
+		<property name="sqlDao">
+			<ref bean="sqlDao" />
+		</property>
+	</bean>
+	<!-- 定时器  -->
+	<bean id="questionvalidityDao" class="org.project.impl.QuestionValidityImpl">
+		<property name="sqlDao">
+			<ref bean="sqlDao" />
+		</property>
+	</bean>
+	<bean id="validityJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">  
+		<property name="targetObject"><ref bean="questionvalidityDao"/></property>
+        <property name="targetMethod"><value>questionValidity</value></property>
+	</bean>
+	<bean id="cronvalidityTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">  
+		<property name="jobDetail" ref="validityJob" />  
+		<property name="cronExpression">  
+			<value>0 1 0 * * ?</value>  
+		</property>  
+	</bean>  
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">  
+	    <property name="triggers">  
+	       <list><ref bean="cronvalidityTrigger"/></list>  
+	    </property>  
+	</bean>
+	<!-- 定时器  -->
+</beans>
