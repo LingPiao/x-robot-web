@@ -1,0 +1,171 @@
+A:visited {
+	COLOR: #00000c; TEXT-DECORATION: none
+}
+A:link {
+	COLOR: #000000; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: #445980; TEXT-DECORATION: underline
+}
+body {
+	margin: 0px;
+	background-color:#ffffff;
+	font-size:12px;
+}
+.login_title{
+	background-image: url(../images/dx-01_r1_c1.jpg);
+	background-repeat: repeat-x;
+	height: 43px;
+	font-family: "宋体";
+	font-size: 14px;
+	color: #FFFFFF;
+	font-weight: bold;
+	padding-left: 20px;
+	background-position: center;
+}
+.login_bg{
+	background-image: url(images/di.jpg);
+	background-repeat: no-repeat;
+	background-position: right bottom;
+	background-color: #FFFFFF;
+	border: 1px solid #FF0000;
+}
+.login_di{
+	background-image: url(../images/dx-01_r3_c1.jpg);
+	background-repeat: repeat-x;
+	background-position: left center;
+	height: 17px;
+	width: 1px;
+}
+.logon_txt{
+	font-size:12px;
+	color:#cb0101;
+	font-family: Arial;
+}
+.logon_txt1{
+	font-size:12px;
+	color:#000000;
+}
+
+.input_txt{
+	border: 1px solid #999999;
+	height:22px;
+	background-color:#FFFFFF;
+}
+.button {
+	background-image: url(../images/button.jpg);
+	background-repeat: no-repeat;
+	background-color: #FFFFFF;
+	color:#FFFFFF;
+	height: 30px;
+	width: 108px;
+	margin: 0px;
+	padding: 0px;
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-bottom-width: 0px;
+	border-left-width: 0px;
+	cursor:hand;
+	font-family: "宋体";
+	font-size: 14px;
+}
+.zj_txt{
+	height:52px;
+	background-color:#cc0001;
+	font-size: 12px;
+	color: #FFFFFF;
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-bottom-width: 1px;
+	border-left-width: 0px;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-color: #FF0000;
+	border-right-color: #FF0000;
+	border-bottom-color: #FF0000;
+	border-left-color: #FF0000;
+}
+.cd_bj{
+	height:30px;
+	font-family: "宋体";
+	font-size: 14px;
+	font-weight: bold;
+	background-image: url(../images/cd.jpg);
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-bottom-width: 1px;
+	border-left-width: 0px;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-color: #ff0000;
+	border-right-color: #ff0000;
+	border-bottom-color: #ff0000;
+	border-left-color: #ff0000;
+	color: #FFFFFF;
+}
+.cd_tu{
+	background-image: url(../images/cd_tu.jpg);
+	height: 128px;
+	background-repeat: no-repeat;
+	background-position: center bottom;
+}
+.cd_bian{
+	border-top-width: 0px;
+	border-right-width: 1px;
+	border-bottom-width: 0px;
+	border-left-width: 0px;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-top-color: #ff0000;
+	border-right-color: #ff0000;
+	border-bottom-color: #ff0000;
+	border-left-color: #ff0000;
+}
+.btn_2k3 { 
+BORDER-RIGHT: #002D96 1px solid; PADDING-RIGHT: 2px; BORDER-TOP: #002D96 1px solid; PADDING-LEFT: 2px; FONT-SIZE: 12px; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=#FFFFFF, EndColorStr=#9DBCEA); BORDER-LEFT: #002D96 1px solid; CURSOR: hand; COLOR: black; PADDING-TOP: 2px; BORDER-BOTTOM: #002D96 1px solid 
+} 
+.cg_redtxt{
+	font-size: 16px;
+	font-weight: bold;
+	color: #990000;
+}
+.cg_htxt{
+	font-size: 16px;
+	font-weight: bold;
+	color: #000000;
+	line-height: 30px;
+}
+.cd_htxt{
+	font-size: 14px;
+	font-weight: bold;
+	color: #000000;
+}
+.zm_txt{
+	font-size: 12px;
+	color: #ffffff;
+	font-family: Arial;
+	background-color:#990000;
+}
+.zl_huitxt{
+	font-size: 12px;
+	color: #666666;
+}
+.font_ck {
+	margin:0px;
+	font-family: "宋体";
+	font-size: 12px;
+	color: #990000;
+	line-height: 20px;
+}
+.font_ck:link {  font-family: "宋体"; font-size: 12px; color: #990000; text-decoration: underline}
+.font_ck:visited {  font-family: "宋体"; font-size: 12px; color: #990000; text-decoration: underline}
+.font_ck:hover {  font-family: "宋体"; font-size: 12px;color: #990000; text-decoration: underline}
+
+
+

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+	http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	<servlet>
+		<servlet-name>DisplayChart</servlet-name>
+		<servlet-class>
+			org.jfree.chart.servlet.DisplayChart
+		</servlet-class>
+		<servlet-name>Download</servlet-name>
+		<servlet-class>com.catic.tool.mgr.Download</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DisplayChart</servlet-name>
+		<url-pattern>/servlet/DisplayChart</url-pattern>
+		<servlet-name>Download</servlet-name>
+		<url-pattern>/Download</url-pattern>
+
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ManagerServlet</servlet-name>
+		<display-name>ManagerServlet</display-name>
+		<description>
+			The Front Controller for the Pet Store
+		</description>
+		<servlet-class>com.catic.tool.ConfigServlet</servlet-class>
+		<init-param>
+			<param-name>default_locale</param-name>
+			<param-value>en_US</param-value>
+		</init-param>
+		<load-on-startup>3</load-on-startup>
+	</servlet>
+
+
+	<servlet>
+		<servlet-name>StartupLoad</servlet-name>
+		<servlet-class>com.catic.bean.StartupLoad</servlet-class>
+		<load-on-startup>0</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>StartupLoad</servlet-name>
+		<url-pattern>/StartupLoad</url-pattern>
+	</servlet-mapping>
+
+	<!-- $Id: web.xml,v 1.1 2000/11/18 15:25:10 yuan Exp $ -->
+	<display-name>Default</display-name>
+	<jsp-config>
+	<taglib>
+		<taglib-uri>/xdevelop.net/taglibs/page</taglib-uri>
+		<taglib-location>/WEB-INF/page.tld</taglib-location>
+	</taglib>
+</jsp-config>
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.wml</welcome-file>
+	</welcome-file-list>
+	<!-- **** -->
+</web-app>

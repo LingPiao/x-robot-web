@@ -1,0 +1,170 @@
+@import url('common.css');
+
+/* VRYUS (http://www.vryus.net) Jang Woong 090120 */ 
+body {
+	font-size: 12px;
+	margin: 0px;
+}
+TD {
+	FONT-SIZE: 12px;
+	line-height: 22px;
+}
+P {
+	FONT-SIZE: 12px
+}
+A:link {
+	COLOR: #000000; TEXT-DECORATION: none
+}
+A:visited {
+	COLOR: #000000; TEXT-DECORATION: none}
+A:hover {
+	COLOR: #ff0000; TEXT-DECORATION: none}
+A:active {
+	COLOR: #ff0000; TEXT-DECORATION: none}
+
+.consult_img2{margin:0 0 0 10px;}
+.consult_table{width:100%; border-collapse:collapse; }
+.consult_table .tr2{background:#f6f6f6;}
+.consult_table th{border-right:1px solid #f2f8ed; padding:7px 0; text-align:center; background-color: #BFD9FF;}
+.consult_table td{border-right:1px solid #e8e8e8; border-bottom:1px solid #dedede; padding-top:5px; padding-bottom:5px;color:#686868;}
+.consult_table td.center{text-align:center;}
+.consult_table td.right{text-align:right;padding-right:10px;}
+.consult_table td.left{text-align:left; padding-left:17px; padding-right:10px;}
+.consult_table td.brd_none{border-right:none;}
+.input-text {
+	BORDER-RIGHT: #cccccc 1px solid; BORDER-TOP: #cccccc 1px solid; FONT-SIZE: 12px; BORDER-LEFT: #cccccc 1px solid; BORDER-BOTTOM: #cccccc 1px solid
+}
+.btn-l {
+	PADDING-LEFT: 5px; BACKGROUND: url(../images/btnred_l.jpg) no-repeat left top; HEIGHT: 23px
+}
+.btn-l INPUT {
+	PADDING-RIGHT: 5px; BACKGROUND: url(../images/btnred_r.jpg) no-repeat right top; CURSOR: pointer; BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; HEIGHT: 23px; BORDER-BOTTOM-STYLE: none
+}
+.btn-gray {
+	PADDING-LEFT: 5px; BACKGROUND: url(../images/btngray_l.jpg) no-repeat left top; HEIGHT: 23px
+}
+.btn-gray INPUT {
+	PADDING-RIGHT: 5px; BACKGROUND: url(../images/btngray_r.jpg) no-repeat right top; CURSOR: pointer; BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; HEIGHT: 23px; BORDER-BOTTOM-STYLE: none
+}
+/*******************/
+.tab_left {
+	HEIGHT: 25px;
+	background-image: url(../images/tab_left.jpg);
+	background-repeat: no-repeat;
+	width: 6px;
+}
+.tab_r {
+	HEIGHT: 25px;
+	background-image: url(../images/tab_r.jpg);
+	background-repeat: no-repeat;
+	width: 77px;
+	color: #FFFFFF;
+	text-align: center;
+	vertical-align: middle;
+	cursor:hand;
+	font-weight: bold;
+}
+.tabs_r {
+	HEIGHT: 25px;
+	background-image: url(../images/tab2_r.jpg);
+	background-repeat: no-repeat;
+	width: 69px;
+	color: #FFFFFF;
+	text-align: center;
+	vertical-align: middle;
+	cursor:hand;
+}
+.tab_b {
+	border: 1px solid #A52222;
+}
+/*******************/
+.tab_lefts {
+	HEIGHT: 25px;
+	background-image: url(../images/tab_lefts.jpg);
+	background-repeat: no-repeat;
+	width: 6px;
+}
+.tab_rs {
+	HEIGHT: 25px;
+	background-image: url(../images/tab_rs.jpg);
+	background-repeat: no-repeat;
+	width: 77px;
+	color: #FFFFFF;
+	text-align: center;
+	vertical-align: middle;
+	cursor:hand;
+}
+
+.tabs_rs {
+	HEIGHT: 25px;
+	background-image: url(../images/tab2_rs.jpg);
+	background-repeat: no-repeat;
+	width: 69px;
+	color: #FFFFFF;
+	text-align: center;
+	vertical-align: middle;
+	cursor:hand;
+}
+
+/**教说话**/
+/***左边栏td样式****/
+.sdsd_bj{
+	background-image: url(../images/tds_bj.jpg);
+	background-repeat: repeat-x;
+	height: 22px;
+	background-attachment: fixed;
+	background-position: left center;
+	cursor:hand;
+	width: 120px;
+	margin-top: 2px;
+	font-size: 12px;
+	padding-left: 10px;
+	}
+
+/*******************/
+.tou_bj{
+	background-image: url(../images/tou_bj.jpg);
+	background-repeat: repeat-x;
+	background-position: bottom;
+	height: 60px;
+	vertical-align: bottom;
+	padding-bottom: 7px;
+}
+
+.welcome_bj{
+	background-image: url(../images/welcome_bj.jpg);
+	background-repeat: repeat-x;
+	padding: 10px;
+	height: 80px;
+	background-position: bottom;
+}
+.write_bj{
+	filter:progid:DXImageTransform.Microsoft.Gradient(startColorStr=#FDF6EC, endColorStr=#ffffff, gradientType=0);
+}
+/******红*******/
+.font_red{
+	color: #FF0000;
+	font-weight: bold;
+}
+/********login_t***********/
+.login_t{
+	background-image: url(../images/login_t.jpg);
+	background-repeat: repeat-x;
+	height: 39px;
+	background-position: bottom;
+}
+.login_t #lt{
+	background-image: url(../images/login_lt.jpg);
+	background-repeat: no-repeat;
+	height: 39px;
+	background-position: bottom;
+	width: 55px;
+}
+.login_t #font14{
+	font-size: 14px;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+/*******************/
+/*******************/
+/*******************/

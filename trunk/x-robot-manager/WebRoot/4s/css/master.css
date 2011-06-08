@@ -1,0 +1,553 @@
+body {
+	FONT-SIZE: 12px;
+	margin: 0px;
+	vertical-align: top;
+}
+TD {
+	FONT-SIZE: 12px;
+	vertical-align: top;
+	line-height: 22px;
+}
+P {
+	FONT-SIZE: 12px
+}
+A:visited {
+	COLOR: #000000; TEXT-DECORATION: none
+}
+A:link {
+	COLOR: #000000; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: #cb0101; TEXT-DECORATION: underline
+}
+.wht {
+	COLOR: #000000
+}
+.wht A:visited {
+	COLOR: #000000; TEXT-DECORATION: none
+}
+.wht A:link {
+	COLOR: #000000; TEXT-DECORATION: none
+}
+.wht A:hover {
+	COLOR: #000000; TEXT-DECORATION: underline
+}
+/***顶部广告位**************************************vv**************/
+.top_banner{
+	height: 60px;
+	vertical-align: bottom;
+	text-align: left;
+}
+/***登录table**************************************vv**************/
+.logon_table{
+	text-align: left;
+	vertical-align: top;
+	width: 485px;
+	margin-left: 2px;
+}
+/***登录title**************************************vv**************/
+.logon_title{
+	background-attachment: fixed;
+	background-image: url(../images/logon_title.jpg);
+	background-repeat: no-repeat;
+	height: 140px;
+}
+/***登录背景**************************************vv*********/
+.logon_bj{
+	background-attachment: fixed;
+	background-image: url(../images/logon_bj.jpg);
+	background-repeat: no-repeat;
+	height: 220px;
+	text-align: left;
+	vertical-align: middle;
+}
+/***登录title_填充**************************************vv**********/
+.logon_title_padding{
+	padding: 4px;
+}
+.logon_txt{
+	text-align: right;
+	width: 130px;
+}
+/***文本框**************************************vv**********/
+.input_txt{
+	border: 1px solid #999999;
+	height:15px;
+	background-color:#FFFFFF;
+}
+/***登录_按钮**************************************vv**********/
+.button_out {
+	background-image: url(../images/button-off.jpg);
+	background-repeat: no-repeat;
+	background-color: #FFFFFF;
+	color:#FFFFFF;
+	height: 24px;
+	width: 76px;
+	margin: 0px;
+	padding: 0px;
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-bottom-width: 0px;
+	border-left-width: 0px;
+	cursor:hand;
+	font-size: 14px;
+}
+.button_over {
+	background-image: url(../images/button-on.jpg);
+	background-repeat: no-repeat;
+	background-color: #FFFFFF;
+	color:#FFFFFF;
+	height: 24px;
+	width: 76px;
+	margin: 0px;
+	padding: 0px;
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-bottom-width: 0px;
+	border-left-width: 0px;
+	cursor:hand;
+	font-size: 14px;
+}
+
+/***sms_top**************************************vv**********/
+.sms_top_txt{
+	
+	height: 42px;
+	background-repeat: repeat-x;
+	font-size: 14px;
+	font-weight: bold;
+	text-align: left;
+	vertical-align: middle;
+}
+/***菜单**************************************vv**********/
+.sms_topnav{
+	background-image: url(../images/mainnav_r3_c3.jpg);
+	height: 28px;
+	background-repeat: repeat-x;
+	text-align: center;
+	vertical-align: middle;
+}
+.sms_topnav2{
+	width: 25px;
+	background-attachment: fixed;
+	background-image: url(../images/nav_g.jpg);
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+/***顶部文字**************************************vv**********/
+.txt_white_bold{
+	font-size: 14px;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+.txt_red{
+	font-size: 14px;
+	font-weight: bold;
+	color: #CB181C;
+}
+/*自写短信文字滤镜phone_title*/
+.txt_black {
+	font-weight: bold;
+	font-size: 14px;
+	color: #000000;
+	position:static;
+	padding:4px;
+	filter:
+			Dropshadow(offx=1,offy=0,color=#ffffff)
+			Dropshadow(offx=0,offy=1,color=#ffffff)
+			Dropshadow(offx=0,offy=-1,color=#ffffff)
+			Dropshadow(offx=-1,offy=0,color=#ffffff);
+	text-align: center;
+	vertical-align: top;
+}
+/*mainnav_bj.jpg*/
+.mainnav_bj{
+	background-image: url(../images/mainnav_bj.jpg);
+	background-repeat: repeat-x;
+}
+.left_width{
+	width:184px;
+	padding: 8px 5px 5px 5px;
+}
+/***phone**************************************vv**********/
+.phone_title{
+	background-image: url(../images/phone_r1_c1.jpg);
+	background-repeat: no-repeat;
+	width: 184px;
+	background-position: center;
+}
+/***phone平铺背景**************************************vv**********/
+.phone_mid{
+	background-image: url(../images/phone_r5_c1.jpg);
+	background-repeat: repeat-y;
+	background-position: center;
+	text-align: center;
+	padding: 0px 10px 0px 10px;
+}
+/***phone底部**************************************vv**********/
+.phone_di{
+	background-image: url(../images/phone_r7_c1.jpg);
+	background-repeat: no-repeat;
+	background-position: center;
+	height:42px;
+	text-align: center;
+	vertical-align: middle;
+}
+/***phone手机号码**************************************vv**********/
+.phone_number{
+	color: #FFFFFF;
+	background-color: #4B93DB;
+	height: 18px;
+	text-align: left;
+	vertical-align: top;
+	padding: 0px 0px 0px 3px;
+}
+/***phone中间上下**************************************vv**********/
+.phone_arrow{
+	height: 13px;
+}
+/***phone彩信高**************************************vv**********/
+.phone_g{
+	height: 160px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+/***phone渐变蓝**************************************vv**********/
+.phone_blue{
+	background-image: url(../images/phone_r2_c1.jpg);
+	background-repeat: repeat-x;
+}
+/***btn-l蓝**************************************vv**********/
+.btn-l {
+	PADDING-LEFT: 5px; BACKGROUND: url(../images/btnred_l.jpg) no-repeat left top; HEIGHT: 23px;
+}
+.btn-l INPUT {
+	PADDING-RIGHT: 5px; BACKGROUND: url(../images/btnred_r.jpg) no-repeat right top; CURSOR: pointer; BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; HEIGHT: 23px; BORDER-BOTTOM-STYLE: none;color:#FFFFFF
+}
+/***right填充**************************************vv**********/
+.right_padding{
+	padding: 8px 5px 5px 0px;
+}
+/***div_tab选中状态**************************************vv**********/
+.div_tab_left {
+	background-image: url(../images/tab_active_left.gif);
+	background-repeat: no-repeat;
+	width:3px;
+	height: 22px;
+}
+.div_tab_center {
+	background-image: url(../images/tab_active_bg.gif);
+	background-repeat: repeat-x;
+	cursor:pointer;
+	height: 22px;
+	padding: 0px 5px 0px 5px;
+	text-align: center;
+}
+.div_tab_right {
+	background-image: url(../images/tab_active_right.gif);
+	background-repeat: no-repeat;
+	width:3px;
+	height: 22px;
+}
+/***div_tab默认状态**************************************vv**********/
+.div_tabs_left {
+	background-image: url(../images/tab_unactive_left.gif);
+	background-repeat: no-repeat;
+	width:3px;
+	height: 22px;
+}
+.div_tabs_center {
+	background-image: url(../images/tab_unactive_bg.gif);
+	background-repeat: repeat-x;
+	cursor:pointer;
+	height: 22px;
+	padding: 0px 5px 0px 5px;
+	text-align: center;
+}
+.div_tabs_right {
+	background-image: url(../images/tab_unactive_right.gif);
+	background-repeat: no-repeat;
+	width:3px;
+	height: 22px;
+}
+.div_tabs_topbg {
+	background-image: url(../images/tab_top_bg.gif);
+	background-repeat: repeat-x;
+}
+.div_tab_leftbg{
+	background-image: url(../images/tab_bg.gif);
+	background-repeat: repeat-y;
+	width:1px;
+}
+.div_height{
+	padding: 10px;
+	height: 320px;
+}
+/*控制滚动条*/
+.div_Layer {
+	width:100%;
+	height: 300px;
+	position:absolute;
+	z-index:1;
+	overflow: auto;
+}
+/*滚动条+隐藏*/
+.div_Layers {
+	width:100%;
+	height: 300px;
+	position:absolute;
+	z-index:1;
+	overflow: auto;
+	DISPLAY: none; 
+	VISIBILITY: hidden
+}
+.div_font {
+	color: #FD6500;
+}
+.div_fonts {
+	color: #003399;
+}
+/*常用短信******************************************************************/
+.sms_left_width{
+	width:80px;
+	padding: 8px 0px 0px 0px;
+	text-align: center;
+	vertical-align: top;
+}
+/*滤镜效果红*/
+.sizscolor {
+	font-size: 14px;
+	color: #ffffff;
+	position:static;
+	filter:
+			Dropshadow(offx=1,offy=0,color=#cc0000)
+			Dropshadow(offx=0,offy=1,color=#cc0000)
+			Dropshadow(offx=0,offy=-1,color=#cc0000)
+			Dropshadow(offx=-1,offy=0,color=#cc0000);
+	height: 20px;
+}
+/*红加号*/
+.folder{
+	float:left;
+	background-image: url(../images/dian5.gif);
+	background-repeat: no-repeat;
+	background-position: right center;
+	width:15px;
+
+}
+.sms_right_padding{
+	padding: 8px 5px 5px 0px;
+}
+/*当前页灰渐变*/
+.cjb {
+	font-weight: bold;
+	height: 23px;
+	background-color: #E6E6E6;
+	text-align: left;
+	vertical-align: middle;
+	padding-top: 2px;
+}
+/*灰字*/
+.index_huitxt{
+	color:#666762;
+}
+.index_huitxt:link {  font-family: "宋体"; font-size: 12px; color: #666762; text-decoration: none}
+.index_huitxt:visited {  font-family: "宋体"; font-size: 12px; color: #666762; text-decoration: none}
+.index_huitxt:hover {  font-family: "宋体"; font-size: 12px;color: #CC0000; text-decoration: none}
+.sms002_table{
+	padding: 5px 8px 2px 8px;
+}
+.line{
+	height:1px;
+	background-image: url(../images/line.jpg);
+	background-repeat: repeat-x;
+}
+/********上下滚动条*************/
+.textarea{
+    overflow-y:scroll; scrollbar-face-color: #9EBFE8; scrollbar-shadow-color: #FFFFFF; scrollbar-highlight-color: #FFFFFF; scrollbar-3dlight-color: #9EBFE8; scrollbar-darkshadow-color: #9EBFE8; scrollbar-track-color: #FFFFFF; scrollbar-arrow-color: #FFFFFF
+}
+/*************彩信MMS******************************************************/
+.mms_table_big{
+	text-align: center;
+	vertical-align: super;
+	padding: 4px 5px 5px 5px;
+}
+.mms_table{
+	widows:109px;
+	text-align: center;
+	vertical-align: super;
+	padding: 2px;
+}
+.mms_img{
+	border: 2px solid #CCCCCC;
+}
+.mms_img:link {
+	border: 2px solid #CCCCCC;
+}
+.mms_img:visited {
+	border: 2px solid #CCCCCC;
+}
+.mms_img:hover {
+	border: 2px solid #999999;
+}
+/*************电话簿列表******************************************************/
+.Number_table{
+border-collapse:collapse;border:solid 1px #cccccc;}
+.Number_table #title{
+	border-collapse:collapse;
+	border:solid 1px #cccccc;
+	background-image: url(../images/cd_bj.jpg);
+	background-repeat: repeat-x;
+	height: 26px;
+	text-align: center;
+	vertical-align: middle;
+	color: #000000;
+}
+.Number_table #left{
+	text-align: left;
+	padding: 2px 2px 2px 8px;
+}
+.Number_table #ccc{
+	background-color: #f6f6f6;
+	color:#000000;
+}
+.Number_table td{
+	border-collapse:collapse;
+	border:solid 1px #cccccc;
+	text-align: center;
+	vertical-align: middle;
+	color: #666666;
+}
+.Number_table #right{
+	text-align: right;
+	padding: 0px 0px 0px 8px;
+	vertical-align: top;
+	background-color: #f6f6f6;
+}
+/*************complaint******************************************************/
+.complaint_logo{
+	background-image: url(../images/complaint_logo.jpg);
+	background-repeat: no-repeat;
+	height: 42px;
+	width: 50px;
+}
+.complaint_txt{
+	font-size: 14px;
+	color: #FFFFFF;
+	text-align: left;
+	vertical-align: middle;
+	padding-left: 10px;
+	font-weight: bold;
+}
+/*************bill******************************************************/
+.font_black2 {
+	font-size: 12px;
+	color: #000;
+	font-weight: bold;line-height:14px;
+}
+.leftDh02{
+width:160px;
+border:1px solid #ccc;
+border-top:none;
+font-size:10pt;
+background:#fff;
+text-align:left;
+color:#545454;
+}
+.leftpad{
+padding-left:25px;
+}
+.ad:link {	
+	font-size:10pt;
+	color: #545454;
+}
+.ad:visited {	
+	font-size:10pt;
+	color: #545454;
+}
+.ad:hover {	
+	font-size:10pt;
+	color: #d2191e;
+	text-decoration:underline;
+}
+.ad:active {	
+	font-size:10pt;
+	color: #545454;
+}
+.rightpad{
+padding-right:10px;
+}
+.font_black2 {
+	font-size: 12px;
+	color: #000;
+	font-weight: bold;line-height:14px;
+}
+.leftDh02{
+width:160px;
+border:1px solid #ccc;
+border-top:none;
+font-size:10pt;
+background:#fff;
+text-align:left;
+color:#545454;
+}
+.STYLE1 {
+	color: #FF0000;
+	font-size: 13px;
+	font-weight: bold;
+	font-family: "Courier New", Courier, monospace;
+}
+.tableStyle5{background:#CACACA;margin-bottom:0px;text-align:left;}
+.tableStyle5 th{background:#F3F3F3;height:18px;line-height:18px;color:#333333;text-align:left;font-size:12px;font-weight:100;}
+.tableStyle5 td{background:#fff;height:18px;line-height:18px;}
+.newPagetd{
+color:#333;
+padding:0 15px;
+}
+.newPagetdxd{
+color:#333;
+padding:0 10px;
+}
+.xdtitle{background:#F3F3F3;height:14px;line-height:14px;color:#333333;text-align:center;}
+.tableStyle2 td.r10{background:#fff;height:18px;line-height:18px;text-align:right;padding-right:20px;}
+.tableStyle2 td.c10{background:#fff;height:18px;line-height:18px;text-align:center;padding-right:20px;}
+/******************************************************************/
+.bill_font_red {
+	color: #ff0000;
+}
+.bill_font_red:link {  font-family: "宋体"; font-size: 12px; color: #ff0000; text-decoration: none}
+.bill_font_red:visited {  font-family: "宋体"; font-size: 12px; color: #ff0000; text-decoration: none}
+.bill_font_red:hover {  font-family: "宋体"; font-size: 12px;color: #ff0000; text-decoration: underline}
+/******************************************************************/
+.successful{
+	background-image: url(../images/BB005.JPG);
+	background-repeat: no-repeat;
+	height: 283px;
+	width: 358px;
+	padding-top: 217px;
+	padding-left: 217px;
+}
+.failure{
+	background-image: url(../images/BB006.JPG);
+	background-repeat: no-repeat;
+	height: 283px;
+	width: 358px;
+	padding-top: 217px;
+	padding-left: 217px;
+}
+/***投诉背景***********************************************************/
+.ts_bg{
+	filter:progid:DXImageTransform.Microsoft.Gradient(startColorStr=#9AD7F3, endColorStr=#ffffff, gradientType=0)
+}
+/*****say************************************************/
+.say_table{
+}
+.say_table #bb{
+	background-image: url(../images/BB0014.jpg);
+	background-repeat: no-repeat;
+	width: 110px;
+	vertical-align: middle;
+}
+/******************************************************************/
