@@ -1,0 +1,58 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.0//EN" "http://www.opensymphony.com/xwork/xwork-1.0.dtd">
+
+<xwork>
+	<package name="welcome" extends="webwork-default"
+		externalReferenceResolver="com.atlassian.xwork.ext.SpringServletContextReferenceResolver">
+		<interceptors>
+			<interceptor name="reference-resolver"
+				class="com.opensymphony.xwork.interceptor.ExternalReferencesInterceptor" />
+			<interceptor-stack name="WSStack">
+				<interceptor-ref name="model-driven" />		
+				<interceptor-ref name="validationWorkflowStack" />
+				<interceptor-ref name="timer" />
+				<interceptor-ref name="params" />
+				<interceptor-ref name="reference-resolver" />
+			</interceptor-stack>
+
+			<interceptor-stack name="WSStack_Online">			
+				<interceptor-ref name="validationWorkflowStack" />
+				<interceptor-ref name="timer" />
+				<interceptor-ref name="params" />
+				<interceptor-ref name="model-driven" />
+				<interceptor-ref name="reference-resolver" />
+			</interceptor-stack>
+		</interceptors>
+
+		<default-interceptor-ref name="defaultStack" />
+		<action name="index" class="org.project.ww.IndexAction">
+		<external-ref name="woknowDao">woknowDao</external-ref>
+			<result name="success" type="dispatcher">
+				<param name="location">index.jsp</param>
+			</result>
+			<interceptor-ref name="WSStack" />
+		</action>
+		<action name="login" class="org.project.ww.LoginAction">
+			<external-ref name="tuserDao">tuserDao</external-ref>
+			<external-ref name="msnDao">msnDao</external-ref>
+			<result name="reg" type="dispatcher">
+				<param name="location">regist.jsp</param>
+			</result>
+			<result name="regdoS" type="redirect">
+				<param name="location">login.action?op=logindo&amp;username=${username}&amp;userpwd=${userpwd}</param>
+			</result>
+			<result name="regdoF" type="dispatcher">
+				<param name="location">regist.jsp</param>
+			</result>
+			<result name="login" type="dispatcher">
+				<param name="location">login.jsp</param>
+			</result>
+			<result name="loginok" type="redirect">
+				<param name="location">woknow.action?userid=${userid}&amp;chanel=other&amp;from=web</param>
+			</result>
+			<result name="loginerror" type="redirect">
+				<param name="location">index.action</param>
+			</result>
+			<interceptor-ref name="WSStack" />
+		</action>
+	</package>
+</xwork>

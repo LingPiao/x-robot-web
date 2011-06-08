@@ -1,0 +1,119 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.0//EN" "http://www.opensymphony.com/xwork/xwork-1.0.dtd">
+
+<xwork>
+	<package name="telbook" extends="webwork-default"
+		externalReferenceResolver="com.atlassian.xwork.ext.SpringServletContextReferenceResolver">
+		<interceptors>
+			<interceptor name="reference-resolver"
+				class="com.opensymphony.xwork.interceptor.ExternalReferencesInterceptor" />
+			<interceptor-stack name="WSStack">
+				<interceptor-ref name="model-driven" />		
+				<interceptor-ref name="validationWorkflowStack" />
+				<interceptor-ref name="timer" />
+				<interceptor-ref name="params" />
+				<interceptor-ref name="reference-resolver" />
+			</interceptor-stack>
+
+			<interceptor-stack name="WSStack_Online">			
+				<interceptor-ref name="validationWorkflowStack" />
+				<interceptor-ref name="timer" />
+				<interceptor-ref name="params" />
+				<interceptor-ref name="model-driven" />
+				<interceptor-ref name="reference-resolver" />
+			</interceptor-stack>
+		</interceptors>
+
+		<default-interceptor-ref name="defaultStack" />
+		<action name="woknow" class="org.project.ww.WoknowAction">	
+		<external-ref name="msnDao">msnDao</external-ref>
+		<external-ref name="woknowDao">woknowDao</external-ref>
+		<external-ref name="tuserDao">tuserDao</external-ref>
+		<external-ref name="vipmanagerDao">vipmanagerDao</external-ref>
+			<result name="view" type="dispatcher">
+				<param name="location">woknow.jsp</param>
+			</result>
+			<result name="mobile" type="dispatcher">
+				<param name="location">mwoknow.jsp</param>
+			</result>
+			<result name="msn" type="dispatcher">
+				<param name="location">msnwoknow.jsp</param>
+			</result>
+			<interceptor-ref name="WSStack" />
+		</action>
+		<action name="woknowmine" class="org.project.ww.WoknowMineAction">
+		<external-ref name="msnDao">msnDao</external-ref>
+		<external-ref name="woknowDao">woknowDao</external-ref>
+		<external-ref name="tuserDao">tuserDao</external-ref>
+		<external-ref name="vipmanagerDao">vipmanagerDao</external-ref>
+			<result name="view" type="dispatcher">
+				<param name="location">woknow.jsp</param>
+			</result>
+			<result name="mobile" type="dispatcher">
+				<param name="location">mwoknow.jsp</param>
+			</result>
+			<result name="msn" type="dispatcher">
+				<param name="location">msnwoknow.jsp</param>
+			</result>
+			<interceptor-ref name="WSStack" />
+		</action>
+		
+		<action name="woknowvip" class="org.project.ww.WoknowVipAction">
+		<external-ref name="msnDao">msnDao</external-ref>
+		<external-ref name="woknowDao">woknowDao</external-ref>
+		<external-ref name="tuserDao">tuserDao</external-ref>
+		<external-ref name="vipmanagerDao">vipmanagerDao</external-ref>
+		<external-ref name="vipcustomerDao">vipcustomerDao</external-ref>
+			<result name="view" type="dispatcher">
+				<param name="location">woknow.jsp</param>
+			</result>
+			<result name="mobile" type="dispatcher">
+				<param name="location">mwoknow.jsp</param>
+			</result>
+			<result name="msn" type="dispatcher">
+				<param name="location">msnwoknow.jsp</param>
+			</result>
+			<interceptor-ref name="WSStack" />
+		</action>
+		<action name="woanswer" class="org.project.ww.WoanswerAction">
+		<external-ref name="woanswerDao">woanswerDao</external-ref>
+		<external-ref name="woknowDao">woknowDao</external-ref>
+		<external-ref name="msnDao">msnDao</external-ref>
+		<external-ref name="tuserDao">tuserDao</external-ref>
+		<external-ref name="vipmanagerDao">vipmanagerDao</external-ref>
+		<external-ref name="wovisitDao">wovisitDao</external-ref>
+			<result name="view" type="dispatcher">
+				<param name="location">woanswer.jsp</param>
+			</result>
+			<result name="mobile" type="dispatcher">
+				<param name="location">mwoanswer.jsp</param>
+			</result>
+			<result name="msn" type="dispatcher">
+				<param name="location">msnwoanswer.jsp</param>
+			</result>
+			<result name="answer" type="redirect">
+				<param name="location">woanswer.action?userid=${userid}&amp;q_id=${q_id}&amp;op=view&amp;from=${from}&amp;chanel=${chanel}</param>
+			</result>
+			<result name="best" type="redirect">
+				<param name="location">woanswer.action?userid=${userid}&amp;q_id=${q_id}&amp;op=view&amp;from=${from}&amp;chanel=${chanel}</param>
+			</result>
+			<interceptor-ref name="WSStack" />
+		</action>
+		
+		<action name="bindmobile" class="org.project.ww.BindMobileAction">	
+		<external-ref name="msnDao">msnDao</external-ref>
+			<result name="bind" type="dispatcher">
+				<param name="location">bind.jsp</param>
+			</result>
+			<result name="unbind" type="dispatcher">
+				<param name="location">unbind.jsp</param>
+			</result>
+			<result name="bindok" type="redirect">
+				<param name="location">woknow.action?userid=${userid}</param>
+			</result>
+			<result name="unbindok" type="redirect">
+				<param name="location">woknow.action?userid=${userid}</param>
+			</result>
+			<interceptor-ref name="WSStack" />
+		</action>
+	</package>
+</xwork>
