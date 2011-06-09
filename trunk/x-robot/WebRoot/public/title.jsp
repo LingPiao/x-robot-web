@@ -48,7 +48,7 @@ a:active {
             <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
                 <td width="20" height="41" align="center" valign="middle"><img src="../images/dot.gif" width="12" height="12"></td>
-                <td valign="middle"><a href="http://www.x-robot.cn/robotweb/woknow.action?userid=<ww:property value="user_msn"/>&chanel=other&from=mobile">“沃”知道 </a></td>
+                <td valign="middle"><a href="http://www.x-robot.cn/robotweb/woknow.action?userid=<ww:property value="user_msn"/>&chanel=other&from=msn">“沃”知道 </a></td>
               </tr>
             </table></td>
             <td><table width="100%" border="0" cellspacing="0" cellpadding="0" >
