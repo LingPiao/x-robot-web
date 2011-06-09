@@ -133,7 +133,7 @@ a:visited img{
                         <td align="right">&nbsp;</td>
                         <td align="right" class="orange"></td>
                         <td align="right" class="black_01"><ww:if test="Q_STATE==\"1\"">已完结</ww:if><ww:else><FONT color=red>未完结</FONT></ww:else>&nbsp;&nbsp;访问：<ww:if test="BROWS==null">0</ww:if><ww:else><ww:property value="['BROWS']"/></ww:else>&nbsp;&nbsp;回复：<ww:if test="ANSWERS==null">0</ww:if><ww:else><ww:property value="['ANSWERS']"/></ww:else></td>
-                        <td align="right" class="black_01">提问时间：<ww:property value="['Q_DATE'].toString().substring(0,10)"/></td>
+                        <td align="right" class="black_01">提问时间：<ww:property value="['Q_DATE'].toString().substring(0,16)"/></td>
                       </tr>
                     </table></td>
                   </tr>

@@ -2,6 +2,8 @@ package org.project.ww;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.project.dao.Msn_certificationDao;
 import org.project.dao.TuserDao;
@@ -102,11 +104,12 @@ public class WoanswerAction extends ActionSupport {
 					content = map.get("Q_CONTENT").toString();
 				state=  map.get("Q_STATE").toString();
 				q_date= map.get("Q_DATE").toString();
-				//q_validity=map.get("Q_VALIDITY").toString();
+				q_user=map.get("Q_USER").toString();
 				
 			}
 			
 			ansList = woanswerDao.getAnswerByQid(q_id);
+			System.out.println(ansList);
 			//查看是否有最佳答案
 			if(woanswerDao.isBestAnswer(q_id))
 				bestflag="1";
@@ -133,6 +136,18 @@ public class WoanswerAction extends ActionSupport {
 		}
 		if(op.equals("answer"))
 		{
+//			String tempuseridString="";
+//			System.out.println(userid);
+//			System.out.println(user_mobile);
+//			System.out.println(nickname);
+//			if(!usermobile.equals("") && usermobile!=null)
+//				tempuseridString=usermobile;
+//			else if(checkEmail(userid))
+//				tempuseridString=userid;
+//			else if(!nickname.equals("") && nickname!=null)
+//				tempuseridString=nickname;
+//			else
+//				tempuseridString="热心网友";
 			woanswerDao.saveAnswer(q_id, A_CONTENT, userid);
 			wovisitDao.addAnswer(q_id);
 			return "answer";
@@ -150,6 +165,14 @@ public class WoanswerAction extends ActionSupport {
 		}
 		return SUCCESS;
 	}
+	public boolean checkEmail(String email){  
+		Pattern emailer = Pattern.compile("\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*"); 
+	    Matcher matcher = emailer.matcher(email);
+	    if (matcher.matches()){
+	        return true;
+	    }
+	    return false;
+	 }
 	//用户来源
 	private String from;
 	private String nickname;
@@ -183,6 +206,7 @@ public class WoanswerAction extends ActionSupport {
 	private String bestflag;
 	private String content;
 	private String state;
+	private String q_user;
 	private String q_date;
 	private String q_validity;
 	private String usermobile;
@@ -286,6 +310,14 @@ public class WoanswerAction extends ActionSupport {
 	
 	
 	
+	public String getQ_user() {
+		return q_user;
+	}
+
+	public void setQ_user(String q_user) {
+		this.q_user = q_user;
+	}
+
 	public List getAnsList() {
 		return ansList;
 	}

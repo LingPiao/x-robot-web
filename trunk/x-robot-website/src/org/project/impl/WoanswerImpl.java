@@ -30,7 +30,7 @@ public class WoanswerImpl implements WoanswerDao {
 	}
 	public List getAnswerByQid(String qid)
 	{
-		String sql="select * from W_ANSWERS  where Q_ID='"+qid+"' order by A_LEVELS desc,A_ID desc";
+		String sql="select u.nickname,m.USER_TEL,a.* from W_ANSWERS a, t_user u,msn_certification m where a.Q_ID='"+qid+"'  and a.a_user=u.username(+) and a.a_user=m.user_msn(+) order by a.A_LEVELS desc,a.A_ID desc";
 		return sqlDao.qryBySQLText(sql);
 	}
 	public void setBestAnswer(String aid)
