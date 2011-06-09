@@ -104,7 +104,7 @@
 												&nbsp;
 											</p>
 											<%
-											table="t_vip_customer";								
+											table="T_VIP_MANAGER";								
 											fieldarraystr="*";
 											query.setRecordCount(table,condition);
 											int count = query.getRecordCount();
@@ -141,18 +141,16 @@
 																		¿Í»§
 																	</td>
 																	
-																	
-																	<td align="center" valign="middle" bgcolor="#FFFFFF"
-																		class="zl_huitxt" width=8%>
-																		Ñ¡&nbsp; Ôñ
-																	</td>
 																</tr>
 																<%
-																query.setRecordSet("select c.* from t_vip_manager m,t_vip_customer c where m.m_mobile=c.m_mobile order by m.m_mobile");
+																query.setRecordSet("select * from t_vip_manager");
 																ResultSet rs3 = query.getResultSet();
+																int count1 = 0;
 																int indexs=1;
+																String seqid="";
 																String temp_period="";
 																while(rs3.next()){
+																	seqid=rs3.getString("seqid");
 																	
 																	i++;
 																	if((i+1)>index.intValue() && i< (index.intValue()+pageSize.intValue()))
@@ -164,19 +162,26 @@
 																		<%=indexs %>
 																	</td>
 																	<td align="left" valign="middle" bgcolor="#FFFFFF"
-																		class="logon_txt1">
-																		<%=rs3.getString("m_mobile")%>
+																		class="logon_txt1" >
+																		<%=rs3.getString("m_mobile")%><a href="vip_mod.jsp?mobile=<%=rs3.getString("m_mobile") %>&seqid=<%=seqid %>&table=t_vip_manager">
+																		<img src = "../images/edit.gif" border = 0>
+																		</a>
 																	</td>
 																	<td align="left" valign="middle" bgcolor="#FFFFFF"
 																		class="logon_txt1">
-																		<%=rs3.getString("c_mobile") %>
-																	</td>
-																	
-																	
-																	
-																	<td align="center" valign="middle" bgcolor="#FFFFFF">
-																		<input type="checkbox" name="mesid"
-																			value="<%=rs3.getString("m_mobile")%>-<%=rs3.getString("c_mobile")%>">
+																		<table>
+																		<%
+																		query.setRecordSet("select * from t_vip_customer where m_mobile='"+seqid+"'");
+																		ResultSet rs4 = query.getResultSet();
+																		while(rs4.next()){
+																		%><input type="hidden" name="mesid"	value="0">
+																		<tr><td><%=rs4.getString("c_mobile")%></td><td><input type="checkbox" name="mesid"
+																			value="<%=rs4.getString("seqid")%>"><a href="vip_mod.jsp?mobile=<%=rs4.getString("c_mobile")%>&seqid=<%=rs4.getString("seqid")%>&table=t_vip_customer"">
+																		<img src = "../images/edit.gif" border = 0>
+																		</a>
+																		</td></tr>
+																		<%} %>
+																		</table>
 																	</td>
 																</tr>
 																<%

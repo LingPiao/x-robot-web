@@ -10,59 +10,16 @@
 	response.setHeader("Pragma","No-cache"); 
 	response.setHeader("Cache-Control","no-cache"); 
 	response.setDateHeader("Expires", 0); 
-	ConvertDate cd = new ConvertDate();
-	String timeid = "",contactemail="",notifytime="",	period="",content="",email="";
-	timeid = request.getParameter("timerid");
-	DataConn conn=new DataConn();
-	QueryData query=new QueryData(conn);
-	String table = "t_timer";
-	String fieldarraystr = "*";
-	String condition = "timerid='"+timeid+"'";
-	query.setRecordSet(table,fieldarraystr,condition);
-	ResultSet rs = query.getResultSet();
-if(rs.next())
-{
-	contactemail = rs.getString("contactemail");
-	notifytime = cd.dateToString(rs.getTimestamp("notifytime"));
-	period = rs.getString("period");
-	content = rs.getString("content");
-	email = rs.getString("email");
-	if(email == null)
-		email="";
-}
-System.out.println(notifytime.substring(14,16));
-rs.close();
-conn.close();
+	
 %>
 
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=gb2312">	
 	</head>
-	<script type="text/javascript">
-		function formCheck()
-		{
-			if(addform.contactemail.value=="")
-			{
-				alert("请填写用户email！");
-				addform.contactemail.focus();
-				return false;
-			}
-			if(addform.content.value=="")
-			{
-				alert("请填写提醒内容");
-				addform.content.focus();
-				return false;
-			}
-			return true;
-		}
-		function canceladd()
-		{
-			window.location.href = "service_mind.jsp";
-		}
-	</script>
+	
 	<script type="text/javascript" src="clock.js"></script>
-		<link href="css/css1.css" rel="stylesheet" type="text/css">
+		<link href="../css/css1.css" rel="stylesheet" type="text/css">
 	<body>
 		<table width="100%" height="100%" border="0" cellpadding="0"
 			cellspacing="0">
@@ -78,7 +35,7 @@ conn.close();
 									cellspacing="0">
 									<tr>
 										<td width="79%" align="left" valign="top" style="display:n2one" id="add">
-											<form name =addform method=post action = "service_mind_db.jsp" onSubmit=return(formCheck())>
+											<form name =addform method=post action = "vip_db.jsp" >
 											<table width="90%" border="0" align="center" cellpadding="6"
 												cellspacing="0">
 												<tr>
@@ -88,7 +45,8 @@ conn.close();
 												<tr>
 													<td width="100%" align="left" valign="middle"
 														class="zm_txt" height=25 colspan=2>
-														主动服务信息<input type=hidden  name=timerid   size=30 value=<%=timeid%>>
+														信息修改<input type=hidden  name=seqid   size=30 value=<%=request.getParameter("seqid")%>>
+														<input type=hidden  name=table   size=30 value=<%=request.getParameter("table")%>>
 													</td>
 												</tr>
 												<tr>
@@ -97,76 +55,14 @@ conn.close();
 															cellspacing="1" bgcolor="#666666">
 															<tr>
 																<td align="right" valign="top" bgcolor="#FFFFFF" class="zl_huitxt">
-																	用户email：
+																	手机号码：
 																</td>
 																<td bgcolor="#FFFFFF" class="zl_huitxt"  align="left">
-																	<input type=text   name=contactemail   size=30 value=<%=contactemail%>>
+																	<input type=text   name=mobile   size=30 value=<%=request.getParameter("mobile")%>>
 																</td>
 															</tr>
-															<tr>
-																<td align="right" valign="top" bgcolor="#FFFFFF" class="zl_huitxt">
-																	开始时间：
-																</td>
-																<td bgcolor="#FFFFFF" class="zl_huitxt"  align="left">
-																	<input type="text"  onclick="fPopCalendar(begin,begin); return false"  id="begin" class="input-text" style="width:100px;" name="begin" value="<%=notifytime.substring(0,10)%>" />
-																	<select name="Hours" class="search" style="width:40">
-														      <% 
-														      		int i=0;
-														      		String temp="";
-														      		for(i=0; i<24; i++) {
-														          if (i<10) {
-														              temp = "0" +Integer.toString(i);
-														          }
-														          else {
-														              temp = Integer.toString(i);
-														          }
-														      %>
-														        <option value=<%=temp%> <% if((notifytime.substring(11,13)).equals(temp)){ %>selected<% } %> ><%=temp%>&nbsp;</option>
-														      <% } %>
-														      </select>
-														      <select name="Minutes" class="search"  style="width:40" >
-														      <% for(i=0; i<60; i=i+1) {
-														          if (i<10) {
-														              temp = "0" +Integer.toString(i);
-														          }
-														          else {
-														              temp = Integer.toString(i);
-														          }
-														      %>
-														        <option value=<%=temp%> <% if((notifytime.substring(14,16)).equals(temp)){ %>selected<% } %>><%=temp%>&nbsp;</option>
-														      <% } %>
-														      </select>
-																</td>
-															</tr>
-															<tr>
-																<td align="right" valign="top" bgcolor="#FFFFFF" class="zl_huitxt">
-																	提醒间隔：
-																</td>
-																<td bgcolor="#FFFFFF" class="zl_huitxt"  align="left">
-																	<select name="period">
-																	<option value = "o" <%if(period.equals("o")) out.print("selected");%>>只提醒一次</option>
-																	<option value = "d" <%if(period.equals("d")) out.print("selected");%>>每天提醒一次</option>
-																	<option value = "w" <%if(period.equals("w")) out.print("selected");%>>每周提醒一次</option>
-																	<option value = "m" <%if(period.equals("m")) out.print("selected");%>>每月醒一次</option>
-																	</select>
-																</td>
-															</tr>
-															<tr>
-																<td align="right" valign="top" bgcolor="#FFFFFF" class="zl_huitxt">
-																	提醒内容：
-																</td>
-																<td bgcolor="#FFFFFF" class="zl_huitxt"  align="left">
-																	<textarea name="content" cols="50" rows="6" ><%=content%></textarea>
-																</td>
-															</tr>
-															<tr>
-																<td align="right" valign="top" bgcolor="#FFFFFF" class="zl_huitxt">
-																	发送邮件的邮箱：
-																</td>
-																<td bgcolor="#FFFFFF" class="zl_huitxt"  align="left">
-																	<input type=text   name=email   size=30 value=<%=email%>>
-																</td>
-															</tr>
+															
+															
 															<tr>
 																<td colspan="2" align="center" valign="middle" bgcolor="#FFFFFF" class="zl_huitxt">
 																	<input type = hidden name=action id=action value="edit">
@@ -175,7 +71,7 @@ conn.close();
 																		value="保  存">
 																	&nbsp;
 																	<input name="cancel" type="button" class="button"
-																		value="取  消" onClick="javascript:canceladd()">
+																		value="取  消" onClick="window.location.href='vip.jsp'">
 																</td>
 															</tr>
 														</table>															

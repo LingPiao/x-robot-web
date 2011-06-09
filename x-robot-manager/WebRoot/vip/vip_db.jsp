@@ -1,5 +1,8 @@
-<%@ page language="java" import="java.util.*" pageEncoding="gb2312"%>
-<%@ page import = "com.catic.tool.*"%>
+<%@page contentType="text/html;charset=gb2312"
+	import="java.sql.*,java.util.*"%>
+<%@ taglib uri="/xdevelop.net/taglibs/page" prefix="page"%>
+<%@ page import="com.catic.tool.*"%>
+<%@ page import="com.catic.bean.*"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -33,8 +36,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	String value_str="";
 	DataConn conn=new DataConn();
 	InsertData insert=new InsertData(conn);
+	UpdateData update = new UpdateData(conn);
 	QueryData query=new QueryData(conn);
-
+	ResultSet rs4=null;
 
 if("add".equals(action)){	
 	String cmobile=new String(request.getParameter("c_mobile"));//.getBytes("8859_1")
@@ -45,14 +49,21 @@ if("add".equals(action)){
 	int count = query.getRecordCount();
 	if(count == 0)
 	{
-		insert.insert("t_vip_manager","m_mobile",mmobile);
+		value_str="A_ID.nextval,'"+mmobile+"'";
+		insert.insert("t_vip_manager","seqid,m_mobile",value_str);
 	}
 	int i=0;
-	for(int j=0;j<CONTACTEMAILARR.length;j++)
+	query.setRecordSet("select seqid from t_vip_manager where m_mobile='"+mmobile+"'");
+	rs4 = query.getResultSet();
+	String m_mobile="";
+	if(rs4.next())
 	{
-	
-	value_str="'"+CONTACTEMAILARR[j]+"','"+mmobile+"'";
-	i=insert.insert("t_vip_customer","c_mobile,m_mobile",value_str);
+		m_mobile=rs4.getString("seqid");
+	}
+	for(int j=0;j<CONTACTEMAILARR.length;j++)
+	{		
+	value_str="A_ID.nextval,'"+CONTACTEMAILARR[j]+"','"+m_mobile+"'";
+	i=insert.insert("t_vip_customer","seqid,c_mobile,m_mobile",value_str);
 	}
 	if(i==0){
 		out.print("<SCRIPT type=text/javascript>");
@@ -67,6 +78,36 @@ if("add".equals(action)){
 		out.print("</SCRIPT>");		
 	}
 }
+else if("edit".equals(action)){
+	String mobile=new String(request.getParameter("mobile"));//.getBytes("8859_1")
+	String seqid = request.getParameter("seqid");
+	String datatable = request.getParameter("table");
+	String con="";
+	String val="";
+	if(datatable.equals("t_vip_customer"))
+	{
+		con="seqid='"+seqid+"'";
+		val="c_mobile='"+mobile+"'";
+	}
+	else
+	{
+		con="seqid='"+seqid+"'";
+		val="m_mobile='"+mobile+"'";
+	}
+	int i = update.update(datatable,val,con);
+	if(i==0){
+		out.print("<SCRIPT type=text/javascript>");
+		out.print("alert('更新成功');");
+		out.print("window.location.href='vip.jsp';");
+		out.print("</SCRIPT>");
+		
+	}else{
+		out.print("<SCRIPT type=text/javascript>");
+		out.print("alert('更新失败');");
+		out.print("window.location.href='vip.jsp';");
+		out.print("</SCRIPT>");		
+	}
+}
 else if(action.equals("del"))
 	{
 	int i=0;
@@ -74,9 +115,8 @@ else if(action.equals("del"))
     String[] ids=request.getParameterValues("mesid");
     for(int m=0;m<ids.length;m++)
     {
-	String[] temp =ids[m].split("-");
     	table="t_vip_customer";
-    	value_str="m_mobile='"+temp[0]+"' and c_mobile='"+temp[1]+"'";    		
+    	value_str="seqid='"+ids[m]+"'";    		
 	i = delete.delete(table,value_str);
     }
 		if(i==0){
