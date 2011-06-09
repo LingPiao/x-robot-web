@@ -90,9 +90,10 @@ function over(){
 								    	&nbsp;&nbsp;<ww:property value="['content']"/>
 								    	</td>
 								    </tr>
+
 								   <tr>
 								    	<td  align=right>
-								    	提问时间：<ww:property value="['q_date'].toString().substring(0,19)"/>
+								    	提问时间：<ww:property value="['q_date'].toString().substring(0,16)"/>
 								    	</td>
 								    </tr>
 								  </table>
@@ -103,7 +104,23 @@ function over(){
 					<TR>
 						<TD width="100%">
 						<fieldset style="height:100%;width:95%;">
-							<legend><ww:property value="['A_USER']"/>
+							<legend>&nbsp;
+							<ww:if test="USER_TEL!=null">
+								<ww:property value="['USER_TEL']"/>
+							</ww:if>
+							<ww:else>
+								<ww:if test="A_USER.indexOf('@')>1  && A_USER.indexOf('.')>1 ">
+									<ww:property value="['A_USER']"/>
+								</ww:if>
+								<ww:else>
+									<ww:if test="NICKNAME!=null">
+										<ww:property value="['NICKNAME']"/>
+									</ww:if>
+									<ww:else>
+										热心网友
+									</ww:else>
+								</ww:else>
+							</ww:else>
 							<ww:if test="A_LEVELS==\"1\"">【最佳答案】</ww:if></legend>
 								  <table border="0" cellpadding="2" cellspacing="1" style="width:100%">
 								 	<tr>
@@ -118,7 +135,7 @@ function over(){
 								    </tr>
 								    <tr>
 								    	<td  align=right>
-											回复时间：<ww:property value="['A_DATE'].toString().substring(0,19)"/>
+											回复时间：<ww:property value="['A_DATE'].toString().substring(0,16)"/>
 											<br/>
 											<ww:if test="state ==\"0\"">
 												<ww:if test="bestflag==\"0\" && userid!=\"\" ">

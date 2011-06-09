@@ -149,7 +149,7 @@ function over(){
                         <td class="content"><span class="red_02">&nbsp;问题描述：</span><ww:property value="['content']"/><br></td>
                       </tr>
 						<tr>
-                        <td align="right">&nbsp;<ww:property value="['q_date'].toString().substring(0,19)"/></td>
+                        <td align="right">&nbsp;提问时间：<ww:property value="['q_date'].toString().substring(0,16)"/></td>
                       </tr>
                     </table></td>
                   </tr>
@@ -157,7 +157,23 @@ function over(){
                   <tr>
                     <td colspan="2"><table width="100%" border="0" cellspacing="1" cellpadding="1" class="grey_01">
                       <tr>
-                        <td class="content"><span class="red_02">&nbsp;<ww:property value="['A_USER']"/>
+                        <td class="content"><span class="red_02">&nbsp;
+<ww:if test="USER_TEL!=null">
+								<ww:property value="['USER_TEL']"/>
+							</ww:if>
+							<ww:else>
+								<ww:if test="A_USER.indexOf('@')>1  && A_USER.indexOf('.')>1 ">
+									<ww:property value="['A_USER']"/>
+								</ww:if>
+								<ww:else>
+									<ww:if test="NICKNAME!=null">
+										<ww:property value="['NICKNAME']"/>
+									</ww:if>
+									<ww:else>
+										热心网友
+									</ww:else>
+								</ww:else>
+							</ww:else>
 				<ww:if test="A_LEVELS==\"1\"">【最佳答案】</ww:if></td>
                       </tr>
                       <tr>
@@ -169,7 +185,7 @@ function over(){
 																</ww:else></td>
                       </tr>
 						<tr>
-                        <td align="right">&nbsp;回复时间：<ww:property value="['A_DATE'].toString().substring(0,19)"/></td>
+                        <td align="right">&nbsp;回复时间：<ww:property value="['A_DATE'].toString().substring(0,16)"/></td>
                       </tr>
                       <tr>
                         <td align="right"><ww:if test="state ==\"0\"">

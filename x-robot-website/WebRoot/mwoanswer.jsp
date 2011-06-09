@@ -83,7 +83,7 @@ function over(){
                                               <td colspan="2" class="al"><img src="images-jp/qe1.jpg" width="10" height="10">&nbsp;问题描述</td>
                                               </tr>
                                             <tr>
-                                              <td colspan="2" class="d">&nbsp;<ww:property value="['q_date'].toString().substring(0,19)"/></td>
+                                              <td colspan="2" class="d">&nbsp;提问时间：<ww:property value="['q_date'].toString().substring(0,16)"/></td>
                                               </tr>
                                             <tr>
                                               <td colspan="2">&nbsp;<ww:property value="['content']"/></td>
@@ -98,11 +98,28 @@ function over(){
                                         <tr>
                                           <td><table width="100%" border="0" cellpadding="0" cellspacing="0" class="gb">
                                             <tr>
-                                              <td colspan="2" class="al"><img src="images-jp/qe1.jpg" width="10" height="10">&nbsp;<ww:property value="['A_USER']"/>
+                                              <td colspan="2" class="al"><img src="images-jp/qe1.jpg" width="10" height="10">&nbsp;
+&nbsp;
+							<ww:if test="USER_TEL!=null">
+								<ww:property value="['USER_TEL']"/>
+							</ww:if>
+							<ww:else>
+								<ww:if test="A_USER.indexOf('@')>1  && A_USER.indexOf('.')>1 ">
+									<ww:property value="['A_USER']"/>
+								</ww:if>
+								<ww:else>
+									<ww:if test="NICKNAME!=null">
+										<ww:property value="['NICKNAME']"/>
+									</ww:if>
+									<ww:else>
+										热心网友
+									</ww:else>
+								</ww:else>
+							</ww:else>
 				<ww:if test="A_LEVELS==\"1\"">【最佳答案】</ww:if></td>
                                             </tr>
                                             <tr>
-                                              <td colspan="2" class="d">&nbsp;回复时间：<ww:property value="['A_DATE'].toString().substring(0,19)"/></td>
+                                              <td colspan="2" class="d">&nbsp;回复时间：<ww:property value="['A_DATE'].toString().substring(0,16)"/></td>
                                             </tr>
                                             <tr>
                                               <td colspan="2">&nbsp;<ww:if test="A_DEL==\"0\"">

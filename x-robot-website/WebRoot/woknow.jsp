@@ -57,9 +57,8 @@
                          <ww:iterator value="pageInfo.records" status="row">
 			                  <tr>
 			                    <td height="20" align=left>☆&nbsp;&nbsp;<a href="woanswer.action?q_id=<ww:property value="['Q_ID']"/>&userid=<ww:property value="['userid']"/>&op=brows&chanel=<ww:property value="['chanel']"/>&from=<ww:property value="from"/>" class="heiLink" >
-			                    <ww:if test="Q_CONTENT.length()>20"><ww:property value="['Q_CONTENT'].substring(0,20)"/>......</ww:if><ww:else><ww:property value="['Q_CONTENT']"/></ww:else></a></td>
-			                    <td width="180px">访问：<ww:if test="BROWS==null">0</ww:if><ww:else><ww:property value="['BROWS']"/></ww:else>&nbsp;&nbsp;回复：<ww:if test="ANSWERS==null">0</ww:if><ww:else><ww:property value="['ANSWERS']"/></ww:else>&nbsp;&nbsp;<ww:if test="Q_STATE==\"1\"">【已完结】</ww:if><ww:else><FONT color=red>【未完结】</FONT></ww:else></td>
-			                    <td width="70px"><ww:property value="['Q_DATE'].toString().substring(0,10)"/></td>
+			                    <ww:if test="Q_CONTENT.length()>20"><ww:property value="['Q_CONTENT'].substring(0,18)"/>......</ww:if><ww:else><ww:property value="['Q_CONTENT']"/></ww:else></a></td>
+			                    <td width="270px">访问：<ww:if test="BROWS==null">0</ww:if><ww:else><ww:property value="['BROWS']"/></ww:else>&nbsp;&nbsp;回复：<ww:if test="ANSWERS==null">0</ww:if><ww:else><ww:property value="['ANSWERS']"/></ww:else>&nbsp;&nbsp;<ww:if test="Q_STATE==\"1\"">【已完结】</ww:if><ww:else><FONT color=red>【未完结】</FONT></ww:else><ww:property value="['Q_DATE'].toString().substring(0,16)"/></td>
 			                  </tr>
 			             </ww:iterator>
                       </table>

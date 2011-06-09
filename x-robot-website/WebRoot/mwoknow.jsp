@@ -56,7 +56,7 @@ href="css-jp/main1.css" type=text/css rel=stylesheet>
                                         <tr>
                                           <td width="96%"  class="line"><a href="woanswer.action?q_id=<ww:property value="['Q_ID']"/>&userid=<ww:property value="['userid']"/>&op=brows&chanel=other&from=<ww:property value="from"/>"><font style="font-size:15px"  face="微软雅黑"><ww:if test="Q_CONTENT.length()>20"><ww:property value="['Q_CONTENT'].substring(0,20)"/>......</ww:if><ww:else><ww:property value="['Q_CONTENT']"/></ww:else></font></a><br>
                                            <br/> <ww:if test="Q_STATE==\"1\"">已完结</ww:if><ww:else><FONT color=red>未完结</FONT></ww:else>&nbsp;&nbsp;访问：<ww:if test="BROWS==null">0</ww:if><ww:else><ww:property value="['BROWS']"/></ww:else>&nbsp;&nbsp;回复：<ww:if test="ANSWERS==null">0</ww:if><ww:else><ww:property value="['ANSWERS']"/></ww:else><br />
-                                            提问时间：<ww:property value="['Q_DATE'].toString().substring(0,10)"/></td>
+                                            提问时间：<ww:property value="['Q_DATE'].toString().substring(0,16)"/></td>
                                         </tr>
                                      
                                         </ww:iterator>
