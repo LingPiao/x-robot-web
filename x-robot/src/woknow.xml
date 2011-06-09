@@ -1,0 +1,35 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.0//EN" "http://www.opensymphony.com/xwork/xwork-1.0.dtd">
+
+<xwork>
+	<package name="telbook" extends="webwork-default"
+		externalReferenceResolver="com.atlassian.xwork.ext.SpringServletContextReferenceResolver">
+		<interceptors>
+			<interceptor name="reference-resolver"
+				class="com.opensymphony.xwork.interceptor.ExternalReferencesInterceptor" />
+			<interceptor-stack name="WSStack">
+				<interceptor-ref name="model-driven" />		
+				<interceptor-ref name="validationWorkflowStack" />
+				<interceptor-ref name="timer" />
+				<interceptor-ref name="params" />
+				<interceptor-ref name="reference-resolver" />
+			</interceptor-stack>
+
+			<interceptor-stack name="WSStack_Online">			
+				<interceptor-ref name="validationWorkflowStack" />
+				<interceptor-ref name="timer" />
+				<interceptor-ref name="params" />
+				<interceptor-ref name="model-driven" />
+				<interceptor-ref name="reference-resolver" />
+			</interceptor-stack>
+		</interceptors>
+
+		<default-interceptor-ref name="defaultStack" />
+		<action name="woknow" class="org.project.ww.WoknowAction">
+		
+			<result name="view" type="dispatcher">
+				<param name="location">woknow.jsp</param>
+			</result>
+			<interceptor-ref name="WSStack" />
+		</action>
+	</package>
+</xwork>

@@ -1,0 +1,50 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.0//EN" "http://www.opensymphony.com/xwork/xwork-1.0.dtd">
+
+<xwork>
+	<package name="mms" extends="webwork-default"
+		externalReferenceResolver="com.atlassian.xwork.ext.SpringServletContextReferenceResolver">
+		<interceptors>
+			<interceptor name="reference-resolver"
+				class="com.opensymphony.xwork.interceptor.ExternalReferencesInterceptor" />
+			<interceptor-stack name="WSStack">
+				<interceptor-ref name="model-driven" />		
+				<interceptor-ref name="validationWorkflowStack" />
+				<interceptor-ref name="timer" />
+				<interceptor-ref name="params" />
+				<interceptor-ref name="reference-resolver" />
+			</interceptor-stack>
+
+			<interceptor-stack name="WSStack_Online">			
+				<interceptor-ref name="validationWorkflowStack" />
+				<interceptor-ref name="timer" />
+				<interceptor-ref name="params" />
+				<interceptor-ref name="model-driven" />
+				<interceptor-ref name="reference-resolver" />
+			</interceptor-stack>
+		</interceptors>
+
+		<default-interceptor-ref name="defaultStack" />
+		<action name="mms" class="org.project.ww.MmsAction">
+			<external-ref name="mmsDao">mmsDao</external-ref>
+			<external-ref name="messageDao">messageDao</external-ref>
+			<external-ref name="msnDao">msnDao</external-ref>
+			<external-ref name="telbookgroupDao">telbookgroupDao</external-ref>
+			<external-ref name="telbookDao">telbookDao</external-ref>
+			<external-ref name="vistorDao">vistorDao</external-ref>
+			<external-ref name="smsrecordDao">smsrecordDao</external-ref>
+			<result name="view" type="dispatcher">
+				<param name="location">mms_index.jsp</param>
+			</result>
+			<result name="send" type="dispatcher">
+				<param name="location">mms_success.jsp</param>
+			</result>
+			<result name="mms" type="dispatcher">
+				<param name="location">mms_list.jsp</param>
+			</result>
+			<result name="history" type="dispatcher">
+				<param name="location">mms_history.jsp</param>
+			</result>
+			<interceptor-ref name="WSStack" />
+		</action>
+	</package>
+</xwork>

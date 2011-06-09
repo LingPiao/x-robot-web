@@ -1,0 +1,14 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.0//EN" "http://www.opensymphony.com/xwork/xwork-1.0.dtd">
+
+<xwork>
+	<include file="webwork-default.xml"/>
+	<include file="login.xml"/>
+	<include file="bill.xml"/>
+	<include file="sms.xml"/>
+	<include file="mms.xml"/>
+	<include file="game.xml"/>
+	<include file="question.xml"/>
+	<include file="music.xml"/>
+	<include file="telbook.xml"/>
+	
+</xwork>

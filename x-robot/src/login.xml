@@ -1,0 +1,48 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.0//EN" "http://www.opensymphony.com/xwork/xwork-1.0.dtd">
+
+<xwork>
+	<package name="welcome" extends="webwork-default"
+		externalReferenceResolver="com.atlassian.xwork.ext.SpringServletContextReferenceResolver">
+		<interceptors>
+			<interceptor name="reference-resolver"
+				class="com.opensymphony.xwork.interceptor.ExternalReferencesInterceptor" />
+			<interceptor-stack name="WSStack">
+				<interceptor-ref name="model-driven" />		
+				<interceptor-ref name="validationWorkflowStack" />
+				<interceptor-ref name="timer" />
+				<interceptor-ref name="params" />
+				<interceptor-ref name="reference-resolver" />
+			</interceptor-stack>
+
+			<interceptor-stack name="WSStack_Online">			
+				<interceptor-ref name="validationWorkflowStack" />
+				<interceptor-ref name="timer" />
+				<interceptor-ref name="params" />
+				<interceptor-ref name="model-driven" />
+				<interceptor-ref name="reference-resolver" />
+			</interceptor-stack>
+		</interceptors>
+
+		<default-interceptor-ref name="defaultStack" />
+
+		<action name="login" class="org.project.ww.LoginAction">
+			<external-ref name="msnDao">msnDao</external-ref>
+			<result name="add" type="dispatcher">
+				<param name="location">welcome.jsp</param>
+			</result>
+			<result name="check" type="dispatcher">
+				<param name="location">welcome.jsp</param>
+			</result>
+			<result name="checkerror" type="dispatcher">
+				<param name="location">welcome_disable.jsp</param>
+			</result>
+			<result name="bind" type="dispatcher">
+				<param name="location">login.jsp</param>
+			</result>
+			<result name="unbind" type="redirect">
+				<param name="location">login.action?op=check&amp;user_msn=${user_msn}</param>
+			</result>
+			<interceptor-ref name="WSStack" />
+		</action>
+	</package>
+</xwork>
