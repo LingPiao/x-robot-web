@@ -1,0 +1,68 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.0//EN" "http://www.opensymphony.com/xwork/xwork-1.0.dtd">
+
+<xwork>
+	<package name="telbook" extends="webwork-default"
+		externalReferenceResolver="com.atlassian.xwork.ext.SpringServletContextReferenceResolver">
+		<interceptors>
+			<interceptor name="reference-resolver"
+				class="com.opensymphony.xwork.interceptor.ExternalReferencesInterceptor" />
+			<interceptor-stack name="WSStack">
+				<interceptor-ref name="model-driven" />		
+				<interceptor-ref name="validationWorkflowStack" />
+				<interceptor-ref name="timer" />
+				<interceptor-ref name="params" />
+				<interceptor-ref name="reference-resolver" />
+			</interceptor-stack>
+
+			<interceptor-stack name="WSStack_Online">			
+				<interceptor-ref name="validationWorkflowStack" />
+				<interceptor-ref name="timer" />
+				<interceptor-ref name="params" />
+				<interceptor-ref name="model-driven" />
+				<interceptor-ref name="reference-resolver" />
+			</interceptor-stack>
+		</interceptors>
+
+		<default-interceptor-ref name="defaultStack" />
+		<action name="telbook" class="org.project.ww.TelbookAction">
+			
+			<external-ref name="msnDao">msnDao</external-ref>
+			<external-ref name="telbookgroupDao">telbookgroupDao</external-ref>
+			<external-ref name="telbookDao">telbookDao</external-ref>
+			
+			<result name="view" type="dispatcher">
+				<param name="location">telbook_list.jsp</param>
+			</result>
+			<result name="add" type="redirect">
+				<param name="location">telbook.action?op=view&amp;user_msn=${user_msn}</param>
+			</result>
+			<result name="edit" type="redirect">
+				<param name="location">telbook.action?op=view&amp;user_msn=${user_msn}</param>
+			</result>
+			<result name="del" type="redirect">
+				<param name="location">telbook.action?op=view&amp;user_msn=${user_msn}</param>
+			</result>
+			<interceptor-ref name="WSStack" />
+		</action>
+		<action name="telbookgroup" class="org.project.ww.TelbookGroupAction">
+			
+			<external-ref name="msnDao">msnDao</external-ref>
+			<external-ref name="telbookgroupDao">telbookgroupDao</external-ref>
+			<external-ref name="telbookDao">telbookDao</external-ref>
+			
+			<result name="view" type="dispatcher">
+				<param name="location">telbookgroup_list.jsp</param>
+			</result>
+			<result name="add" type="redirect">
+				<param name="location">telbookgroup.action?op=view&amp;user_msn=${user_msn}</param>
+			</result>
+			<result name="edit" type="redirect">
+				<param name="location">telbookgroup.action?op=view&amp;user_msn=${user_msn}</param>
+			</result>
+			<result name="del" type="redirect">
+				<param name="location">telbookgroup.action?op=view&amp;user_msn=${user_msn}</param>
+			</result>
+			<interceptor-ref name="WSStack" />
+		</action>
+	</package>
+</xwork>

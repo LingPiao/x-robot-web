@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+
+	<!-- 加载资源文件 -->
+	<bean id="configProperties"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location">
+			<value>classpath:config.properties</value>
+		</property>
+	</bean>
+	
+	<!-- 配置dataSource -->
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName">
+			<value>${db.driver}</value>
+		</property>
+		<property name="url">
+			<value>${db.url}</value>
+		</property>
+		<property name="username">
+			<value>${db.username}</value>
+		</property>
+		<property name="password">
+			<value>${db.password}</value>
+		</property>
+	</bean>
+	
+	<!-- 配置JDBC模板 -->
+	<bean id="jdbcTemplate"
+		class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+	</bean>
+	
+	<!-- 配置DAO -->
+	<bean id = "sqlDao" class = "org.project.impl.SqlImpl">
+		<property name="jdbcTemplate">
+			<ref bean = "jdbcTemplate"/>
+		</property>
+	</bean>
+	<bean id="msnDao" class="org.project.impl.Msn_certificationImpl">
+		<property name="sqlDao">
+			<ref bean="sqlDao" />
+		</property>
+	</bean>
+	<bean id="smsDao" class="org.project.impl.SmsImpl">
+		<property name="sqlDao">
+			<ref bean="sqlDao" />
+		</property>
+	</bean>
+	<bean id="mmsDao" class="org.project.impl.MmsImpl">
+		<property name="sqlDao">
+			<ref bean="sqlDao" />
+		</property>
+	</bean>
+	<bean id="messageDao" class="org.project.impl.Message_classImpl">
+		<property name="sqlDao">
+			<ref bean="sqlDao" />
+		</property>
+	</bean>
+	<bean id="telbookDao" class="org.project.impl.TelbookImpl">
+		<property name="sqlDao">
+			<ref bean="sqlDao" />
+		</property>
+	</bean>
+	<bean id="telbookgroupDao" class="org.project.impl.Telbook_groupImpl">
+		<property name="sqlDao">
+			<ref bean="sqlDao" />
+		</property>
+	</bean>
+	<bean id="vistorDao" class="org.project.impl.Vistor_recordImpl">
+		<property name="sqlDao">
+			<ref bean="sqlDao" />
+		</property>
+	</bean>
+	<bean id="smsrecordDao" class="org.project.impl.Sms_recordImpl">
+		<property name="sqlDao">
+			<ref bean="sqlDao" />
+		</property>
+	</bean>
+	<bean id="connectBookDao" class="org.project.impl.ConnectBookImpl">
+		<property name="sqlDao">
+			<ref bean="sqlDao" />
+		</property>
+	</bean>
+	<bean id="gamerecordDao" class="org.project.impl.Game_recordImpl">
+		<property name="sqlDao">
+			<ref bean="sqlDao" />
+		</property>
+	</bean>
+	<bean id="questionDao" class="org.project.impl.QuestionImpl">
+		<property name="sqlDao">
+			<ref bean="sqlDao" />
+		</property>
+	</bean>
+	<bean id="musicDao" class="org.project.impl.MusicImpl">
+		<property name="sqlDao">
+			<ref bean="sqlDao" />
+		</property>
+	</bean>
+	
+</beans>

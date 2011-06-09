@@ -1,0 +1,95 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.0//EN" "http://www.opensymphony.com/xwork/xwork-1.0.dtd">
+
+<xwork>
+	<package name="bill" extends="webwork-default"
+		externalReferenceResolver="com.atlassian.xwork.ext.SpringServletContextReferenceResolver">
+		<interceptors>
+			<interceptor name="reference-resolver"
+				class="com.opensymphony.xwork.interceptor.ExternalReferencesInterceptor" />
+			<interceptor-stack name="WSStack">
+				<interceptor-ref name="model-driven" />		
+				<interceptor-ref name="validationWorkflowStack" />
+				<interceptor-ref name="timer" />
+				<interceptor-ref name="params" />
+				<interceptor-ref name="reference-resolver" />
+			</interceptor-stack>
+
+			<interceptor-stack name="WSStack_Online">			
+				<interceptor-ref name="validationWorkflowStack" />
+				<interceptor-ref name="timer" />
+				<interceptor-ref name="params" />
+				<interceptor-ref name="model-driven" />
+				<interceptor-ref name="reference-resolver" />
+			</interceptor-stack>
+		</interceptors>
+
+		<default-interceptor-ref name="defaultStack" />
+		<action name="bill" class="org.project.ww.BillAction">
+			<external-ref name="msnDao">msnDao</external-ref>
+			<result name="view" type="dispatcher">
+				<param name="location">bill_login.jsp</param>
+			</result>
+			<result name="login" type="dispatcher">
+				<param name="location">bill_index.jsp</param>
+			</result>
+			<result name="remain" type="dispatcher">
+				<param name="location">bill_remain.jsp</param>
+			</result>
+			<result name="history" type="dispatcher">
+				<param name="location">bill_history.jsp</param>
+			</result>
+			<result name="history_detail" type="dispatcher">
+				<param name="location">bill_historymain.jsp</param>
+			</result>
+			<result name="tel" type="dispatcher">
+				<param name="location">bill_tel.jsp</param>
+			</result>
+			<result name="tel_detail" type="dispatcher">
+				<param name="location">bill_telmain.jsp</param>
+			</result>
+			<result name="sms" type="dispatcher">
+				<param name="location">bill_sms.jsp</param>
+			</result>
+			<result name="sms_detail" type="dispatcher">
+				<param name="location">bill_smsmain.jsp</param>
+			</result>
+			<result name="sp" type="dispatcher">
+				<param name="location">bill_sp.jsp</param>
+			</result>
+			<result name="sp_detail" type="dispatcher">
+				<param name="location">bill_spmain.jsp</param>
+			</result>
+			<result name="gprs" type="dispatcher">
+				<param name="location">bill_gprs.jsp</param>
+			</result>
+			<result name="gprs_detail" type="dispatcher">
+				<param name="location">bill_gprsmain.jsp</param>
+			</result>
+			<result name="jf" type="dispatcher">
+				<param name="location">bill_jifen.jsp</param>
+			</result>
+			<result name="jfyf" type="dispatcher">
+				<param name="location">bill_jifenmonth.jsp</param>
+			</result>
+			<result name="jifen_detail" type="dispatcher">
+				<param name="location">bill_jifenmonthmain.jsp</param>
+			</result>
+			<result name="jfxf" type="dispatcher">
+				<param name="location">bill_jifencost.jsp</param>
+			</result>
+			<result name="jifen_costdetail" type="dispatcher">
+				<param name="location">bill_jifencostmain.jsp</param>
+			</result>
+			<result name="fam" type="dispatcher">
+				<param name="location">bill_fammain.jsp</param>
+			</result>
+			<result name="service" type="dispatcher">
+				<param name="location">bill_service.jsp</param>
+			</result>
+			<result name="service_detail" type="dispatcher">
+				<param name="location">bill_servicemain.jsp</param>
+			</result>
+			<interceptor-ref name="WSStack" />
+		</action>
+	</package>
+</xwork>
