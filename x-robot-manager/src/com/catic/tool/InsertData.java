@@ -80,7 +80,7 @@ public class InsertData {
 				sqlstr = "insert into " + tablenamestr + "(" + fieldarraystr
 						+ ") values (";
 				sqlstr = sqlstr + valuearraystr + ")";
-				//System.out.println(sqlstr);
+				System.out.println(sqlstr);
 				stmt = conn.createStatement();
 				try {
 					stmt.executeUpdate(sqlstr);
