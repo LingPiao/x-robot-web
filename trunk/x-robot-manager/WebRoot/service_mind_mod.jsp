@@ -11,7 +11,8 @@
 	response.setHeader("Cache-Control","no-cache"); 
 	response.setDateHeader("Expires", 0); 
 	ConvertDate cd = new ConvertDate();
-	String timeid = "",contactemail="",notifytime="",	period="",content="",email="";
+	String timeid = "",contactemail="",notifytime="",	period="",content="",email="",notify_type="",group_send="";
+	int ntyope=0;
 	timeid = request.getParameter("timerid");
 	DataConn conn=new DataConn();
 	QueryData query=new QueryData(conn);
@@ -29,8 +30,18 @@ if(rs.next())
 	email = rs.getString("email");
 	if(email == null)
 		email="";
+	ntyope=rs.getInt("notify_type");
+	group_send= rs.getString("group_send");
 }
-System.out.println(notifytime.substring(14,16));
+int temp1=0;
+int temp11=0;
+	temp1=ntyope/4;
+	temp11=ntyope%4;
+int temp2=0;
+int temp22=0;
+	temp2=temp11/2;
+	temp22=temp11%2;
+
 rs.close();
 conn.close();
 %>
@@ -108,7 +119,7 @@ conn.close();
 																	开始时间：
 																</td>
 																<td bgcolor="#FFFFFF" class="zl_huitxt"  align="left">
-																	<input type="text"  onclick="fPopCalendar(begin,begin); return false"  id="begin" class="input-text" style="width:100px;" name="begin" value="<%=notifytime.substring(0,10)%>" />
+																	<input type="text" readonly  onclick="fPopCalendar(begin,begin); return false"  id="begin" class="input-text" style="width:100px;" name="begin" value="<%=notifytime.substring(0,10)%>" />
 																	<select name="Hours" class="search" style="width:40">
 														      <% 
 														      		int i=0;
@@ -157,6 +168,24 @@ conn.close();
 																</td>
 																<td bgcolor="#FFFFFF" class="zl_huitxt"  align="left">
 																	<textarea name="content" cols="50" rows="6" ><%=content%></textarea>
+																</td>
+															</tr>
+															<tr>
+																<td align="right" valign="top" bgcolor="#FFFFFF" class="zl_huitxt">
+																	提醒类型：
+																</td>
+																<td bgcolor="#FFFFFF" class="zl_huitxt"  align="left">
+																	<input type=checkbox   name=NOTIFY_TYPE value="001" <%if(temp22==1) out.print("checked");%> size=30>短信
+																	<input type=checkbox   name=NOTIFY_TYPE value="010" <%if(temp2==1) out.print("checked");%> size=30>EMAIL
+																	<input type=checkbox   name=NOTIFY_TYPE value="100" <%if(temp1==1) out.print("checked");%>  size=30>系统消息
+																</td>
+															</tr>
+															<tr>
+																<td align="right" valign="top" bgcolor="#FFFFFF" class="zl_huitxt">
+																	是否群发：
+																</td>
+																<td bgcolor="#FFFFFF" class="zl_huitxt"  align="left">
+																	<input type=checkbox   name=group_send value="1"  size=30 <%if(group_send.equals("1")) out.print("checked");%>>是
 																</td>
 															</tr>
 															<tr>

@@ -46,16 +46,36 @@ if("add".equals(action)){
 	String PERIOD=new String(request.getParameter("period"));
 	String CONTENT=new String(request.getParameter("content"));
 	String EMAIL=new String(request.getParameter("email"));
+	String[] NOTIFY_TYPE = request.getParameterValues("NOTIFY_TYPE");
+	int notype=0;
+	if(NOTIFY_TYPE==null)
+		notype=1;
+	else
+	{
+		int temp1=0;
+		int temp2=0;
+		int temp3=0;
+		for(int i=0;i<NOTIFY_TYPE.length;i++)
+		{
+			temp1=Integer.parseInt(NOTIFY_TYPE[i].substring(0,1))*2*2;
+			temp2=Integer.parseInt(NOTIFY_TYPE[i].substring(1,2))*2;
+			temp3=Integer.parseInt(NOTIFY_TYPE[i].substring(2,3));
+			notype=notype+temp1+temp3+temp2;
+		}
+	}
+	String GROUP_SEND = request.getParameter("group_send");
+	if(GROUP_SEND==null)
+		GROUP_SEND="0";
 	if(EMAIL == null)
 		EMAIL="";
 	table="t_timer";
 	
-	field_str="timerid,CONTACTEMAIL,ROBOTEMAIL,NOTIFYTIME,PERIOD,CONTENT,EMAIL,NEXTNOTIFYTIME";
+	field_str="timerid,CONTACTEMAIL,ROBOTEMAIL,NOTIFYTIME,PERIOD,CONTENT,EMAIL,NEXTNOTIFYTIME,NOTIFY_TYPE,GROUP_SEND";
 	int i=0;
 	for(int j=0;j<CONTACTEMAILARR.length;j++)
 	{
 	int id = query.KeyNextValue("t_timer","timerid");
-	value_str=id+",'"+CONTACTEMAILARR[j]+"','www.10010.com@hotmail.com',to_timestamp('"+NOTIFYTIME+"','yyyy-mm-dd hh24:mi.ff'),'"+PERIOD+"','"+CONTENT+"','"+EMAIL+"',to_timestamp('"+NOTIFYTIME+"','yyyy-mm-dd hh24:mi.ff')";
+	value_str=id+",'"+CONTACTEMAILARR[j]+"','www.10010.com@hotmail.com',to_timestamp('"+NOTIFYTIME+"','yyyy-mm-dd hh24:mi.ff'),'"+PERIOD+"','"+CONTENT+"','"+EMAIL+"',to_timestamp('"+NOTIFYTIME+"','yyyy-mm-dd hh24:mi.ff'),"+notype+",'"+GROUP_SEND+"'";
 	i=insert.insert(table,field_str,value_str);
 	}
 	if(i==0){
@@ -82,11 +102,31 @@ else if("edit".equals(action)){
 	String EMAIL=new String(request.getParameter("email"));
 	if(EMAIL == null)
 		EMAIL="";
+	String[] NOTIFY_TYPE = request.getParameterValues("NOTIFY_TYPE");
+	int notype=0;
+	if(NOTIFY_TYPE==null)
+		notype=1;
+	else
+	{
+		int temp1=0;
+		int temp2=0;
+		int temp3=0;
+		for(int i=0;i<NOTIFY_TYPE.length;i++)
+		{
+			temp1=Integer.parseInt(NOTIFY_TYPE[i].substring(0,1))*2*2;
+			temp2=Integer.parseInt(NOTIFY_TYPE[i].substring(1,2))*2;
+			temp3=Integer.parseInt(NOTIFY_TYPE[i].substring(2,3));
+			notype=notype+temp1+temp3+temp2;
+		}
+	}
+	String GROUP_SEND = request.getParameter("group_send");
+	if(GROUP_SEND==null)
+		GROUP_SEND="0";
 	UpdateData update=new UpdateData(conn);
 	String timerid = request.getParameter("timerid");
 	table="t_timer";
 	
-	field_str="CONTACTEMAIL='"+CONTACTEMAIL+"',NOTIFYTIME=to_timestamp('"+NOTIFYTIME+"','yyyy-mm-dd hh24:mi.ff'),PERIOD='"+PERIOD+"',CONTENT='"+CONTENT+"',EMAIL='"+EMAIL+"',NEXTNOTIFYTIME=to_timestamp('"+NOTIFYTIME+"','yyyy-mm-dd hh24:mi.ff')";
+	field_str="CONTACTEMAIL='"+CONTACTEMAIL+"',NOTIFYTIME=to_timestamp('"+NOTIFYTIME+"','yyyy-mm-dd hh24:mi.ff'),PERIOD='"+PERIOD+"',CONTENT='"+CONTENT+"',EMAIL='"+EMAIL+"',NEXTNOTIFYTIME=to_timestamp('"+NOTIFYTIME+"','yyyy-mm-dd hh24:mi.ff'),NOTIFY_TYPE="+notype+",GROUP_SEND='"+GROUP_SEND+"'";
 	value_str="timerid='"+timerid+"'";
 	int i=update.update(table,field_str,value_str);
 
