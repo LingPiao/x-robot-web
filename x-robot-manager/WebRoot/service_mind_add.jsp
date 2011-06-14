@@ -95,7 +95,7 @@ function setuset()
 																	开始时间：
 																</td>
 																<td bgcolor="#FFFFFF" class="zl_huitxt"  align="left">
-																	<input type="text"  onclick="fPopCalendar(begin,begin); return false"  id="begin" class="input-text" style="width:100px;" name="begin" value="" />
+																	<input type="text" readonly onclick="fPopCalendar(begin,begin); return false"  id="begin" class="input-text" style="width:100px;" name="begin" value="" />
 																	<select name="Hours" class="search" style="width:40">
 														      <% 
 														      		int i=0;
@@ -144,6 +144,24 @@ function setuset()
 																</td>
 																<td bgcolor="#FFFFFF" class="zl_huitxt"  align="left">
 																	<textarea name="content" cols="50" rows="6" ></textarea>
+																</td>
+															</tr>
+															<tr>
+																<td align="right" valign="top" bgcolor="#FFFFFF" class="zl_huitxt">
+																	提醒类型：
+																</td>
+																<td bgcolor="#FFFFFF" class="zl_huitxt"  align="left">
+																	<input type=checkbox   name=NOTIFY_TYPE value="001"  size=30>短信
+																	<input type=checkbox   name=NOTIFY_TYPE value="010"  size=30>EMAIL
+																	<input type=checkbox   name=NOTIFY_TYPE value="100"  size=30>系统消息
+																</td>
+															</tr>
+															<tr>
+																<td align="right" valign="top" bgcolor="#FFFFFF" class="zl_huitxt">
+																	是否群发：
+																</td>
+																<td bgcolor="#FFFFFF" class="zl_huitxt"  align="left">
+																	<input type=checkbox   name=group_send value="1"  size=30>是
 																</td>
 															</tr>
 															<tr>
