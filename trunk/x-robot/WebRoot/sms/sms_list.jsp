@@ -40,6 +40,32 @@
 -->
 </style>
 <script language="JavaScript" src="../js/page.js"></script>
+<script type="text/javascript">
+function  tab1()
+{
+	document.getElementById("t1").style.display="none";
+	document.getElementById("t2").style.display="block";
+	document.getElementById("t3").style.display="none";
+	document.getElementById("t4").style.display="none";
+	document.getElementById("td1").innerHTML="排行榜";
+}
+function  tab2()
+{
+	document.getElementById("t1").style.display="none";
+	document.getElementById("t2").style.display="none";
+	document.getElementById("t3").style.display="block";
+	document.getElementById("t4").style.display="none";
+	document.getElementById("td1").innerHTML="热门推荐";
+}
+function  tab3()
+{
+	document.getElementById("t1").style.display="none";
+	document.getElementById("t2").style.display="none";
+	document.getElementById("t3").style.display="none";
+	document.getElementById("t4").style.display="block";
+	document.getElementById("td1").innerHTML="计费管理";
+}
+</script>
 </head>
 
 <body bgcolor="#FFFFFF">
@@ -101,7 +127,16 @@
               </tr>
               </ww:iterator>
               <tr>
-                <td height="">&nbsp;</td>
+                <td height="50" class="ban"></td>
+              </tr>
+              <tr>
+                <td height="28" class="ban"><a href="#" onclick="tab1()">排行榜</a></td>
+              </tr>
+              <tr>
+                <td height="28" class="ban"><a href="#"  onclick="tab2()">热门推荐</a></td>
+              </tr>
+              <tr>
+                <td height="28" class="ban"><a href="#"  onclick="tab3()">计费管理</a></td>
               </tr>
             </table></td>
           </tr>
@@ -115,7 +150,7 @@
 	<tr>
 		<td>
 			<img src="../images/sms/buttonbg_01.gif" width="10" height="23" alt=""></td>
-		<td width="70" height="23" align="center" background="../images/sms/buttonbg_02.gif" class="fontStyle">所有短信</td>
+		<td width="70" height="23" align="center" background="../images/sms/buttonbg_02.gif" class="fontStyle" id=td1>所有短信</td>
 		<td>
 			<img src="../images/sms/buttonbg_03.gif" width="10" height="23" alt=""></td>
 	</tr>
@@ -123,7 +158,7 @@
           </tr>
           <tr>
             <td height="280" align="center" valign="top">
-            <table width="100%" border="0" cellspacing="0" cellpadding="2" bgcolor="#F3F1F0">
+            <table width="100%" border="0" cellspacing="0" cellpadding="2" bgcolor="#F3F1F0" id = t1>
   				<ww:iterator value="pageInfo.records" status="row">
 			  <tr>
 			    <td width="100%" height="22" colspan="3" class="STYLE9">
@@ -131,7 +166,126 @@
 			    </td>
 			  </tr>
 			  </ww:iterator>
-			</table></td>
+			</table>
+			<table width="100%" border="0" cellspacing="0" cellpadding="2" bgcolor="#F3F1F0" id =t2 style="display:none">
+  				
+			  <tr>
+			    <td width="100%" height="22" colspan="3" class="fontStyle">
+			    *&nbsp;遇到你，是我心动的开始，爱上你，是我幸福的选择，拥有你，是我最珍贵的财富，踏入红毯，是我永恒的动力。最爱的人是你。遗憾的是我传错人了。
+			    </td>
+			  </tr>
+			  <tr>
+			    <td width="100%" height="22" colspan="3" class="fontStyle">
+			    *&nbsp;一年又一年，风风雨雨。您为了我们呕心沥血，请接受我们对您深深感谢和炙热的爱。 
+			    </td>
+			  </tr>
+			  <tr>
+			    <td width="100%" height="22" colspan="3" class="fontStyle">
+			    *&nbsp;生日祝福你，好事追着你，主管重视你，病魔躲着你，情人深爱你，痛苦远离你，开心跟着你，万事顺着你！
+			    </td>
+			  </tr>
+			  <tr>
+			    <td width="100%" height="22" colspan="3" class="fontStyle">
+			    *&nbsp;梅雨季节，不管外面是风是雨、是涛是浪，不管世事是变幻是无常是沧海是桑田，我的。祝你：平安做事，平淡做人，平静生活，平顺一生！
+			    </td>
+			  </tr>
+			  <tr>
+			    <td width="100%" height="22" colspan="3" class="fontStyle">
+			    *&nbsp;读一年又一年，毅力啊！考一门过一门，犀利啊！报一个中一个，实力啊！（祝福）发一个收一个，情谊啊！祝奋斗在高考一线的朋友们考试顺利。
+			    </td>
+			  </tr>
+			  <tr>
+			    <td width="100%" height="22" colspan="3" class="fontStyle">
+			    *&nbsp;当我将硬币投进愿望池，一个可爱的精灵问我要许什么愿望，我对他说：请帮我好好照顾这个看信息的人，永远别烦恼，要永远开心，幸福！天热，注意身体！
+			    </td>
+			  </tr>
+			  <tr>
+			    <td width="100%" height="22" colspan="3" class="fontStyle">
+			    *&nbsp;阳光替我祝福，月光为我祈祷，当繁星闪烁的时候，每一颗星都承载我这个心愿：愿正在看短信的人远离疾病，全家健康幸福！
+			    </td>
+			  </tr>
+			</table>
+			<table width="100%" border="0" cellspacing="0" cellpadding="2" bgcolor="#F3F1F0" id =t3 style="display:none">
+  				
+			  <tr>
+			    <td width="100%" height="22" colspan="3" class="fontStyle">
+			    <b>佳节祝福</b>
+			    </td>
+			  </tr>
+			  <tr>
+			    <td width="100%" height="22" colspan="3" class="fontStyle">
+			    *&nbsp;有种友情事过境迁依然纯朴；有种信任事隔多年依然怀念；有种问候清清淡淡却最真诚；有种友谊，无须挂齿，却心领神会，祝父亲节快乐！
+			    </td>
+			  </tr>
+			  <tr>
+			    <td width="100%" height="22" colspan="3" class="fontStyle">
+			    <b>真情祝福</b>
+			    </td>
+			  </tr>
+			  <tr>
+			    <td width="100%" height="22" colspan="3" class="fontStyle">
+			    *&nbsp;梅雨季节，不管外面是风是雨、是涛是浪，不管世事是变幻是无常是沧海是桑田，我的。祝你：平安做事，平淡做人，平静生活，平顺一生！
+			    </td>
+			  </tr>
+			  <tr>
+			    <td width="100%" height="22" colspan="3" class="fontStyle">
+			    <b>幽默搞笑</b>
+			    </td>
+			  </tr>
+			  <tr>
+			    <td width="100%" height="22" colspan="3" class="fontStyle">
+			    *&nbsp;当年同事在广州工作，一日由于工作原因遇到个黑人，当时想着去练一下英语，于是走上前去笑盈盈的问黑人：where are you from? 没想到黑人露出疑惑和惊恐的目光看着他，用标准粤语说：我听不懂。
+			    </td>
+			  </tr>
+			  <tr>
+			    <td width="100%" height="22" colspan="3" class="fontStyle">
+			    <b>整蛊短信</b>
+			    </td>
+			  </tr>
+			  <tr>
+			    <td width="100%" height="22" colspan="3" class="fontStyle">
+			    *&nbsp;你想出人投地吗？你想发财致富吗？你想光宗耀祖吗？你想大富大贵吗？你想升官发财吗？请别胡思乱想了，早点睡吧！
+			    </td>
+			  </tr>
+			</table>
+			<table width="100%" border="0" cellspacing="0" cellpadding="2" bgcolor="#F3F1F0" id =t4 style="display:none">
+  				
+			  <tr>
+			    <td width="100%" height="22" colspan="3" class="fontStyle">
+			    <b>2011-06</b>&nbsp;&nbsp;186****3066&nbsp;&nbsp;136次
+			    </td>
+			  </tr>
+			  
+			  <tr>
+			    <td width="100%" height="22" colspan="3" class="fontStyle">
+			    <b>2011-05</b>&nbsp;&nbsp;186****3066&nbsp;&nbsp;181次
+			    </td>
+			  </tr>
+			  
+			  <tr>
+			    <td width="100%" height="22" colspan="3" class="fontStyle">
+			    <b>2011-04</b>&nbsp;&nbsp;186****3066&nbsp;&nbsp;167次
+			    </td>
+			  </tr>
+			  
+			  <tr>
+			    <td width="100%" height="22" colspan="3" class="fontStyle">
+			    <b>2011-03</b>&nbsp;&nbsp;186****3066&nbsp;&nbsp;190次
+			    </td>
+			  </tr>
+			  <tr>
+			    <td width="100%" height="22" colspan="3" class="fontStyle">
+			    <b>2011-02</b>&nbsp;&nbsp;186****3066&nbsp;&nbsp;393次
+			    </td>
+			  </tr>
+			  <tr>
+			    <td width="100%" height="22" colspan="3" class="fontStyle">
+			    <b>2011-01</b>&nbsp;&nbsp;186****3066&nbsp;&nbsp;217次
+			    </td>
+			  </tr>
+			  
+			</table>
+			</td>
           </tr>      
         </table>
         </td>
