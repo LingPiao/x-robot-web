@@ -31,6 +31,34 @@
 }
 -->
 </style>
+<script type="text/javascript">
+function  tab1()
+{
+	document.getElementById("t1").style.display="none";
+	document.getElementById("t11").style.display="none";
+	document.getElementById("t2").style.display="block";
+	document.getElementById("t3").style.display="none";
+	document.getElementById("t4").style.display="none";
+	
+}
+function  tab2()
+{
+	document.getElementById("t1").style.display="none";
+	document.getElementById("t11").style.display="none";
+	document.getElementById("t2").style.display="none";
+	document.getElementById("t3").style.display="block";
+	document.getElementById("t4").style.display="none";
+	
+}
+function  tab3()
+{
+	document.getElementById("t1").style.display="none";
+	document.getElementById("t2").style.display="none";
+	document.getElementById("t3").style.display="none";
+	document.getElementById("t4").style.display="block";
+	document.getElementById("t11").style.display="none";
+}
+</script>
 </head>
 <body bgcolor="#FFFFFF">
 <table width="477" height="735" border="0" align="center" cellpadding="0" cellspacing="0" id="__01">
@@ -62,10 +90,17 @@
                 <td height="28"  ><ww:iterator value="classList" status="row">
 				&nbsp;&nbsp;<img src="../images/dot1.gif" width="11" height="11">&nbsp;<a href="mms.action?op=mms&user_msn=<ww:property value="['user_msn']"/>&mmsclassid=<ww:property value="['CLASS_ID']"/>"><ww:property value="['CLASS_NAME']"/></a>
 				</ww:iterator></td>
+              </tr>
+           <tr>
+                <td height="28"  >
+				&nbsp;&nbsp;<img src="../images/dot1.gif" width="11" height="11">&nbsp;<a href="#"  onclick="tab1()">排行榜</a>
+				&nbsp;&nbsp;<img src="../images/dot1.gif" width="11" height="11">&nbsp;<a href="#"  onclick="tab2()">热门推荐</a>
+				&nbsp;&nbsp;<img src="../images/dot1.gif" width="11" height="11">&nbsp;<a href="#"  onclick="tab3()">计费管理</a>
+				</td>
               </tr>   
         </table>
          <page:pager total='<%=count%>' defaultPageSize="6">
-		<table width="390"  align="center" >
+		<table width="390"  align="center" style="display:no1ne" id = t1>
 		<%
 				int step=0;
 				for (int i = 0; i < mmsList.size(); i++) {
@@ -130,7 +165,7 @@
           <%}}
 					}%>    
         </table>
-        <table cellspacing="1" cellpadding="3" width="99%" align="center" border="0">
+        <table cellspacing="1" cellpadding="3" width="99%" align="center" border="0" id=t11  style="display:no1ne">
                                 <form action="?txtitle=&amp;classid=45&amp;nclassid=&amp;announcemode=" method="post">
                                   <tbody>
                                     <tr>
@@ -146,8 +181,223 @@
                                     </tr>
                                   </tbody>
                                 </form>
-                              </table>
+        </table>
                         </page:pager>
+       <table width="390"  align="center" style="display:none" id = t2>
+       		<tr>
+            <td align="center" valign="middle">
+            	<table id="__01" width="101" height="120" border="0" cellpadding="0" cellspacing="0">			
+					<tr>
+						<td >	
+							<img src="../pic/1/123.jpg" border=0 width=90 height=110>
+        			   </td>
+					</tr>
+				</table>
+				<table id="__01" width="101" border="0" cellpadding="0" cellspacing="0">
+				<tr>
+        		<td align="center" valign="middle">123</td>
+ 		  		</tr>
+				</table>
+			</td>
+			<td align="center" valign="middle">
+            	<table id="__01" width="101" height="120" border="0" cellpadding="0" cellspacing="0">			
+					<tr>
+						<td >	
+							<img src="../pic/1/123.jpg" border=0 width=90 height=110>
+        			   </td>
+					</tr>
+				</table>
+				<table id="__01" width="101" border="0" cellpadding="0" cellspacing="0">
+				<tr>
+        		<td align="center" valign="middle">123</td>
+ 		  		</tr>
+				</table>
+			</td>
+			<td align="center" valign="middle">
+            	<table id="__01" width="101" height="120" border="0" cellpadding="0" cellspacing="0">			
+					<tr>
+						<td >	
+							<img src="../pic/1/123.jpg" border=0 width=90 height=110>
+        			   </td>
+					</tr>
+				</table>
+				<table id="__01" width="101" border="0" cellpadding="0" cellspacing="0">
+				<tr>
+        		<td align="center" valign="middle">123</td>
+ 		  		</tr>
+				</table>
+			</td>
+		</tr>	
+       <tr>
+            <td align="center" valign="middle">
+            	<table id="__01" width="101" height="120" border="0" cellpadding="0" cellspacing="0">			
+					<tr>
+						<td >	
+							<img src="../pic/1/123.jpg" border=0 width=90 height=110>
+        			   </td>
+					</tr>
+				</table>
+				<table id="__01" width="101" border="0" cellpadding="0" cellspacing="0">
+				<tr>
+        		<td align="center" valign="middle">123</td>
+ 		  		</tr>
+				</table>
+			</td>
+			<td align="center" valign="middle">
+            	<table id="__01" width="101" height="120" border="0" cellpadding="0" cellspacing="0">			
+					<tr>
+						<td >	
+							<img src="../pic/1/123.jpg" border=0 width=90 height=110>
+        			   </td>
+					</tr>
+				</table>
+				<table id="__01" width="101" border="0" cellpadding="0" cellspacing="0">
+				<tr>
+        		<td align="center" valign="middle">123</td>
+ 		  		</tr>
+				</table>
+			</td>
+			<td align="center" valign="middle">
+            	<table id="__01" width="101" height="120" border="0" cellpadding="0" cellspacing="0">			
+					<tr>
+						<td >	
+							<img src="../pic/1/123.jpg" border=0 width=90 height=110>
+        			   </td>
+					</tr>
+				</table>
+				<table id="__01" width="101" border="0" cellpadding="0" cellspacing="0">
+				<tr>
+        		<td align="center" valign="middle">123</td>
+ 		  		</tr>
+				</table>
+			</td>
+		</tr>	
+       </table>
+        <table width="390"  align="center" style="display:none" id = t3>
+       		<tr>
+            <td align="center" valign="middle">
+            	<table id="__01" width="101" height="120" border="0" cellpadding="0" cellspacing="0">			
+					<tr>
+						<td >	
+							<img src="../pic/1/123.jpg" border=0 width=90 height=110>
+        			   </td>
+					</tr>
+				</table>
+				<table id="__01" width="101" border="0" cellpadding="0" cellspacing="0">
+				<tr>
+        		<td align="center" valign="middle">123</td>
+ 		  		</tr>
+				</table>
+			</td>
+			<td align="center" valign="middle">
+            	<table id="__01" width="101" height="120" border="0" cellpadding="0" cellspacing="0">			
+					<tr>
+						<td >	
+							<img src="../pic/1/123.jpg" border=0 width=90 height=110>
+        			   </td>
+					</tr>
+				</table>
+				<table id="__01" width="101" border="0" cellpadding="0" cellspacing="0">
+				<tr>
+        		<td align="center" valign="middle">123</td>
+ 		  		</tr>
+				</table>
+			</td>
+			<td align="center" valign="middle">
+            	<table id="__01" width="101" height="120" border="0" cellpadding="0" cellspacing="0">			
+					<tr>
+						<td >	
+							<img src="../pic/1/123.jpg" border=0 width=90 height=110>
+        			   </td>
+					</tr>
+				</table>
+				<table id="__01" width="101" border="0" cellpadding="0" cellspacing="0">
+				<tr>
+        		<td align="center" valign="middle">123</td>
+ 		  		</tr>
+				</table>
+			</td>
+		</tr>	
+       <tr>
+            <td align="center" valign="middle">
+            	<table id="__01" width="101" height="120" border="0" cellpadding="0" cellspacing="0">			
+					<tr>
+						<td >	
+							<img src="../pic/1/123.jpg" border=0 width=90 height=110>
+        			   </td>
+					</tr>
+				</table>
+				<table id="__01" width="101" border="0" cellpadding="0" cellspacing="0">
+				<tr>
+        		<td align="center" valign="middle">123</td>
+ 		  		</tr>
+				</table>
+			</td>
+			<td align="center" valign="middle">
+            	<table id="__01" width="101" height="120" border="0" cellpadding="0" cellspacing="0">			
+					<tr>
+						<td >	
+							<img src="../pic/1/123.jpg" border=0 width=90 height=110>
+        			   </td>
+					</tr>
+				</table>
+				<table id="__01" width="101" border="0" cellpadding="0" cellspacing="0">
+				<tr>
+        		<td align="center" valign="middle">123</td>
+ 		  		</tr>
+				</table>
+			</td>
+			<td align="center" valign="middle">
+            	<table id="__01" width="101" height="120" border="0" cellpadding="0" cellspacing="0">			
+					<tr>
+						<td >	
+							<img src="../pic/1/123.jpg" border=0 width=90 height=110>
+        			   </td>
+					</tr>
+				</table>
+				<table id="__01" width="101" border="0" cellpadding="0" cellspacing="0">
+				<tr>
+        		<td align="center" valign="middle">123</td>
+ 		  		</tr>
+				</table>
+			</td>
+		</tr>	
+       </table>
+         <table width="390"  align="center" style="display:none" id = t4>
+       	<tr>
+			    <td width="100%" height="22" colspan="3" class="STYLE9">
+			    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>2011-06</b>&nbsp;&nbsp;186****3066&nbsp;&nbsp;136次
+			    </td>
+			  </tr>
+			  
+			  <tr>
+			    <td width="100%" height="22" colspan="3" class="STYLE9">
+			    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>2011-05</b>&nbsp;&nbsp;186****3066&nbsp;&nbsp;181次
+			    </td>
+			  </tr>
+			  
+			  <tr>
+			    <td width="100%" height="22" colspan="3" class="STYLE9">
+			    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>2011-04</b>&nbsp;&nbsp;186****3066&nbsp;&nbsp;167次
+			    </td>
+			  </tr>
+			  
+			  <tr>
+			    <td width="100%" height="22" colspan="3" class="STYLE9">
+			    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>2011-03</b>&nbsp;&nbsp;186****3066&nbsp;&nbsp;190次
+			    </td>
+			  </tr>
+			  <tr>
+			    <td width="100%" height="22" colspan="3" class="STYLE9">
+			    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>2011-02</b>&nbsp;&nbsp;186****3066&nbsp;&nbsp;393次
+			    </td>
+			  </tr>
+			  <tr>
+			    <td width="100%" height="22" colspan="3" class="STYLE9">
+			    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>2011-01</b>&nbsp;&nbsp;186****3066&nbsp;&nbsp;217次
+			    </td>
+			  </tr>
+       </table>
 	  </td>
 	  <td>
 			<img src="../images/main_12.jpg" width="39" height="511" alt=""></td>
