@@ -1,0 +1,49 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.0//EN" "http://www.opensymphony.com/xwork/xwork-1.0.dtd">
+
+<xwork>
+	<package name="default" extends="webwork-default">
+		<interceptors>
+			<interceptor-stack name="WSStack">
+				<interceptor-ref name="model-driven" />
+				<interceptor-ref name="params" />
+			</interceptor-stack>
+		</interceptors>
+
+		<global-results>
+			<result name="error" type="dispatcher">/error/error.jsp
+			</result>
+		</global-results>
+
+		<action name="agent" class="net.sf.service.agent.AgentAction">
+			<result name="success" type="dispatcher">
+				<param name="location">./agent/agent.jsp</param>
+			</result>
+			<interceptor-ref name="WSStack" />
+		</action>
+
+		<action name="answer" class="net.sf.service.agent.AgentAction"
+			method="answer">
+			<result name="success" type="dispatcher">
+				<param name="location">./agent/agent.jsp</param>
+			</result>
+			<interceptor-ref name="WSStack" />
+		</action>
+
+		<action name="lockQuestion" class="net.sf.service.agent.AgentAction"
+			method="lockQuestion">
+			<result name="success" type="dispatcher">
+				<param name="location">./agent/agent.jsp</param>
+			</result>
+			<interceptor-ref name="WSStack" />
+		</action>
+
+		<action name="viewAnswers" class="net.sf.service.agent.AgentAction"
+			method="viewAnswers">
+			<result name="success" type="dispatcher">
+				<param name="location">./agent/agent.jsp</param>
+			</result>
+			<interceptor-ref name="WSStack" />
+		</action>
+	</package>
+
+</xwork>
