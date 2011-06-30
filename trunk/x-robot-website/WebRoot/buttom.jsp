@@ -1,6 +1,12 @@
 <%@ page pageEncoding="GBK" contentType="text/html;charset=GBK"%>
-<table width="850" border="0" align="center" cellpadding="0" cellspacing="0">
-  <tr>
-    <td height="40" align="center" valign="middle"><a href="index.action"  class="heiLink">首页</a> | <a href="company.jsp" target=_blank class="heiLink">关于我们</a> | <a href="#" class="heiLink">联系我们</a> | <a href="#" class="heiLink">人才加入</a> | <a href="http://www.10010.com" target=_blank class="heiLink">中国联通网上营业厅</a> | <a href="http://cn.msn.com" target=_blank class="heiLink">msn中国</a> </td>
-  </tr>
-</table>
+<tr>
+          <td align="center" class="bottom_bg"><table width="100%" border="0" cellspacing="2" cellpadding="2">
+              <tr>
+                <td align="center"><span class="a1"><a href="9.html" class="a5">关于永城</a>｜<a href="#" class="a5">人才招聘</a>｜<a href="#" class="a5">联系我们</a>｜<a href="#" class="a5">联通网上营业厅</a>｜<a href="#" class="a5">msn中国</a></span></td>
+              </tr>
+              <tr>
+                <td align="center"><span class="bottom_word2">＠2010Qihoo.com京ICP证080047　本站由金盾防火墙提供安全防护<br />
+                  新出网证（京）069号　文网文［2009］024号　京公网安备110000000006号</span></td>
+              </tr>
+          </table></td>
+</tr>
