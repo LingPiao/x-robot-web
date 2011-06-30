@@ -3,13 +3,17 @@ package org.project.ww;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.project.dao.Msn_certificationDao;
 import org.project.dao.TuserDao;
 import org.project.dao.VipManagerDao;
 
 import org.project.dao.WoknowDao;
 
+import com.catic.tool.HttpRequester;
 import com.catic.tool.PageInfo;
+import com.opensymphony.webwork.ServletActionContext;
 import com.opensymphony.xwork.ActionContext;
 import com.opensymphony.xwork.ActionSupport;
 
@@ -47,13 +51,8 @@ public class WoknowAction extends ActionSupport {
 	}
 	
 	public String execute() throws Exception {
-		System.out.println(userid);
-		System.out.println("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");
-		
 		if(userid==null || userid.equals(""))
 			userid=userId;
-		System.out.println("userId="+userid);
-		System.out.println("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");
 		nickname=tuserDao.getNicknameByUserid(userid);
 		usermobile=msnDao.getMobileByUserMsn(userid);
 		if (!usermobile.equals("")) 
@@ -86,6 +85,18 @@ public class WoknowAction extends ActionSupport {
 		pageInfo.setPage(page);
 		pageInfo.setPageRows(pageRows);
 		woknowDao.getQuestionList("", pageInfo);
+		System.out.println(ServletActionContext.getRequest().getHeader("User-Agent"));
+		if(from.equals("") || from==null)
+		{
+			if(ServletActionContext.getRequest().getHeader("User-Agent").indexOf("IE")>0 || ServletActionContext.getRequest().getHeader("User-Agent").indexOf("Firefox")>0)
+			{
+				from = "web";
+			}
+			else
+			{
+				from = "mobile";
+			}
+		}
 		if(from.equals("mobile"))
 			return "mobile";
 		else if (from.equals("msn")) 
