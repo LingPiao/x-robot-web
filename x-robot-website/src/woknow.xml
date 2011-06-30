@@ -24,6 +24,47 @@
 		</interceptors>
 
 		<default-interceptor-ref name="defaultStack" />
+		<action name="faq" class="org.project.ww.FaqAction">	
+		<external-ref name="tuserDao">tuserDao</external-ref>
+			<result name="success" type="dispatcher">
+				<param name="location">faq.jsp</param>
+			</result>
+			<interceptor-ref name="WSStack" />
+		</action>
+		<action name="woknow_main" class="org.project.ww.WoknowMainAction">	
+		<external-ref name="tuserDao">tuserDao</external-ref>
+		<external-ref name="msnDao">msnDao</external-ref>
+			<result name="success" type="dispatcher">
+				<param name="location">woknow_main.jsp</param>
+			</result>
+			<interceptor-ref name="WSStack" />
+		</action>
+		<action name="woknow_qry" class="org.project.ww.WoknowQryAction">	
+		<external-ref name="woknowDao">woknowDao</external-ref>
+		<external-ref name="tuserDao">tuserDao</external-ref>
+			<result name="success" type="dispatcher">
+				<param name="location">woknow_qry.jsp</param>
+			</result>
+			<result name="empty" type="redirect">
+				<param name="location">index.action</param>
+			</result>
+			<interceptor-ref name="WSStack" />
+		</action>
+		<action name="woknow_qry_brows" class="org.project.ww.WoknowQryBrowsAction">	
+		<external-ref name="woanswerDao">woanswerDao</external-ref>
+		<external-ref name="woknowDao">woknowDao</external-ref>
+		<external-ref name="msnDao">msnDao</external-ref>
+		<external-ref name="tuserDao">tuserDao</external-ref>
+		<external-ref name="vipmanagerDao">vipmanagerDao</external-ref>
+		<external-ref name="wovisitDao">wovisitDao</external-ref>
+			<result name="view_woknow" type="dispatcher">
+				<param name="location">woknow_qry_brows.jsp</param>
+			</result>
+			<result name="view_unicom" type="dispatcher">
+				<param name="location">woknow_qry_ubrows.jsp</param>
+			</result>
+			<interceptor-ref name="WSStack" />
+		</action>
 		<action name="woknow" class="org.project.ww.WoknowAction">	
 		<external-ref name="msnDao">msnDao</external-ref>
 		<external-ref name="woknowDao">woknowDao</external-ref>
@@ -101,6 +142,7 @@
 		
 		<action name="bindmobile" class="org.project.ww.BindMobileAction">	
 		<external-ref name="msnDao">msnDao</external-ref>
+		<external-ref name="tuserDao">tuserDao</external-ref>
 			<result name="bind" type="dispatcher">
 				<param name="location">bind.jsp</param>
 			</result>
@@ -108,10 +150,13 @@
 				<param name="location">unbind.jsp</param>
 			</result>
 			<result name="bindok" type="redirect">
-				<param name="location">woknow.action?userid=${userid}</param>
+				<param name="location">woknow_main.action?chanel=other</param>
 			</result>
 			<result name="unbindok" type="redirect">
-				<param name="location">woknow.action?userid=${userid}</param>
+				<param name="location">woknow_main.action?chanel=other</param>
+			</result>
+			<result name="error" type="redirect">
+				<param name="location">login.action?op=login</param>
 			</result>
 			<interceptor-ref name="WSStack" />
 		</action>

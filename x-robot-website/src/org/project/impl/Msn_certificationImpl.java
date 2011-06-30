@@ -46,6 +46,7 @@ public class Msn_certificationImpl implements Msn_certificationDao {
 	public void UnBindMobile(String userid,String mobile)
 	{
 		String sqlString="delete from MSN_CERTIFICATION where USER_MSN='"+userid+"' and USER_TEL='"+mobile+"'";
+		System.out.println(sqlString);
 		sqlDao.insertBySQLText(sqlString);
 	}
 	public SqlDao getSqlDao() {

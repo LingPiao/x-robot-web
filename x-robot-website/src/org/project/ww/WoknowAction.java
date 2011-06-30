@@ -47,6 +47,13 @@ public class WoknowAction extends ActionSupport {
 	}
 	
 	public String execute() throws Exception {
+		System.out.println(userid);
+		System.out.println("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");
+		
+		if(userid==null || userid.equals(""))
+			userid=userId;
+		System.out.println("userId="+userid);
+		System.out.println("WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW");
 		nickname=tuserDao.getNicknameByUserid(userid);
 		usermobile=msnDao.getMobileByUserMsn(userid);
 		if (!usermobile.equals("")) 
@@ -72,7 +79,7 @@ public class WoknowAction extends ActionSupport {
 		if(from.equals("mobile"))
 			pageRows = 15;
 		if(from.equals("web"))
-			pageRows = 25;
+			pageRows = 8;
 		if(from.equals("msn"))
 			pageRows = 8;
 		pageInfo = new PageInfo();
@@ -134,7 +141,14 @@ public class WoknowAction extends ActionSupport {
 	}
 	private String op;
 	private String userid;
-
+	private String userId;
+	
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 	private int page = 1;
 	private int pageRows;
 	private PageInfo pageInfo;
