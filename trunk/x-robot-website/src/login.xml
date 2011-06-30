@@ -25,7 +25,9 @@
 
 		<default-interceptor-ref name="defaultStack" />
 		<action name="index" class="org.project.ww.IndexAction">
-		<external-ref name="woknowDao">woknowDao</external-ref>
+			<external-ref name="msnDao">msnDao</external-ref>
+			<external-ref name="tuserDao">tuserDao</external-ref>
+			<external-ref name="vipmanagerDao">vipmanagerDao</external-ref>
 			<result name="success" type="dispatcher">
 				<param name="location">index.jsp</param>
 			</result>
@@ -46,8 +48,11 @@
 			<result name="login" type="dispatcher">
 				<param name="location">login.jsp</param>
 			</result>
-			<result name="loginok" type="redirect">
+			<result name="loginok1" type="redirect">
 				<param name="location">woknow.action?userid=${userid}&amp;chanel=other&amp;from=web</param>
+			</result>
+			<result name="loginok" type="dispatcher">
+				<param name="location">index.jsp</param>
 			</result>
 			<result name="loginerror" type="redirect">
 				<param name="location">index.action</param>

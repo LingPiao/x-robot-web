@@ -1,5 +1,5 @@
 package org.project.ww;
-import java.util.Date;
+
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -9,14 +9,17 @@ import org.project.dao.Msn_certificationDao;
 import org.project.dao.TuserDao;
 import org.project.dao.VipManagerDao;
 import org.project.dao.WoanswerDao;
-import org.project.dao.WoknowDao;
 import org.project.dao.WovisitDao;
 
-import com.catic.tool.ConvertDate;
+import org.project.dao.WoknowDao;
+
+import com.catic.tool.PageInfo;
 import com.opensymphony.xwork.ActionContext;
 import com.opensymphony.xwork.ActionSupport;
 
-public class WoanswerAction extends ActionSupport {
+
+public class WoknowQryBrowsAction extends ActionSupport {
+
 	private WoanswerDao woanswerDao;
 	private WoknowDao woknowDao;
 	private WovisitDao wovisitDao;
@@ -75,94 +78,100 @@ public class WoanswerAction extends ActionSupport {
 	}
 
 	public String execute() throws Exception {
-		if(userid==null || userid.equals(""))
-			userid=userId;
-		nickname=tuserDao.getNicknameByUserid(userid);
-		usermobile=msnDao.getMobileByUserMsn(userid);
-		type=tuserDao.getTypeByUserid(userid);
-		if (!usermobile.equals("")) 
+		Map session = ActionContext.getContext().getSession();
+		if(session.get("userid") != null)
 		{
-			if(vipmanagerDao.isExistMobile(usermobile))
-				vip="1";
-			else
-				vip="0";
-		}
-		if(usermobile.length()==11)
-		{
-			user_mobile=usermobile.substring(0,3)+"****"+usermobile.substring(7, 11);
-		}
-		else {
-			user_mobile=usermobile;
-		}
-		if(op.equals("view") || op.equals("brows"))
-		{
-			List qList=woknowDao.getQuestionByid(q_id);
-			if(qList.size()>0)
+			userid=session.get("userid").toString();
+			System.out.println(userid);
+			if(userid!=null &&!userid.equals(""))
 			{
-				Map map = (Map)qList.get(0);
-				if(map.get("Q_CONTENT")==null)
-					content = "";
+				nickname=tuserDao.getNicknameByUserid(userid);
+				usermobile=msnDao.getMobileByUserMsn(userid);
+				type=tuserDao.getTypeByUserid(userid);
+				if (!usermobile.equals("")) 
+				{
+					if(vipmanagerDao.isExistMobile(usermobile))
+						vip="1";
+					else
+						vip="0";
+				}
 				else
-					content = map.get("Q_CONTENT").toString();
-				state=  map.get("Q_STATE").toString();
-				q_date= map.get("Q_DATE").toString();
-				q_user=map.get("Q_USER").toString();
+				{
+					vip="0";
+				}
+			}
+			if(usermobile.length()==11)
+			{
+				user_mobile=usermobile.substring(0,3)+"****"+usermobile.substring(7, 11);
+			}
+			else {
+				user_mobile=usermobile;
+			}
+		}
+		
+		if(op.equals("view"))
+		{
+			List qList=null;
+			if(ft.equals("w_question"))
+			{
+				qList=woknowDao.getQuestionByid(questionid);
+				if(qList.size()>0)
+				{
+					Map map = (Map)qList.get(0);
+					if(map.get("Q_CONTENT")==null)
+						content = "";
+					else
+						content = map.get("Q_CONTENT").toString();
+					state=  map.get("Q_STATE").toString();
+					q_date= map.get("Q_DATE").toString();
+					q_user=map.get("Q_USER").toString();
+					
+				}
+				ansList = woanswerDao.getAnswerByQid(questionid);
+				System.out.println(ansList);
+				//查看是否有最佳答案
+				if(woanswerDao.isBestAnswer(questionid))
+					bestflag="1";
+				else
+					bestflag="0";
+				if(op.equals("brows"))
+				{
+					List tempList=wovisitDao.getByqid(questionid);
+					if(tempList.size()>0)
+					{
+						wovisitDao.addBrows(questionid);
+					}
+					else 
+					{
+						wovisitDao.inserVisit(questionid);
+					}
+				}
+				return "view_woknow";
+			}
+			if(ft.equals("t_unicom_question"))
+			{
+				ansList=woknowDao.getUnicomQuestionByid(questionid);
 				
+				return "view_unicom";
 			}
 			
-			ansList = woanswerDao.getAnswerByQid(q_id);
-			System.out.println(ansList);
-			//查看是否有最佳答案
-			if(woanswerDao.isBestAnswer(q_id))
-				bestflag="1";
-			else
-				bestflag="0";
-			if(op.equals("brows"))
-			{
-				List tempList=wovisitDao.getByqid(q_id);
-				if(tempList.size()>0)
-				{
-					wovisitDao.addBrows(q_id);
-				}
-				else 
-				{
-					wovisitDao.inserVisit(q_id);
-				}
-			}
-			if(from.equals("mobile"))
-				return "mobile";
-			else if (from.equals("msn")) 
-				return "msn";
-			else
-				return "view";
+			
 		}
 		if(op.equals("answer"))
 		{
-//			String tempuseridString="";
-//			System.out.println(userid);
-//			System.out.println(user_mobile);
-//			System.out.println(nickname);
-//			if(!usermobile.equals("") && usermobile!=null)
-//				tempuseridString=usermobile;
-//			else if(checkEmail(userid))
-//				tempuseridString=userid;
-//			else if(!nickname.equals("") && nickname!=null)
-//				tempuseridString=nickname;
-//			else
-//				tempuseridString="热心网友";
-			woanswerDao.saveAnswer(q_id, A_CONTENT, userid);
-			wovisitDao.addAnswer(q_id);
+			woanswerDao.saveAnswer(questionid, A_CONTENT, userid);
+			wovisitDao.addAnswer(questionid);
 			return "answer";
 		}
 		if(op.equals("best"))
 		{
 			woanswerDao.setBestAnswer(a_id);
-			woknowDao.setQuestionState("1", q_id);
+			woknowDao.setQuestionState("1", questionid);
 			return "best";
 		}
 		if(op.equals("over"))
 		{
-			woknowDao.setQuestionState("1", q_id);
+			woknowDao.setQuestionState("1", questionid);
 			return "best";
 		}
 		return SUCCESS;
@@ -175,8 +184,24 @@ public class WoanswerAction extends ActionSupport {
 	    }
 	    return false;
 	 }
-	//用户来源
-	private String from;
+	private String questionid;
+	private String ft;
+	
+	public String getQuestionid() {
+		return questionid;
+	}
+
+	public void setQuestionid(String questionid) {
+		this.questionid = questionid;
+	}
+
+	public String getFt() {
+		return ft;
+	}
+
+	public void setFt(String ft) {
+		this.ft = ft;
+	}
 	private String nickname;
 
 	private String user_mobile;
@@ -197,23 +222,8 @@ public class WoanswerAction extends ActionSupport {
 		this.user_mobile = user_mobile;
 	}
 
-	public String getFrom() {
-		return from;
-	}
-	public void setFrom(String from) {
-		this.from = from;
-	}
 	private String op;
 	private String userid;
-	private String userId;
-	
-	public String getUserId() {
-		return userId;
-	}
-
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
 	private String bestflag;
 	private String content;
 	private String state;
@@ -224,17 +234,7 @@ public class WoanswerAction extends ActionSupport {
 	private String vip;
 	private String service;
 	private String type;
-	//标识从那个栏目访问过来的
-	private String chanel;
 	
-	public String getChanel() {
-		return chanel;
-	}
-
-	public void setChanel(String chanel) {
-		this.chanel = chanel;
-	}
-
 	public String getType() {
 		return type;
 	}
@@ -298,7 +298,6 @@ public class WoanswerAction extends ActionSupport {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	private String q_id;
 	private String a_id;
 	
 	public String getA_id() {
@@ -336,15 +335,6 @@ public class WoanswerAction extends ActionSupport {
 	public void setAnsList(List ansList) {
 		this.ansList = ansList;
 	}
-
-	public String getQ_id() {
-		return q_id;
-	}
-
-	public void setQ_id(String q_id) {
-		this.q_id = q_id;
-	}
-
 	public String getA_CONTENT() {
 		return A_CONTENT;
 	}

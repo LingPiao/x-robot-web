@@ -20,21 +20,11 @@ import com.opensymphony.xwork.ActionSupport;
 
 
 
-public class IndexAction extends ActionSupport 
+public class WoknowMainAction extends ActionSupport 
 {
 	private TuserDao tuserDao;
-	private VipManagerDao vipmanagerDao;
 	private Msn_certificationDao msnDao;
 	
-	
-	public VipManagerDao getVipmanagerDao() {
-		return vipmanagerDao;
-	}
-
-	public void setVipmanagerDao(VipManagerDao vipmanagerDao) {
-		this.vipmanagerDao = vipmanagerDao;
-	}
-
 	public Msn_certificationDao getMsnDao() {
 		return msnDao;
 	}
@@ -54,54 +44,21 @@ public class IndexAction extends ActionSupport
 	public String execute()	throws Exception
 	{
 		Map session = ActionContext.getContext().getSession();
-		System.out.println(op+"&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
-		if(op!=null)
+		
+		if(session.get("userid") != null)
 		{
-			if(op.equals("logout"))
+			userid=session.get("userid").toString();
+			if(userid!=null &&!userid.equals(""))
 			{
-				session.put("userid", null);
-			}
-		}
-		else
-		{
-			if(session.get("userid") != null)
-			{
-				userid=session.get("userid").toString();
-				System.out.println(userid);
-				if(userid!=null &&!userid.equals(""))
-				{
-					nickname=tuserDao.getNicknameByUserid(userid);
-					usermobile=msnDao.getMobileByUserMsn(userid);
-					if (!usermobile.equals("")) 
-					{
-						if(vipmanagerDao.isExistMobile(usermobile))
-							vip="1";
-						else
-							vip="0";
-					}
-					else
-					{
-						vip="0";
-					}
-				}
+				nickname=tuserDao.getNicknameByUserid(userid);
+				usermobile=msnDao.getMobileByUserMsn(userid);
 			}
 		}
     	return SUCCESS;
 	}
-	private String op;
-	private String userid;
-	private String nickname;
-	private String vip;
+	private String chanel;
 	private String usermobile;
 	
-	public String getVip() {
-		return vip;
-	}
-
-	public void setVip(String vip) {
-		this.vip = vip;
-	}
-
 	public String getUsermobile() {
 		return usermobile;
 	}
@@ -110,14 +67,15 @@ public class IndexAction extends ActionSupport
 		this.usermobile = usermobile;
 	}
 
-	public String getOp() {
-		return op;
+	public String getChanel() {
+		return chanel;
 	}
-
-	public void setOp(String op) {
-		this.op = op;
+	public void setChanel(String chanel) {
+		this.chanel = chanel;
 	}
-
+	private String userid;
+	private String nickname;
+	
 	public String getNickname() {
 		return nickname;
 	}
