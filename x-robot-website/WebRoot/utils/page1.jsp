@@ -11,8 +11,8 @@
 	   	  <input type="hidden" name="maxPage" value="<ww:property value="pageInfo.pageCount"/>">
 	   	  <input type="hidden" name="curPage" value="<ww:property value="pageInfo.page"/>">
 	   	  
-          <td width="30%" height="30" nowrap>&nbsp;页次：<ww:property value="pageInfo.page"/>/<ww:property value="pageInfo.pageCount"/>页 每页<ww:property value="pageInfo.pageRows"/> 主题数 <ww:property value="pageInfo.recordCount"/></td>
-          <td >&nbsp;</td>
+          <td width="30%" height="30" nowrap><ww:property value="pageInfo.page"/>/<ww:property value="pageInfo.pageCount"/>页 每页<ww:property value="pageInfo.pageRows"/> 共 <ww:property value="pageInfo.recordCount"/></td>
+
           <td align="right" width="40%">
           <A href="#"><img src="<%=basePath1%>images/arrow_01.gif" width="15" height="15" align="middle" border="0" onclick="goPageByImg(document.forms[0],'FIRST')"></A>&nbsp;
           <A href="#"><img src="<%=basePath1%>images/arrow_02.gif" width="15" height="15" align="middle" border="0" onclick="goPageByImg(document.forms[0],'PERVIOUS')"></A>&nbsp;
@@ -41,7 +41,7 @@
           <A href="#"><img src="<%=basePath1%>images/arrow_03.gif" width="15" height="15" align="middle" border="0" onclick="goPageByImg(document.forms[0],'NEXT')"></A>&nbsp;
           <A href="#"><img src="<%=basePath1%>images/arrow_04.gif" width="15" height="15" align="middle" border="0" onclick="goPageByImg(document.forms[0],'LAST')"></A></td>
           <td width="30%" align="center">转到 
-            <input type="text" name="page" class="textborder" style="width:50px;">
+            <input type="text" name="page" class="textborder" style="width:20px;">
             &nbsp;<img src="<%=basePath1%>images/tabbottom_02.gif" width="22" height="22" align="middle" onclick="goPage(document.forms[0])">
 		  </td>
         </tr>
