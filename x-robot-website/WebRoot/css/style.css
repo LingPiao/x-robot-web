@@ -120,7 +120,7 @@ a.a7:active {
 .a1input {
 	width:420px;
 	height:22px;
-	padding-top:2px;
+	padding-top:4px;
 	border:0;
 	margin-left:1px;
 	background:url(../images/input.jpg) no-repeat left top;
@@ -235,4 +235,43 @@ a.a7:active {
 }
 .qbc {
 	background-color:#CCCCCC;
+}
+.top1 {
+	width:410px;
+	height:40px;
+	background:url(../images/top1.jpg) no-repeat left top;
+}
+.q_border {
+	border:1px solid #444444;
+	border-top:0px;
+	background:url(../images/q_bg.jpg) repeat-y center top;
+}
+.but1 {
+	background:url(../images/button1.jpg) no-repeat;
+	width:93px;
+	height:35px;
+	border:0;
+	font-size:14px;
+	font-weight:bold;
+	color:#fff;
+}
+.but2 {
+	background:url(../images/button2.jpg) no-repeat;
+	width:93px;
+	height:35px;
+	border:0;
+	font-size:14px;
+	font-weight:bold;
+	color:#fff;
+}
+.search_content {
+	font-size:12px;
+	line-height:22px;
+	color:#333333;
+}
+.green {
+	color:#017F02;
+}
+.grey2 {
+	color:#666;
 }
