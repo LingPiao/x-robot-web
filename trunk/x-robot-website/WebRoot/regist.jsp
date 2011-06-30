@@ -1,12 +1,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%@ page pageEncoding="GBK" contentType="text/html;charset=GBK"%>
 <%@ taglib prefix="ww" uri="webwork"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=GBK" />
-<title>注册</title>
-<link href="css/sa.css" rel="stylesheet" type="text/css" />
-<link href="css/alink.css" rel="stylesheet" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<link href="css/style.css" type=text/css rel=stylesheet>
+<%@ include file="header.jsp" %> 
 </head>
 <script>
 function reg()
@@ -38,89 +38,94 @@ function reg()
 }
 </script>
 <body>
-<table width="1001" border="0" align="center" cellpadding="0" cellspacing="0">
+<table width="100%" border="0" cellspacing="0" cellpadding="0"><tr><td align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td align="center" valign="top" background="images/bg3.jpg"><table width="1001" border="0" align="center" cellpadding="0" cellspacing="0">
-      <tr>
-        <td height="759" align="center" valign="top" background="images/bg2.jpg" style="background-repeat:no-repeat;"><table width="850" border="0" cellspacing="0" cellpadding="0">
-          <tr>
-            <td height="110">&nbsp;</td>
-          </tr>
-        </table>
-              <table width="850" border="0" cellspacing="0" cellpadding="0">
-                <tr>
-                  <td width="250" align="left" valign="top">
-                  <%@ include file="add_left.jsp" %></td>
-                  <td width="600" height="600" align="center" valign="top" background="images/erbg.jpg" style="background-repeat:no-repeat;"><table width="580" border="0" cellspacing="0" cellpadding="0">
-                    <tr>
-                      <td width="22" height="34" align="left" valign="top"><img src="images/er-01.jpg" width="17" height="29" /></td>
-                      <td width="558" align="left" valign="bottom" class="nierong"><strong>注册</strong></td>
-                    </tr>
-                    <tr>
-                      <td height="34" colspan="2" align="center" valign="top">
-                      <form action = "#" method=post name="logform">
-                      <table width="580" border="0" cellpadding="0" cellspacing="0" bordercolor="#CCCCCC" >
-                        <tbody>
-                          
-                          <tr>
-                            <td width="120" height="30" align="right" valign="middle" nowrap="nowrap"><span class="hshiert">*</span>登录名：</td>
-                            <td width="54" align="left" valign="middle" style="padding:4px 0 4px 6px;"><input id="username" size="25" name="username" /></span> 
-                            </td>
-                            <td width="400" align="left" valign="middle" style="padding:4px 0 4px 6px;"><span id="error1"></span>
-                            </td>
-                            </tr>
-                          <tr>
-                            <td height="30" align="right" valign="middle" nowrap="nowrap"><span class="hshiert">*</span>昵称：</td>
-                            <td  align="left" valign="middle" style="padding:4px 0 4px 6px;"><input id="nickname" size="25" name="nickname" /></td>
-                            <td width="400" align="left" valign="middle" style="padding:4px 0 4px 6px;"><span id="error2"></span>
-                            </tr>
-                          <tr>
-                            <td height="30" align="right" valign="middle" nowrap="nowrap">密码：</td>
-                            <td align="left" valign="middle" style="padding:4px 0 4px 6px;"><input id="userpwd" size="25" name="userpwd"  type="password" /></td>
-                            <td width="400" align="left" valign="middle" style="padding:4px 0 4px 6px;"><span id="error3"></span>
-                            </tr>
-                        
-                          <tr>
-                          <tr>
-                            <td height="30" align="right" valign="middle" nowrap="nowrap">再次输入密码：</td>
-                            <td align="left" valign="middle" style="padding:4px 0 4px 6px;"><input id="userpwd1" size="25" name="userpwd1" type="password" /></td>
-                           <td width="400" align="left" valign="middle" style="padding:4px 0 4px 6px;"><span id="error4"></span>
-                            </tr>
-                        
-                          <tr>
-                            <td height="50" align="right" nowrap="nowrap">&nbsp;</td>
-                            <td colspan="2" align="left" valign="middle" style="padding:7px 0 7px 6px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <label>
-                                <input type="submit" name="Submit2" value="提交" onclick="return reg()"/>
-                                </label>
-                              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <label>
-                                <input type="reset" name="reset" value="重置" />
-                              </label></td>
-                          </tr>
-                        </tbody>
-                      </table>
-                      </form>
-                      </td>
-                    </tr>
-                  </table></td>
-                </tr>
-              </table>
-          </td>
-      </tr>
+    <td class="top" align="left" valign="bottom"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <%@ include file="top.jsp" %>
     </table></td>
   </tr>
   <tr>
-    <td><img src="images/bg4.jpg" width="1001" height="16" /></td>
+    <td align="center"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td align="center"><table width="50%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td height="100" align="center">&nbsp;</td>
+              </tr>
+              <tr>
+                <td align="center"><table width="90%" border="0" cellspacing="5" cellpadding="5" class="lineborder">
+                  <tr>
+                    <td valign="bottom" align="center">&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td align="left">&nbsp;</td>
+                  </tr>
+                  <form action = "#" method=post name="logform">
+                  <tr>
+                    <td align="left">&nbsp;&nbsp;&nbsp;&nbsp;<span class="red">* </span>用户名:
+                      <label>
+                        <input type="text" name="username" id="username" class="in" />
+                        <span id="error1"></span></label></td>
+                  </tr>
+                  <tr>
+                    <td width="52%" align="left">&nbsp;&nbsp;&nbsp;&nbsp;<span class="red">* </span>昵　称:
+                      <label>
+                        <input type="text" name="nickname" id="nickname" class="in" />
+                        <span id="error2">
+                      </label></td>
+                  </tr>
+                  <tr>
+                    <td align="left">&nbsp;&nbsp;&nbsp;&nbsp;<span class="red">* </span> 密　码:
+                      <input type="password" name="userpwd" id="userpwd" class="in" />
+                       <span id="error3"></span></td>
+                  </tr>
+                  <tr>
+                    <td align="left">&nbsp;&nbsp;&nbsp;&nbsp;<span class="red">* </span> 重复密码:
+                      <input type="password" name="userpwd1" id="userpwd1" class="in" />
+                      <span id="error4"></span></td>
+                  </tr>
+                  <!-- tr>
+                    <td align="left"> 　　<span class="red">　</span>&nbsp;&nbsp;邮　箱:
+                      <input type="text" name="textfield6" id="textfield6" class="in" />
+                        <span class="yanzheng">请输入有效的邮箱地址</span></td>
+                  </tr>
+                  <tr>
+                    <td align="left">　　 　 手机号:
+                      <input type="text" name="textfield7" id="textfield7" class="in" /></td>
+                  </tr>
+                  <tr>
+                    <td align="left">　　　<span class="red">*</span> 验证码:
+                      <input name="textfield3" type="text" class="in" id="textfield3" size="12" />
+                      <img src="images/3-1.jpg" width="53" height="16" /></td>
+                  </tr-->
+                  <tr>
+                    <td align="left" valign="top"><label> 　　　　　　　
+                      
+                        <input type="submit" name="button" id="button" value="注册" class="buttonbg" onclick="return reg()"/>
+                      
+                      <input type="reset" name="button2" id="button2" value="重置" class="buttonbg" />
+                    </label></td>
+                  </tr>
+                  </form>
+                  <tr>
+                    <td height="50"></td>
+                  </tr>
+                </table></td>
+              </tr>
+              <tr>
+                <td>&nbsp;</td>
+              </tr>
+          </table></td>
+        </tr>
+        <tr>
+          <td height="60" align="center" class="a1"><br />
+              <br /></td>
+        </tr>
+        <%@ include file="buttom.jsp" %>
+    </table></td>
+  </tr>
+
+</table></td>
   </tr>
 </table>
-<%@ include file="buttom.jsp" %>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<script >
-<ww:if test="flag == \"0\"">
-	document.getElementById("error1").innerHTML="<font color=red>登录名重复，请重新输入！</font>";
-</ww:if>
-</script>
 </body>
 </html>
