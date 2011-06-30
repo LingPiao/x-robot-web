@@ -72,7 +72,7 @@
 
 	<!-- 配置首页 -->
 	<welcome-file-list>
-		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>index.action</welcome-file>
 	</welcome-file-list>
       <error-page>    
          <error-code>400</error-code>    
