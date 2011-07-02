@@ -1,12 +1,15 @@
 <?xml version="1.0" ?>
 <project name="agent" default="war">
+	<property name="src" value="src" />
+	<property name="libs" value="war/WEB-INF/lib" />
 	<property name="warName" value="agent.war" />
 	<property name="clientJarName" value="AgentClient.jar" />
-	<property name="tomcatApps" value="D:/java/apache-tomcat-6.0.32/webapps" />
+	<property name="tomcatHome" value="D:/java/apache-tomcat-6.0.32" />
+	<property name="tomcatApps" value="${tomcatHome}/webapps" />
 	<property name="charactorSet" value="GB18030" />
 
 	<path id="compile.classpath">
-		<fileset dir="war/WEB-INF/lib">
+		<fileset dir="${libs}">
 			<include name="*.jar" />
 		</fileset>
 	</path>
@@ -22,7 +25,7 @@
 	</target>
 
 	<target name="compile" depends="init">
-		<javac destdir="build/classes" debug="true" srcdir="src" encoding="${charactorSet}" target="1.6">
+		<javac destdir="build/classes" debug="true" srcdir="${src}" encoding="${charactorSet}" target="1.6">
 			<classpath refid="compile.classpath" />
 		</javac>
 	</target>
@@ -30,7 +33,10 @@
 	<target name="jarClient" depends="compile">
 		<delete file="sign/${clientJarName}" />
 
-		<jar destfile="sign/${clientJarName}" basedir="build/classes" includes="net/sf/service/agent/client/**" />
+		<jar destfile="sign/${clientJarName}">
+			<fileset dir="build/classes" includes="net/sf/service/agent/client/**" />
+			<fileset dir="${src}" includes="socket.properties" />
+		</jar>
 
 		<!-- Sign the client applet jar -->
 		<echo message="Signing the applet..." />
@@ -47,12 +53,16 @@
 	<target name="war" depends="jarClient">
 		<war encoding="${charactorSet}" destfile="dist/${warName}" webxml="war/WEB-INF/web.xml">
 			<fileset dir="war" />
-			<lib dir="war/WEB-INF/lib" />
+			<lib dir="${libs}" />
 			<classes dir="build/classes" />
 		</war>
 	</target>
 
 	<target name="deploy" depends="war">
+		<delete>
+			<fileset dir="${tomcatHome}/logs" includes="*.*" />
+		</delete>
+		<delete dir="${tomcatApps}/agent" />
 		<delete file="${tomcatApps}/${warName}" />
 		<copy file="dist/${warName}" todir="${tomcatApps}" />
 	</target>
