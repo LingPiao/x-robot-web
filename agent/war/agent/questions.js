@@ -71,6 +71,9 @@ Ext.onReady( function() {
 		minSize : 300,
 		maxSize : 700,
 		title : '用户咨询',
+		listeners : {
+			'rowdblclick' : showHistory
+		},
 		bbar : new Ext.PagingToolbar( {
 			pageSize : 22,
 			store : ds,
@@ -101,18 +104,20 @@ Ext.onReady( function() {
 		Ext.state.Manager.setProvider(new Ext.state.CookieProvider());
 
 		function setHistory(day) {
-			var d = day ? day : "";
 			var his = Ext.get("history");
 			var r = grid.getSelectionModel().getSelected();
-			his.dom.innerHTML = r.data.q_user + "&nbsp;&nbsp;" + r.data.q_date.format('Y-m-d H:i:s')
-					+ "<br>&nbsp;&nbsp;" + r.data.q_content;
+			his.dom.innerHTML = "";
+			if (day == 0) {
+				his.dom.innerHTML = r.data.q_user + "&nbsp;&nbsp;" + r.data.q_date.format('Y-m-d H:i:s')
+						+ "<br>&nbsp;&nbsp;" + htmlConvert(r.data.q_content) + "<br>";
+			}
 			var qid = r.data.q_id;
 			Ext.Ajax.request( {
 				url : './viewAnswers.action',
 				sync : true,
 				params : {
 					qid : qid,
-					day : d
+					days : day
 				},
 				method : 'GET',
 				success : function(result, request) {
@@ -120,9 +125,9 @@ Ext.onReady( function() {
 					if (jsonData.answers) {
 						var astr = "";
 						for (i = 0; i < jsonData.answers.length; i++) {
-							astr = astr + "<br>" + jsonData.answers[i].a_user + "&nbsp;&nbsp;"
+							astr = astr + jsonData.answers[i].a_user + "&nbsp;&nbsp;"
 									+ new Date(jsonData.answers[i].a_date.time).format('Y-m-d H:i:s')
-									+ "<br>&nbsp;&nbsp;" + jsonData.answers[i].a_content;
+									+ "<br>&nbsp;&nbsp;" + htmlConvert(jsonData.answers[i].a_content) + "<br>";
 
 						}
 						his.dom.innerHTML = his.dom.innerHTML + astr;
@@ -141,9 +146,11 @@ Ext.onReady( function() {
 
 		function showHistory(day) {
 			Ext.getCmp('btnAnswer').disable();
-			setHistory(day);
 			if (day != 3 && day != 7 && day != 30) {
 				initChat();
+				setHistory(0);
+			} else {
+				setHistory(day);
 			}
 		}
 		function openToAnswer() {
@@ -163,7 +170,7 @@ Ext.onReady( function() {
 					method : 'GET',
 					success : function(result, request) {
 						if (result.responseText == "1") {
-							setHistory();
+							setHistory(0);
 						} else {
 							Ext.MessageBox.alert('提示', '问题已被其他坐席锁定,可选择其他问题或稍候重试!');
 						}
@@ -178,15 +185,18 @@ Ext.onReady( function() {
 
 		function submitAnswer(answer) {
 			var qid = "-1";
+			var uMsn = "";
 			var r = grid.getSelectionModel().getSelected();
 			if (r) {
 				qid = r.data.q_id;
+				uMsn = r.data.q_user;
 			}
 			Ext.Ajax.request( {
 				url : './answer.action',
 				params : {
 					qid : qid,
 					agent : agentName,
+					userMsn : uMsn,
 					answer : encodeURIComponent(answer)
 				},
 				method : 'POST',
@@ -211,7 +221,7 @@ Ext.onReady( function() {
 			submitAnswer(a);
 			answerCont.dom.value = "";
 			his.dom.innerHTML = his.dom.innerHTML + "<font color='blue'><br>" + agentName + "&nbsp;&nbsp;"
-					+ new Date().format('Y-m-d H:i:s') + "&nbsp;&nbsp;回复:<br>&nbsp;&nbsp;" + a + "</font>";
+					+ new Date().format('Y-m-d H:i:s') + "&nbsp;&nbsp;回复:<br>&nbsp;&nbsp;" + htmlConvert(a) + "</font>";
 
 		}
 

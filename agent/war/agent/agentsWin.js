@@ -1,9 +1,11 @@
-var win;
 Ext.onReady( function() {
-
 	Ext.state.Manager.setProvider(new Ext.state.CookieProvider());
 	var button = Ext.get('showAgents');
+	var win;
 	button.on('click', function() {
+		if (win) {
+			win.close();
+		}
 		var agentsCm = new Ext.grid.ColumnModel( [ new Ext.grid.RowNumberer(), {
 			header : '坐席',
 			dataIndex : 'agentName',
@@ -29,7 +31,7 @@ Ext.onReady( function() {
 
 		agentsCm.defaultSortable = true;
 
-		var aentsDs = new Ext.data.Store( {
+		var agentsDs = new Ext.data.Store( {
 			proxy : new Ext.data.HttpProxy( {
 				url : './agentServer?act=status'
 			}),
@@ -41,17 +43,14 @@ Ext.onReady( function() {
 				name : 'agentType'
 			} ])
 		});
-
+		agentsDs.load();
 		var agentsGrid = new Ext.grid.GridPanel( {
 			region : 'center',
-			ds : aentsDs,
+			ds : agentsDs,
 			cm : agentsCm,
 			loadMask : true
 		});
-		aentsDs.load();
-		if (win) {
-			win.close();
-		}
+
 		win = new Ext.Window( {
 			title : '在线坐席列表',
 			closable : true,

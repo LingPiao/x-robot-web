@@ -91,6 +91,7 @@ public class AgentAction extends ActionSupport {
 	private String agent;
 	private String answer;
 	private Long qid;
+	private String userMsn;
 
 	public String answer() throws Exception {
 		String fail = Constants.OPERATION_FAILURE;
@@ -109,6 +110,8 @@ public class AgentAction extends ActionSupport {
 			// --UPDATE_QUESTION
 			// UPDATE W_QUESTION SET Q_STATE='1' WHERE Q_ID=?
 			sqlDao.updateBySQLName("UPDATE_QUESTION", new Object[] { q_id });
+			// Send the answer to the platform.
+			// PlatformMessager.sendAnswer(userMsn, decodedAnswer);
 		}
 
 		QuestionLock.getInstance().removeLock(String.valueOf(qid));
@@ -155,10 +158,10 @@ public class AgentAction extends ActionSupport {
 			return NONE;
 		}
 		List<AnswerVo> answersList = null;
-		if (days == null) {
-			answersList = (List<AnswerVo>) sqlDao.qryBySQLName("QRY_ANSWERS", new Object[] { qid }, AnswerVo.class);
+		if (days != null && days > 0) {
+			answersList = (List<AnswerVo>) sqlDao.qryBySQLName("QRY_CHATLOG", new Object[] { qid, qid, days, qid }, AnswerVo.class);
 		} else {
-			answersList = (List<AnswerVo>) sqlDao.qryBySQLName("QRY_CHATLOG", new Object[] { qid, days, qid }, AnswerVo.class);
+			answersList = (List<AnswerVo>) sqlDao.qryBySQLName("QRY_ANSWERS", new Object[] { qid }, AnswerVo.class);
 		}
 
 		JSONObject json = new JSONObject();
@@ -187,6 +190,10 @@ public class AgentAction extends ActionSupport {
 
 	public void setQid(String qid) {
 		this.qid = new Long(qid);
+	}
+
+	public void setUserMsn(String userMsn) {
+		this.userMsn = userMsn;
 	}
 
 }
