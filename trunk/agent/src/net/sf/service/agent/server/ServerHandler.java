@@ -33,7 +33,7 @@ public class ServerHandler extends Thread {
 			while (!stopped) {
 				String content = in.readLine();
 				if (content != null) {
-					log.debug("收到坐席[ID=" + agentId + "信息,内容:" + content + "]");
+					log.debug("收到坐席[ID=" + agentId + "]信息,内容:" + content);
 					// The closing signal from client.
 					String login_flag = AgentServer.LOGIN_PREFIX;
 					if (content.startsWith(login_flag)) {

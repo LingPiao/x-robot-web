@@ -20,6 +20,7 @@ class AgentMonitor implements Runnable {
 			e.printStackTrace();
 		}
 		scheduler.scheduleAtFixedRate(this, 1, 10, TimeUnit.SECONDS);
+		System.out.println("AgentMonitor is started.");
 	}
 
 	@Override
@@ -31,6 +32,7 @@ class AgentMonitor implements Runnable {
 			// System.out.println("Heartbeat sent successfully.");
 		} catch (Throwable t) {
 			t.printStackTrace();
+			System.out.println("AgentMonitor exception:" + t.getMessage());
 		}
 
 	}

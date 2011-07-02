@@ -60,14 +60,24 @@ function notify(){
 function updateQuestion(qid,status){
 	ds.getById(qid).set('q_state',status); 
 }
+
+function htmlConvert(value){
+	var r="";
+	if(value){
+		r = Ext.util.Format.htmlEncode(value);
+		var reg = new RegExp("\r\n", "g");
+		r = r.replace(reg, "<br>");
+	}
+	return r;
+}
 </script>
 </head>
 <body>
 
 <script type="text/javascript" src="./questions.js"></script>
 <div id="north">
-<p>用户:<%=agentName%>&nbsp;&nbsp;类型:<%=agentTypeLable%>&nbsp;&nbsp;状态:在线&nbsp;&nbsp; <a href="javascript:void(0);"
-	id="showAgents">坐席查看</a></p>
+<p>用户:<%=agentName%>&nbsp;&nbsp;类型:<%=agentTypeLable%>&nbsp;&nbsp;状态:在线&nbsp;&nbsp; <span id="showAgents"
+	style="cursor: hand">坐席查看</span></p>
 </div>
 <div id="history"></div>
 <div id="response"><textarea id="resContent" name="resContent" rows="6" style="width: 100%; height: 100%"></textarea></div>
@@ -75,18 +85,18 @@ function updateQuestion(qid,status){
 
 <div id="appletContainer"><object classid="clsid:8AD9C840-044E-11D1-B3E9-00805F499D93" width="0px" height="0px"
 	style="border-width: 0;" id="agent" name="agent"
-	codebase="http://java.sun.com/update/1.6.0/jinstall-6u16-windows-i586.cab#Version=1,6,0,16">
+	codebase="http://java.sun.com/products/plugin/autodl/jinstall-1_5_0-windows-i586.cab#Version=1,5,0,0">
 	<PARAM NAME="ARCHIVE" VALUE="AgentClient.jar" />
 	<PARAM NAME="CODE" VALUE="net.sf.service.agent.client.Agent" />
-	<param NAME="type" VALUE="application/x-java-applet;jpi-version=1.6">
+	<param NAME="type" VALUE="application/x-java-applet;jpi-version=1.5.0">
 	<PARAM NAME="CODEBASE" VALUE=".">
 	<param NAME="scriptable" VALUE="true">
 	<param NAME="agent" VALUE="<%=agentName%>">
 	<param NAME="agentType" VALUE="<%=agentType%>">
 	<param NAME="mobileNo" VALUE="<%=mobileNo%>">
 
-	<comment> <embed type="application/x-java-applet;version=1.5" code="net.sf.service.agent.client.Agent"
-		ARCHIVE="AgentClient.jar" codebase="." pluginspage="http://java.sun.com/products/plugin/index.html#download" scriptable="true"
+	<comment> <embed type="application/x-java-applet;version=1.5.0" code="net.sf.service.agent.client.Agent"
+		ARCHIVE="AgentClient.jar" codebase="." pluginspage="http://java.sun.com/j2se/1.5.0/download.html" scriptable="true"
 		agent="<%=agentName%>" agentType="<%=agentType%>" mobileNo="<%=mobileNo%>">
 	<noembed> 浏览器没不支持JAVA环境 </noembed>
 	</embed> </comment> </object></div>

@@ -1,5 +1,6 @@
 package net.sf.service.agent.server;
 
+import java.math.BigDecimal;
 import java.util.Map;
 
 import net.sf.service.common.Constants;
@@ -11,6 +12,7 @@ public class AgentUser implements Cloneable {
 	private String agentType;
 	private String agentMsn;
 	private String mobileNo;
+	private Long managerId;
 
 	@SuppressWarnings("unchecked")
 	public static AgentUser parse(Map map) {
@@ -25,6 +27,14 @@ public class AgentUser implements Cloneable {
 		} else {
 			au.setAgentType(Constants.NORMAL_AGENT);
 		}
+
+		Object mid = map.get("MANAGER_ID");
+		if (mid != null) {
+			au.setManagerId(((BigDecimal) mid).longValue());
+		} else {
+			au.setManagerId(null);
+		}
+
 		return au;
 	}
 
@@ -96,7 +106,16 @@ public class AgentUser implements Cloneable {
 	}
 
 	public String toString() {
-		return "AgentName=" + this.agentName + ",AgentType=" + this.agentType;
+		return "AgentName=" + this.agentName + ",AgentType=" + this.agentType + ",agentMsn=" + this.agentMsn + ",mobileNo=" + this.mobileNo + ",managerId="
+				+ this.managerId;
+	}
+
+	public Long getManagerId() {
+		return managerId;
+	}
+
+	public void setManagerId(Long managerId) {
+		this.managerId = managerId;
 	}
 
 	public static void main(String[] args) {
