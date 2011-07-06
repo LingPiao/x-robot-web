@@ -20,7 +20,7 @@ function link(){
 		document.getElementById("error").innerHTML = "<font color=red>[错误提示]：回复的内容必须大于10个字！</font>"
 		return;
 	}
-    document.getElementById("fom").action="woanswer.action?&userid=<ww:property value="['userid']"/>&chanel=<ww:property value="['chanel']"/>&op=answer&from=<ww:property value="from"/>";
+    document.getElementById("fom").action="woknow_qry_brows.action?&userid=<ww:property value="['userid']"/>&chanel=<ww:property value="['chanel']"/>&op=answer_qry&from=<ww:property value="from"/>&ft=<ww:property value="ft"/>";
     document.getElementById("fom").submit();
 }
 function back(){
@@ -34,7 +34,7 @@ function back(){
 	document.getElementById("fom").submit();
 }
 function over(){
-    document.getElementById("fom").action="woanswer.action?&userid=<ww:property value="['userid']"/>&op=over&from=<ww:property value="from"/>&chanel=<ww:property value="['chanel']"/>";
+    document.getElementById("fom").action="woknow_qry_brows.action?&userid=<ww:property value="['userid']"/>&op=over&from=<ww:property value="from"/>&chanel=<ww:property value="['chanel']"/>&ft=<ww:property value="ft"/>";
     document.getElementById("fom").submit();
 }
 
@@ -110,7 +110,7 @@ function over(){
 														<br/>
 														<ww:if test="state ==\"0\"">
 															<ww:if test="bestflag==\"0\" && userid!=\"\" ">
-																<a href="woanswer.action?&userid=<ww:property value="['userid']"/>&op=best&q_id=<ww:property value="['q_id']"/>&a_id=<ww:property value="['A_ID']"/>&from=<ww:property value="from"/>">设为最佳答案</a>
+																<a href="woknow_qry_brows.action?&userid=<ww:property value="['userid']"/>&op=best&questionid=<ww:property value="['q_id']"/>&a_id=<ww:property value="['A_ID']"/>&ft=<ww:property value="ft"/>">设为最佳答案</a>
 															</ww:if>
 														</ww:if>
 											    	</td>
@@ -127,7 +127,7 @@ function over(){
 												    	<td colspan="1"><textarea  id="textarea" name="A_CONTENT"  onKeyDown="textCounter(this.form.textarea,this.form.remLen,2000);"   onKeyUp="textCounter(this.form.textarea,this.form.remLen,2000);" style="width:100%;" rows="5"></textarea>
 												    <br/><span>当前还可以录入<input   readonly   type=text   name=remLen   size=3   maxlength=3   value="2000">个字！</span>
 												    <br/><span id=error></span>
-												    <input type="hidden" name="q_id" value=<ww:property value="['q_id']"/>>
+												    <input type="hidden" name="questionid" value=<ww:property value="['questionid']"/>>
 												    </td>
 												    </tr>
 												  </table>

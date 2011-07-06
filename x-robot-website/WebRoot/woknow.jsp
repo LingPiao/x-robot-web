@@ -22,7 +22,7 @@
                       </tr>
                       <ww:iterator value="pageInfo.records" status="row">
                       <tr>
-                        <td><table width="100%" border="0" cellspacing="1" cellpadding="1" class="grey_01">
+                        <td><table width="100%" border="0" cellspacing="0" cellpadding="1" class="grey_01">
                           <tr>
                             <td class="content" align="left">
                             	☆&nbsp;&nbsp;<a href="woanswer.action?q_id=<ww:property value="['Q_ID']"/>&userid=<ww:property value="['userid']"/>&op=brows&chanel=<ww:property value="['chanel']"/>&from=<ww:property value="from"/>" class="a4" >
@@ -30,7 +30,10 @@
                             </td>
                           </tr>
                           <tr>
-                            <td align="right">访问：<ww:if test="BROWS==null">0</ww:if><ww:else><ww:property value="['BROWS']"/></ww:else>&nbsp;&nbsp;回复：<ww:if test="ANSWERS==null">0</ww:if><ww:else><ww:property value="['ANSWERS']"/></ww:else>&nbsp;&nbsp;<ww:if test="Q_STATE==\"1\"">【已完结】</ww:if><ww:else><FONT color=red>【未完结】</FONT></ww:else><ww:property value="['Q_DATE'].toString().substring(0,16)"/></td>
+                            <td class="content3" align="right">提问人：<ww:if test="USER_TEL==null">未绑定手机</ww:if><ww:else><ww:property value="['USER_TEL'].substring(0,3)"/>****<ww:property value="['USER_TEL'].substring(7,11)"/></ww:else>&nbsp;&nbsp;<ww:if test="Q_STATE==\"1\"">【已完结】</ww:if><ww:else><FONT color=red>【未完结】</FONT></ww:else></td>
+                            </tr>
+                          <tr>
+                            <td class="content3" align="right">访问：<ww:if test="BROWS==null">0</ww:if><ww:else><ww:property value="['BROWS']"/></ww:else>&nbsp;回复：<ww:if test="ANSWERS==null">0</ww:if><ww:else><ww:property value="['ANSWERS']"/></ww:else>&nbsp;提问时间：<ww:property value="['Q_DATE'].toString().substring(0,16)"/></td>
                             </tr>
                         </table></td>
                       </tr>

@@ -39,7 +39,7 @@ function qry()
                 <td width="63%">&nbsp;&nbsp;&nbsp;&nbsp;
                   <input name="woknow_qry" type="text" size="60" class="a1input" value="<ww:property value="['woknow_qry']"/>"></td>
                 <td width="15%"><input name="button1" type="button" class="but1" id="button" value="　搜索答案"  onclick="qry()"/></td>
-                <td width="22%"><input name="button2" type="button" class="but2" id="button2" value="　我要提问" /></td>
+                <td width="22%"><!-- input name="button2" type="button" class="but2" id="button2" value="　我要提问" /--></td>
               </tr>
              
             </table></td>
