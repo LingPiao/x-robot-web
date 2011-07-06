@@ -285,11 +285,11 @@ function sendsms()
 						d = new dTree('d','../dtree','testForm');
 						d.add('0','-1','我的通讯录');
 						<ww:iterator value="telgroupList" status="row">
-							<ww:set name="groupid" value="['SEQID']"/>
-							d.add('<ww:property value="['SEQID']"/>','0','<font color=#006699><ww:property value="['GROUPNAME']"/></font>');
+							<ww:set name="groupid" value="['GROUPID']"/>
+							d.add('<ww:property value="['GROUPID']"/>','0','<font color=#006699><ww:property value="['NAME']"/></font>');
 							<ww:iterator value="telList" status="row">
-								<ww:if test="#groupid==['GROUP_ID']">
-								d.add('<ww:property value="['CONTACT_TEL']"/>','<ww:property value="#groupid"/>','<font color=#666666><ww:property value="['CONTACT_NAME']"/></font>','');							
+								<ww:if test="#groupid==['GROUPID']">
+								d.add('<ww:property value="['TELNUMBER']"/>','<ww:property value="#groupid"/>','<font color=#666666><ww:property value="['NAME']"/></font>','');							
 								</ww:if>							
 							</ww:iterator>
 						</ww:iterator>
