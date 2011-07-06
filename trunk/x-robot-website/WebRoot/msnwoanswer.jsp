@@ -46,9 +46,19 @@ function link(){
 		return;
 	}
     document.getElementById("fom").action="woanswer.action?&userid=<ww:property value="['userid']"/>&chanel=<ww:property value="['chanel']"/>&op=answer&from=<ww:property value="from"/>";
-    //document.getElementById("fom").submit();
+   
+    document.getElementById("fom").submit();
 }
-
+function back(){
+	var chanel="<ww:property value="['chanel']"/>";
+	if(chanel == "other")
+		document.getElementById("fom").action="woknow.action?userid=<ww:property value="['userid']"/>&chanel=<ww:property value="['chanel']"/>&from=<ww:property value="from"/>";
+	if(chanel == "mine")
+		document.getElementById("fom").action="woknowmine.action?userid=<ww:property value="['userid']"/>&chanel=<ww:property value="['chanel']"/>&from=<ww:property value="from"/>";
+	if(chanel == "vip")
+		document.getElementById("fom").action="woknowvip.action?userid=<ww:property value="['userid']"/>&chanel=<ww:property value="['chanel']"/>&from=<ww:property value="from"/>";
+	document.getElementById("fom").submit();
+}
 function over(){
     document.getElementById("fom").action="woanswer.action?&userid=<ww:property value="['userid']"/>&op=over&from=<ww:property value="from"/>&chanel=<ww:property value="['chanel']"/>";
     document.getElementById("fom").submit();
@@ -57,7 +67,7 @@ function over(){
 </script>
 </head>
 <body bgcolor="#FFFFFF">
-<FORM id=fom name=fom action="" method=post>
+<FORM  name=fom action="" method=post id="fom">
 <table width="477" height="735" border="0" align="center" cellpadding="0" cellspacing="0" id="__01">
 <tr>
 		<td>
@@ -146,7 +156,10 @@ function over(){
                   <tr>
                     <td colspan="2"><table width="100%" border="0" cellspacing="1" cellpadding="1" class="grey_01">
                       <tr>
-                        <td class="content"><span class="red_02">&nbsp;问题描述：</span><ww:property value="['content']"/><br></td>
+                        <td class="content"><span class="red_02">&nbsp;【<ww:if test="user_tel==\"\"">未绑定手机</ww:if><ww:else><ww:property value="['user_tel'].substring(0,3)"/>****<ww:property value="['user_tel'].substring(7,11)"/></ww:else>】的问题</span></td>
+                      </tr>
+                      <tr>
+                        <td class="content">&nbsp;&nbsp;<ww:property value="['content']"/></td>
                       </tr>
 						<tr>
                         <td align="right">&nbsp;提问时间：<ww:property value="['q_date'].toString().substring(0,16)"/></td>
@@ -189,7 +202,7 @@ function over(){
                       </tr>
                       <tr>
                         <td align="right"><ww:if test="state ==\"0\"">
-													<ww:if test="bestflag==\"0\" && userid!=\"\" ">
+													<ww:if test="bestflag==\"0\" && userid==q_user">
 														<a href="woanswer.action?&userid=<ww:property value="['userid']"/>&op=best&q_id=<ww:property value="['q_id']"/>&a_id=<ww:property value="['A_ID']"/>&from=<ww:property value="from"/>">设为最佳答案</a>
 													</ww:if>
 											  </ww:if></td>
@@ -215,28 +228,32 @@ function over(){
                       <input   readonly   type=text   name=remLen   size=3   maxlength=3   value="2000"> 
                            字<br/><span id=error></td><input type="hidden" name="q_id" value=<ww:property value="['q_id']"/>>
                    </tr>
-                   <tr>
-                    <td width="90%" class="content" colspan=2>
-                    <label>
-                    <INPUT class=button onClick="return link();" type="image" src="images-msn/but1.jpg" value=回复 name=Submit>
-　
-<ww:if test="(chanel==\"other\" && vip==\"1\") || (chanel==\"other\" &&type==\"SERVICE\")">
-												<input class=button type="image" src="images-jp/but2.jpg" name="Submit" value="结束问题" class="button" onclick="return over();"/>
-												</ww:if>
-												<ww:else>
-													<ww:if test="chanel==\"vip\" || chanel==\"mine\" || vip==\"1\" || type==\"SERVICE\"">
-													<input class=button type="image" src="images-jp/but2.jpg" name="Submit" value="结束问题" class="button" onclick="return over();"/>
-													</ww:if>
-												</ww:else>
-                    </label></td>
-                  </tr>
+                   <TR>
+										<TD colspan="2" align="center" height="50px">
+										<input type="button" name="Submit" value="回复" class="button" onclick="link();"/>
+										
+										<input type="button" name="Submit" value="返回" class="button" onclick="back();"/>
+										<ww:if test="(chanel==\"other\" && vip==\"1\") || (chanel==\"other\" &&type==\"SERVICE\")|| (chanel==\"other\" && userid==q_user )">
+										<input type="button" name="button" value="结束问题" class="button" onclick="return over();"/>
+										</ww:if>
+										<ww:else>
+											<ww:if test="chanel==\"vip\" || chanel==\"mine\" || vip==\"1\" || type==\"SERVICE\"">
+											<input type="button" name="Submit" value="结束问题" class="button" onclick="return over();"/>
+											</ww:if>
+										</ww:else>
+									</TD>
+					</TR>
+					
                   </ww:if>
+                  <ww:else>
                   <tr>
                     <td colspan="2">&nbsp;</td>
                   </tr>
                   <tr>
-                    <td colspan="2">&nbsp;</td>
+                    <td colspan="2" align=center><input type="button" name="Submit" value="返回" class="button" onclick="back();"/></td>
                   </tr>
+                  </ww:else>
+                  
                   <tr>
                     <td colspan="2">&nbsp;</td>
                   </tr>
