@@ -170,7 +170,7 @@ a.a7:active {
 }
 .content {
 	font-size:12px;
-	line-height:20px;
+	line-height:18px;
 }
 .question {
 	background:url(../images/question.jpg) no-repeat left top;
@@ -179,7 +179,7 @@ a.a7:active {
 }
 .grey_01 {
 	border-bottom:1px solid #fff;
-	padding-bottom:5px;
+	padding-bottom:0px;
 }
 .buttonbg {
 	width:63px;
@@ -227,6 +227,11 @@ a.a7:active {
 .content2 {
 	font-size:13px;
 	line-height:22px;
+	color:#333333;
+}
+.content3 {
+	font-size:13px;
+	line-height:15px;
 	color:#333333;
 }
 .que_border {
