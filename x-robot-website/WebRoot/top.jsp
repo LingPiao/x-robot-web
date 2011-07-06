@@ -6,7 +6,7 @@
         <td width="16%" align="right" valign="bottom"><img src="images/logo.jpg" width="175" height="84" /></td>
         <td width="56%" valign="bottom" align="left"><table width="40%" border="0" cellspacing="0" cellpadding="0">
           <tr>
-            <td align="center"><a href="woknow_main.action?chanel=other" class="a4">“沃”知道</a></td>
+            <td align="center"><a href="woknow_main.action?chanel=other" class="a4">联通贝贝</a></td>
             <!-- td align="center"><a href="#" class="a4">联通贝贝</a></td -->
             <td align="center"><a href="10.html" class="a4">设置好友</a></td>
           </tr>
