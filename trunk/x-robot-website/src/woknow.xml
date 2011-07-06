@@ -63,6 +63,9 @@
 			<result name="view_unicom" type="dispatcher">
 				<param name="location">woknow_qry_ubrows.jsp</param>
 			</result>
+			<result name="answer" type="redirect">
+				<param name="location">woknow_qry_brows.action?op=view&amp;questionid=${questionid}&amp;ft=${ft}</param>
+			</result>
 			<interceptor-ref name="WSStack" />
 		</action>
 		<action name="woknow" class="org.project.ww.WoknowAction">	
@@ -134,6 +137,7 @@
 			<result name="answer" type="redirect">
 				<param name="location">woanswer.action?userid=${userid}&amp;q_id=${q_id}&amp;op=view&amp;from=${from}&amp;chanel=${chanel}</param>
 			</result>
+			
 			<result name="best" type="redirect">
 				<param name="location">woanswer.action?userid=${userid}&amp;q_id=${q_id}&amp;op=view&amp;from=${from}&amp;chanel=${chanel}</param>
 			</result>
