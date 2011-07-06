@@ -29,6 +29,14 @@ import com.opensymphony.xwork.ActionSupport;
 
 public class TelbookGroupAction extends ActionSupport 
 {	
+	private Mtelbook_group mtelbook_group;
+	
+	public Mtelbook_group getMtelbook_group() {
+		return mtelbook_group;
+	}
+	public void setMtelbook_group(Mtelbook_group mtelbook_group) {
+		this.mtelbook_group = mtelbook_group;
+	}
 	public String execute()	throws Exception
 	{
 		//System.out.println(user_msn);
@@ -42,26 +50,20 @@ public class TelbookGroupAction extends ActionSupport
 		    pageInfo.setPageRows(pageRows);
 			if(groupid==null)
 				groupid="";
-			telgroupList=telbookgroupDao.getGroupByOnwer(user_tel);
-			telbookgroupDao.getGroupByOnwer(user_tel, pageInfo);
+			telgroupList=telbookgroupDao.getGroupByOnwer(user_msn);
+			telbookgroupDao.getGroupByOnwer(user_msn, pageInfo);
 			return "view";
 		}
 		if(op.equals("add"))
 		{
-			Mtelbook_group telbook = new Mtelbook_group();
-			telbook.setGROUPNAME(GROUPNAME);
-			telbook.setOWNERNAME(user_tel);
-			//System.out.println("************************************************");
-			telbookgroupDao.add(telbook);
+			mtelbook_group.setCONTACTEMAIL(user_msn);
+			telbookgroupDao.add(mtelbook_group);
 			return "add";
 		}
 		if(op.equals("edit"))
 		{
-			Mtelbook_group telbook = new Mtelbook_group();
-			telbook.setGROUPNAME(GROUPNAME);
-			telbook.setOWNERNAME(user_tel);
-			telbook.setSEQID(SEQID);
-			telbookgroupDao.update(telbook);
+			
+			telbookgroupDao.update(mtelbook_group);
 			return "edit";
 		}
 		if(op.equals("del"))

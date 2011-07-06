@@ -12,48 +12,55 @@ public class Mtelbook_group implements java.io.Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
+	private int GROUPID;
+	
+	private String NAME;
+	
+	private String CONTACTEMAIL;
+
+	
+
+	public int getGROUPID() {
+		return GROUPID;
+	}
+
+	public void setGROUPID(int gROUPID) {
+		GROUPID = gROUPID;
+	}
+
+	public String getNAME() {
+		return NAME;
+	}
+
+	public void setNAME(String nAME) {
+		NAME = nAME;
+	}
+
+	public String getCONTACTEMAIL() {
+		return CONTACTEMAIL;
+	}
+
+	public void setCONTACTEMAIL(String cONTACTEMAIL) {
+		CONTACTEMAIL = cONTACTEMAIL;
+	}
+
 	/**
-	 * @param seqid
-	 * @param groupname
-	 * @param ownername
+	 * @param gROUPID
+	 * @param nAME
+	 * @param cONTACTEMAIL
 	 */
-	public Mtelbook_group(String seqid, String groupname, String ownername) {
-		SEQID = seqid;
-		GROUPNAME = groupname;
-		OWNERNAME = ownername;
+	public Mtelbook_group(int gROUPID, String nAME, String cONTACTEMAIL) {
+		GROUPID = gROUPID;
+		NAME = nAME;
+		CONTACTEMAIL = cONTACTEMAIL;
 	}
 
-	private String SEQID;
+	/**
+	 * @param gROUPID
+	 * @param nAME
+	 * @param cONTACTEMAIL
+	 */
 	
-	private String GROUPNAME;
 	
-	public String getSEQID() {
-		return SEQID;
-	}
 
-	public void setSEQID(String seqid) {
-		SEQID = seqid;
-	}
-
-	public String getGROUPNAME() {
-		return GROUPNAME;
-	}
-
-	public void setGROUPNAME(String groupname) {
-		GROUPNAME = groupname;
-	}
-
-	public String getOWNERNAME() {
-		return OWNERNAME;
-	}
-
-	public void setOWNERNAME(String ownername) {
-		OWNERNAME = ownername;
-	}
-
-	private String OWNERNAME;
-
-
-
-	
 }
