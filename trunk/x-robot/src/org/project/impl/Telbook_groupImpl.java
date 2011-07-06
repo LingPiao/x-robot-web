@@ -14,16 +14,16 @@ public class Telbook_groupImpl implements Telbook_groupDao {
 
 	private SqlDao sqlDao;
 
-	//查询所有分组信息，包括常用联系人，也就是数据库中id为1的，此id每个用户都会拥有,该字段不能删除
+	//
 	public List  getGroupByOnwer(String onwer) {
 		String sql ="";
-			sql ="SELECT * FROM sms_telbook_group "
-				+ " WHERE OWNERNAME =? or OWNERNAME='*' order by SEQID ";
+			sql ="SELECT * FROM T_ADDRESS_GROUP "
+				+ " WHERE CONTACTEMAIL =?  order by NAME ";
 			return sqlDao.qryBySQLText(sql,new Object[] { onwer });			
 	}
 	public List getGroupByOnwer(String onwer,PageInfo pageInfo) {
 		String sCond="";
-		String sql="select * from sms_telbook_group where OWNERNAME='"+onwer+"' order by SEQID ";
+		String sql="select * from T_ADDRESS_GROUP where CONTACTEMAIL='"+onwer+"' order by NAME ";
 		PageCtrl pageCtrl = new PageCtrl();
         pageCtrl.setSqlDao(sqlDao);
         pageCtrl.setPageInfo(pageInfo);
@@ -34,24 +34,24 @@ public class Telbook_groupImpl implements Telbook_groupDao {
 	}
 	public void  add(Mtelbook_group telbook) {
 		String sql ="";
-		sql ="Select max(seqid) as num from SMS_TELBOOK_GROUP";
-		int maxid = sqlDao.queryForInt(sql);
-		maxid++;
-		//System.out.println(maxid);
-		sql = "insert into SMS_TELBOOK_GROUP(SEQID,GROUPNAME,OWNERNAME) values " +
-				"("+maxid+",'"+telbook.getGROUPNAME()+"','"+telbook.getOWNERNAME()+"')";
-		//System.out.println(sql);
+		sql = "insert into T_ADDRESS_GROUP(GROUPID,NAME,CONTACTEMAIL) values " +
+				"(SEQ_ROBOT.nextval,'"+telbook.getNAME()+"','"+telbook.getCONTACTEMAIL()+"')";
+		System.out.println(sql);
 		sqlDao.insertBySQLText(sql);
 	}
 	public void  update(Mtelbook_group telbook) {
 		String sql ="";
-		sql = "update SMS_TELBOOK_GROUP set GROUPNAME='"+telbook.getGROUPNAME()+"' where seqid="+telbook.getSEQID();
+		sql = "update T_ADDRESS_GROUP set NAME='"+telbook.getNAME()+"' where GROUPID="+telbook.getGROUPID();
 		//System.out.println(sql);
 		sqlDao.insertBySQLText(sql);
 	}
 	public void del (String delid) {
 		String sql ="";
-		sql = "delete from SMS_TELBOOK_GROUP where SEQID in ("+delid+")";
+		sql = "delete from T_ADDRESS_GROUP where GROUPID in ("+delid+")";
+		//System.out.println(sql);
+		sqlDao.insertBySQLText(sql);
+		
+		sql = "delete from T_ADDRESS_GROUP_CONTACT where GROUPID in ("+delid+")";
 		//System.out.println(sql);
 		sqlDao.insertBySQLText(sql);
 	}

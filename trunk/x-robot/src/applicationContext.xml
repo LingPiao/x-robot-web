@@ -75,6 +75,11 @@ http://www.springframework.org/schema/aop http://www.springframework.org/schema/
 			<ref bean="sqlDao" />
 		</property>
 	</bean>
+	<bean id="telbookgroupcontractDao" class="org.project.impl.Telbook_group_contractImpl">
+		<property name="sqlDao">
+			<ref bean="sqlDao" />
+		</property>
+	</bean>
 	<bean id="vistorDao" class="org.project.impl.Vistor_recordImpl">
 		<property name="sqlDao">
 			<ref bean="sqlDao" />
@@ -85,11 +90,7 @@ http://www.springframework.org/schema/aop http://www.springframework.org/schema/
 			<ref bean="sqlDao" />
 		</property>
 	</bean>
-	<bean id="connectBookDao" class="org.project.impl.ConnectBookImpl">
-		<property name="sqlDao">
-			<ref bean="sqlDao" />
-		</property>
-	</bean>
+	
 	<bean id="gamerecordDao" class="org.project.impl.Game_recordImpl">
 		<property name="sqlDao">
 			<ref bean="sqlDao" />

@@ -12,85 +12,59 @@ public class Mtelbook implements java.io.Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	private String ID;
+	private int ADDRESSBOOKID;
 	
-	private String ONWER_NAME;
+	private String CONTACTEMAIL;
 
-	private String ONWER_TEL;
+	private String NAME;
 	
-	private String CONTACT_NAME;
-	
-	public String getID() {
-		return ID;
+	private String TELNUMBER;
+
+	public int getADDRESSBOOKID() {
+		return ADDRESSBOOKID;
 	}
 
-	public void setID(String id) {
-		ID = id;
+	public void setADDRESSBOOKID(int aDDRESSBOOKID) {
+		ADDRESSBOOKID = aDDRESSBOOKID;
 	}
 
-	public String getONWER_NAME() {
-		return ONWER_NAME;
+	public String getCONTACTEMAIL() {
+		return CONTACTEMAIL;
 	}
 
-	public void setONWER_NAME(String onwer_name) {
-		ONWER_NAME = onwer_name;
+	public void setCONTACTEMAIL(String cONTACTEMAIL) {
+		CONTACTEMAIL = cONTACTEMAIL;
 	}
 
-	public String getONWER_TEL() {
-		return ONWER_TEL;
+	public String getNAME() {
+		return NAME;
 	}
 
-	public void setONWER_TEL(String onwer_tel) {
-		ONWER_TEL = onwer_tel;
+	public void setNAME(String nAME) {
+		NAME = nAME;
 	}
 
-	public String getCONTACT_NAME() {
-		return CONTACT_NAME;
+	public String getTELNUMBER() {
+		return TELNUMBER;
 	}
 
-	public void setCONTACT_NAME(String contact_name) {
-		CONTACT_NAME = contact_name;
-	}
-
-	public String getCONTACT_TEL() {
-		return CONTACT_TEL;
-	}
-
-	public void setCONTACT_TEL(String contact_tel) {
-		CONTACT_TEL = contact_tel;
-	}
-
-	public String getGROUP_ID() {
-		return GROUP_ID;
+	public void setTELNUMBER(String tELNUMBER) {
+		TELNUMBER = tELNUMBER;
 	}
 
 	/**
-	 * @param id
-	 * @param onwer_name
-	 * @param onwer_tel
-	 * @param contact_name
-	 * @param contact_tel
-	 * @param group_id
+	 * @param aDDRESSBOOKID
+	 * @param cONTACTEMAIL
+	 * @param nAME
+	 * @param tELNUMBER
 	 */
-	public Mtelbook(String id, String onwer_name, String onwer_tel,
-			String contact_name, String contact_tel, String group_id) {
-		ID = id;
-		ONWER_NAME = onwer_name;
-		ONWER_TEL = onwer_tel;
-		CONTACT_NAME = contact_name;
-		CONTACT_TEL = contact_tel;
-		GROUP_ID = group_id;
+	public Mtelbook(int aDDRESSBOOKID, String cONTACTEMAIL, String nAME,
+			String tELNUMBER) {
+		ADDRESSBOOKID = aDDRESSBOOKID;
+		CONTACTEMAIL = cONTACTEMAIL;
+		NAME = nAME;
+		TELNUMBER = tELNUMBER;
 	}
-
-	public void setGROUP_ID(String group_id) {
-		GROUP_ID = group_id;
-	}
-
-	private String CONTACT_TEL;
 	
-	private String GROUP_ID;
-
-
-
 	
 }

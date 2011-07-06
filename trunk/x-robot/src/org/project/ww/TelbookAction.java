@@ -14,9 +14,11 @@ import org.project.dao.SmsDao;
 import org.project.dao.Sms_recordDao;
 import org.project.dao.TelbookDao;
 import org.project.dao.Telbook_groupDao;
+import org.project.dao.Telbook_group_contractDao;
 import org.project.dao.Vistor_recordDao;
 import org.project.model.Msms_record;
 import org.project.model.Mtelbook;
+import org.project.model.Mtelbook_group_contract;
 import org.project.model.Mvistor_record;
 
 
@@ -28,9 +30,25 @@ import com.opensymphony.xwork.ActionSupport;
 
 public class TelbookAction extends ActionSupport 
 {	
+	private Mtelbook telbook;
+	private Mtelbook_group_contract mtelbook_group_contract;
+	
+	public Mtelbook_group_contract getMtelbook_group_contract() {
+		return mtelbook_group_contract;
+	}
+	public void setMtelbook_group_contract(
+			Mtelbook_group_contract mtelbook_group_contract) {
+		this.mtelbook_group_contract = mtelbook_group_contract;
+	}
+	public Mtelbook getTelbook() {
+		return telbook;
+	}
+	public void setTelbook(Mtelbook telbook) {
+		this.telbook = telbook;
+	}
 	public String execute()	throws Exception
 	{
-		//System.out.println(user_msn);
+		telgroupList=telbookgroupDao.getGroupByOnwer(user_msn);
 		msnLisinfo = msnDao.getUserTelByMsnId(user_msn);
 		Map map = (Map) msnLisinfo.get(0);
 		user_tel =map.get("USER_TEL").toString();
@@ -41,32 +59,28 @@ public class TelbookAction extends ActionSupport
 		    pageInfo.setPageRows(pageRows);
 			if(groupid==null)
 				groupid="";
-			telgroupList=telbookgroupDao.getGroupByOnwer(user_tel);
-			telList = telbookDao.getTelByOnwer(user_tel,groupid,pageInfo);
+			
+			telList = telbookDao.getTelByOnwer(user_msn,groupid,pageInfo);
 			return "view";
 		}
 		if(op.equals("add"))
 		{
-			Mtelbook telbook = new Mtelbook();
-			telbook.setCONTACT_NAME(CONTACT_NAME);
-			telbook.setCONTACT_TEL(CONTACT_TEL);
-			telbook.setONWER_NAME(user_tel);
-			telbook.setONWER_TEL(user_tel);
-			telbook.setGROUP_ID(GROUP_ID);
-			//System.out.println("************************************************");
+			
+			telbook.setCONTACTEMAIL(user_msn);
 			telbookDao.add(telbook);
+			telbookgroupcontractDao.add(mtelbook_group_contract);
 			return "add";
 		}
 		if(op.equals("edit"))
 		{
-			Mtelbook telbook = new Mtelbook();
-			telbook.setCONTACT_NAME(CONTACT_NAME);
-			telbook.setCONTACT_TEL(CONTACT_TEL);
-			telbook.setONWER_NAME(user_tel);
-			telbook.setONWER_TEL(user_tel);
-			telbook.setGROUP_ID(GROUP_ID);
-			telbook.setID(ID);
+			telbook.setCONTACTEMAIL(user_msn);
 			telbookDao.update(telbook);
+			mtelbook_group_contract.setADDRESSBOOKID(telbook.getADDRESSBOOKID());
+			if(telbookgroupcontractDao.checkExist(mtelbook_group_contract))
+				telbookgroupcontractDao.mod(mtelbook_group_contract);
+			else {
+				telbookgroupcontractDao.add(mtelbook_group_contract);
+			}
 			return "edit";
 		}
 		if(op.equals("del"))
@@ -149,7 +163,16 @@ public class TelbookAction extends ActionSupport
 
 	private Msn_certificationDao msnDao;
 	private Telbook_groupDao telbookgroupDao;
+	private Telbook_group_contractDao telbookgroupcontractDao;
 	
+	
+	public Telbook_group_contractDao getTelbookgroupcontractDao() {
+		return telbookgroupcontractDao;
+	}
+	public void setTelbookgroupcontractDao(
+			Telbook_group_contractDao telbookgroupcontractDao) {
+		this.telbookgroupcontractDao = telbookgroupcontractDao;
+	}
 	public Telbook_groupDao getTelbookgroupDao() {
 		return telbookgroupDao;
 	}

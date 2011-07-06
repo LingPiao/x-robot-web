@@ -29,7 +29,7 @@
 			<external-ref name="msnDao">msnDao</external-ref>
 			<external-ref name="telbookgroupDao">telbookgroupDao</external-ref>
 			<external-ref name="telbookDao">telbookDao</external-ref>
-			
+			<external-ref name="telbookgroupcontractDao">telbookgroupcontractDao</external-ref>
 			<result name="view" type="dispatcher">
 				<param name="location">telbook_list.jsp</param>
 			</result>

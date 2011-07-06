@@ -36,8 +36,8 @@ public class MmsAction extends ActionSupport
 		if(op.equals("view"))
 		{	
 			
-			telgroupList=telbookgroupDao.getGroupByOnwer(user_tel);
-			telList = telbookDao.getTelByOnwer(user_tel);
+			telgroupList=telbookgroupDao.getGroupByOnwer(user_msn);
+			telList = telbookDao.getTelByOnwer(user_msn);
 			
 			if(mms_id!=null)
 			{
