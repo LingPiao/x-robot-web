@@ -4,7 +4,7 @@
 
 <HTML xmlns="http://www.w3.org/1999/xhtml"><HEAD><TITLE></TITLE>
 <META http-equiv=Content-Type content="text/html; charset=GBK"><LINK 
-href="css-jp/main1.css" type=text/css rel=stylesheet>
+href="cssjp/main1.css" type=text/css rel=stylesheet>
 
 <STYLE type=text/css>
 BODY {
@@ -61,9 +61,9 @@ function over(){
                           <TD height=40><TABLE cellSpacing=0 cellPadding=0 width="100%" border=0 class="border">
                               <TBODY>
                                 <TR>
-                                  <TD width="2%" class="ll"><img src="images-jp/corner1.jpg" width="23" height="16"></TD>
+                                  <TD width="2%" class="ll"><img src="imagesjp/corner1.jpg" width="23" height="16"></TD>
                                   <TD width="96%"  class="top">&nbsp;</TD>
-                                  <TD width="2%" class="rightline"><img src="images-jp/corner3.jpg" width="23" height="17"></TD>
+                                  <TD width="2%" class="rightline"><img src="imagesjp/corner3.jpg" width="23" height="17"></TD>
                                 </TR>
                                 <TR>
                                   <TD  class="ll"></TD>
@@ -73,14 +73,14 @@ function over(){
                                           <td width="96%" height="30"><TABLE cellSpacing=0 cellPadding=0 width="100%" align=right border=0>
   <TBODY>
   <TR>
-    <TD align=""><a href="woknow.action?userid=<ww:property value="userid"/>&from=<ww:property value="from"/>"><img src="images-jp/q1.jpg" border="0" alt="网友问题"></A>
+    <TD align=""><a href="woknow.action?userid=<ww:property value="userid"/>&from=<ww:property value="from"/>"><img src="imagesjp/q1.jpg" border="0" alt="网友问题"></A>
     <ww:if test="userid!=null && !userid.equals(\"\")">
 		
-		    <a href="woknowmine.action?userid=<ww:property value="userid"/>&from=<ww:property value="from"/>"><img src="images-jp/q2.jpg" border="0" align="我的问题"></A>
+		    <a href="woknowmine.action?userid=<ww:property value="userid"/>&from=<ww:property value="from"/>"><img src="imagesjp/q2.jpg" border="0" align="我的问题"></A>
 	</ww:if>	    
 		    <ww:if test="vip==\"1\"">
 	
-		    <a href="woknowvip.action?userid=<ww:property value="userid"/>&from=<ww:property value="from"/>"><img src="images-jp/q3.jpg" border="0" align="VIP问题"></A>
+		    <a href="woknowvip.action?userid=<ww:property value="userid"/>&from=<ww:property value="from"/>"><img src="imagesjp/q3.jpg" border="0" align="VIP问题"></A>
 		    </ww:if></TD>
   </TR></TBODY></TABLE></td>
                                         </tr>
@@ -89,7 +89,7 @@ function over(){
                                         <tr>
                                           <td><table width="100%" border="0" cellpadding="0" cellspacing="0" class="gb">
                                             <tr>
-                                              <td colspan="2" class="al"><img src="images-jp/qe1.jpg" width="10" height="10">&nbsp;【<ww:if test="user_tel==\"\"">未绑定手机</ww:if><ww:else><ww:property value="['user_tel'].substring(0,3)"/>****<ww:property value="['user_tel'].substring(7,11)"/></ww:else>】的问题</td>
+                                              <td colspan="2" class="al"><img src="imagesjp/qe1.jpg" width="10" height="10">&nbsp;【<ww:if test="user_tel==\"\"">未绑定手机</ww:if><ww:else><ww:property value="['user_tel'].substring(0,3)"/>****<ww:property value="['user_tel'].substring(7,11)"/></ww:else>】的问题</td>
                                               </tr>
                                             <tr>
                                               <td colspan="2" class="d">&nbsp;提问时间：<ww:property value="['q_date'].toString().substring(0,16)"/></td>
@@ -98,7 +98,7 @@ function over(){
                                               <td colspan="2">&nbsp;&nbsp;<ww:property value="['content']"/></td>
                                               </tr>
                                             <tr>
-                                              <td align="left"><img src="images-jp/ic.jpg" width="15" ></td>
+                                              <td align="left"><img src="imagesjp/ic.jpg" width="15" ></td>
                                               <td colspan="2" align="right"></td>
                                               </tr>
                                           </table></td>
@@ -107,7 +107,7 @@ function over(){
                                         <tr>
                                           <td><table width="100%" border="0" cellpadding="0" cellspacing="0" class="gb">
                                             <tr>
-                                              <td colspan="2" class="al"><img src="images-jp/qe1.jpg" width="10" height="10">&nbsp;
+                                              <td colspan="2" class="al"><img src="imagesjp/qe1.jpg" width="10" height="10">&nbsp;
 							<ww:if test="USER_TEL!=null">
 								<ww:property value="['USER_TEL']"/>
 							</ww:if>
@@ -139,7 +139,7 @@ function over(){
 												</td>
                                             </tr>
                                             <tr>
-                                              <td align="left"><img src="images-jp/ic.jpg" width="15" ></td>
+                                              <td align="left"><img src="imagesjp/ic.jpg" width="15" ></td>
                                               <td align="right">
 											  <ww:if test="state ==\"0\"">
 													<ww:if test="bestflag==\"0\" && userid==q_user">
@@ -154,7 +154,7 @@ function over(){
                                         <tr>
                                           <td><table width="100%" border="0" cellpadding="0" cellspacing="0" class="gb">
                                             <tr>
-                                              <td colspan="2" class="al"><img src="images-jp/qe1.jpg" width="10" height="10">&nbsp;我来回答问题</td>
+                                              <td colspan="2" class="al"><img src="imagesjp/qe1.jpg" width="10" height="10">&nbsp;我来回答问题</td>
                                             </tr>
                                            <tr>
 										    <td colspan="2"><textarea  id="textarea" name="A_CONTENT"  onKeyDown="textCounter(this.form.textarea,this.form.remLen,2000);"   onKeyUp="textCounter(this.form.textarea,this.form.remLen,2000);" style="width:100%;" rows="5"></textarea>
@@ -164,7 +164,7 @@ function over(){
 										    </td>
 										    </tr>
                                             <tr>
-                                              <td align="left"><img src="images-jp/ic2.jpg" width="15" height="30"></td>
+                                              <td align="left"><img src="imagesjp/ic2.jpg" width="15" height="30"></td>
                                               <td align="left">
                                               <input type="button" name="Submit" value="回复" class="button" onclick="return link();"/>
 										
@@ -192,9 +192,9 @@ function over(){
                                   <TD  class="rightline">&nbsp;</TD>
                                 </TR>
                                 <TR>
-                                  <TD class="ll"><img src="images-jp/corner2.jpg" width="23" height="18"></TD>
+                                  <TD class="ll"><img src="imagesjp/corner2.jpg" width="23" height="18"></TD>
                                   <TD class="bottom">&nbsp;</TD>
-                                  <TD class="rightline"><img src="images-jp/corner4.jpg" width="23" height="18"></TD>
+                                  <TD class="rightline"><img src="imagesjp/corner4.jpg" width="23" height="18"></TD>
                                 </TR>
                                 <TR>
                                   <TD></TD>
