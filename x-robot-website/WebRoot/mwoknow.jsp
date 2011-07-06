@@ -3,7 +3,7 @@
 <%@ taglib prefix="ww" uri="webwork"%>
 <HTML xmlns="http://www.w3.org/1999/xhtml"><HEAD><TITLE></TITLE>
 <META http-equiv=Content-Type content="text/html; charset=GBK"><LINK 
-href="css-jp/main1.css" type=text/css rel=stylesheet>
+href="cssjp/main1.css" type=text/css rel=stylesheet>
 <SCRIPT language=JavaScript src="js/page.js"></SCRIPT>
 
 <STYLE type=text/css>BODY {
@@ -29,9 +29,9 @@ href="css-jp/main1.css" type=text/css rel=stylesheet>
                           <TD height=40><TABLE cellSpacing=0 cellPadding=0 width="100%" border=0 class="border">
                               <TBODY>
                                 <TR>
-                                  <TD width="2%" class="ll"><img src="images-jp/corner1.jpg" width="23" height="16"></TD>
+                                  <TD width="2%" class="ll"><img src="imagesjp/corner1.jpg" width="23" height="16"></TD>
                                   <TD width="96%"  class="top">&nbsp;</TD>
-                                  <TD width="2%" class="rightline"><img src="images-jp/corner3.jpg" width="23" height="17"></TD>
+                                  <TD width="2%" class="rightline"><img src="imagesjp/corner3.jpg" width="23" height="17"></TD>
                                 </TR>
                                 <TR>
                                   <TD  class="ll"></TD>
@@ -41,14 +41,14 @@ href="css-jp/main1.css" type=text/css rel=stylesheet>
                                           <td height="30"><TABLE cellSpacing=0 cellPadding=0 width="100%" align=right border=0>
   <TBODY>
   <TR>
-    <TD align=""><a href="woknow.action?userid=<ww:property value="userid"/>&from=<ww:property value="from"/>"><img src="images-jp/q1.jpg" border="0" alt="网友问题"></A>
+    <TD align=""><a href="woknow.action?userid=<ww:property value="userid"/>&from=<ww:property value="from"/>"><img src="imagesjp/q1.jpg" border="0" alt="网友问题"></A>
     <ww:if test="userid!=null && !userid.equals(\"\")">
 		
-		    <a href="woknowmine.action?userid=<ww:property value="userid"/>&from=<ww:property value="from"/>"><img src="images-jp/q2.jpg" border="0" align="我的问题"></A>
+		    <a href="woknowmine.action?userid=<ww:property value="userid"/>&from=<ww:property value="from"/>"><img src="imagesjp/q2.jpg" border="0" align="我的问题"></A>
 	</ww:if>	    
 		    <ww:if test="vip==\"1\"">
 	
-		    <a href="woknowvip.action?userid=<ww:property value="userid"/>&from=<ww:property value="from"/>"><img src="images-jp/q3.jpg" border="0" align="VIP问题"></A>
+		    <a href="woknowvip.action?userid=<ww:property value="userid"/>&from=<ww:property value="from"/>"><img src="imagesjp/q3.jpg" border="0" align="VIP问题"></A>
 		    </ww:if></TD>
   </TR></TBODY></TABLE></td>
                                         </tr>
@@ -71,9 +71,9 @@ href="css-jp/main1.css" type=text/css rel=stylesheet>
                                   <TD  class="rightline">&nbsp;</TD>
                                 </TR>
                                 <TR>
-                                  <TD class="ll"><img src="images-jp/corner2.jpg" width="23" height="18"></TD>
+                                  <TD class="ll"><img src="imagesjp/corner2.jpg" width="23" height="18"></TD>
                                   <TD class="bottom">&nbsp;</TD>
-                                  <TD class="rightline"><img src="images-jp/corner4.jpg" width="23" height="18"></TD>
+                                  <TD class="rightline"><img src="imagesjp/corner4.jpg" width="23" height="18"></TD>
                                 </TR>
                                 <TR>
                                   <TD></TD>
