@@ -170,7 +170,9 @@ public class WoanswerAction extends ActionSupport {
 			}
 			woanswerDao.saveAnswer(q_id, A_CONTENT, userid);
 			wovisitDao.addAnswer(q_id);
+			//System.out.println("111111111111");
 			sendMessage(q_user,A_CONTENT);
+			//System.out.println("2222222222222");
 			return "answer";
 		}
 		if(op.equals("best"))
@@ -193,19 +195,19 @@ public class WoanswerAction extends ActionSupport {
 			  // 客户端生成
 			  Socket socket = new Socket("localhost", 45678);
 			  // 输入准备
-			  BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			  //BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
 			  // 输出准备
-			  PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-
+			  //PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+			  PrintWriter out = new PrintWriter(socket.getOutputStream());
 			  // 发送
-			  out.println("<msnacc>"+Q_user+"</msnacc><msg>"+A_content+"</msg>");
+			  out.print("<msnacc>"+Q_user+"</msnacc><msg>"+A_content+"</msg>");
 			  // 从服务端取得的一行信息
 			  //System.out.println(in.readLine());
-
+			  out.flush();
 			  // 关闭
 			  out.close();
-			  in.close();
+			  //in.close();
 			  socket.close();
 		} 
 		catch (IOException e) 
