@@ -57,7 +57,7 @@ function over(){
 			                      <tr>
 			                        <td class="content" >
 			                        <fieldset style="height:100%;width:95%;">
-										<legend> 问题描述  </legend>
+										<legend> 问题描述【<ww:if test="user_tel==\"\"">未绑定手机</ww:if><ww:else><ww:property value="['user_tel'].substring(0,3)"/>****<ww:property value="['user_tel'].substring(7,11)"/></ww:else>】</legend>
 										  <table border="0" cellpadding="2" cellspacing="1" style="width:100%">
 										 	<tr>
 										    	<td  align="left">
@@ -112,7 +112,7 @@ function over(){
 														回复时间：<ww:property value="['A_DATE'].toString().substring(0,16)"/>
 														<br/>
 														<ww:if test="state ==\"0\"">
-															<ww:if test="bestflag==\"0\" && userid!=\"\" ">
+															<ww:if test="bestflag==\"0\" && userid==q_user ">
 																<a href="woanswer.action?&userid=<ww:property value="['userid']"/>&op=best&q_id=<ww:property value="['q_id']"/>&a_id=<ww:property value="['A_ID']"/>&from=<ww:property value="from"/>">设为最佳答案</a>
 															</ww:if>
 														</ww:if>
@@ -146,8 +146,8 @@ function over(){
 										<TD colspan="2" align="center" height="50px">
 										<input type="button" name="Submit" value="回复" class="button" onclick="return link();"/>
 										
-										<input type="button" name="Submit" value="返回" class="button" onclick="return back();"/>
-										<ww:if test="(chanel==\"other\" && vip==\"1\") || (chanel==\"other\" &&type==\"SERVICE\")">
+										<input type="button" name="Submit" value="返回" class="button" onclick="back()"/>
+										<ww:if test="(chanel==\"other\" && vip==\"1\") || (chanel==\"other\" &&type==\"SERVICE\")|| (chanel==\"other\" && userid==q_user )">
 										<input type="button" name="Submit" value="结束问题" class="button" onclick="return over();"/>
 										</ww:if>
 										<ww:else>
@@ -159,6 +159,17 @@ function over(){
 									</TR>
 									</form>
 								</ww:if>
+								<ww:else>
+								<form action="" method="post" name="fom" id="fom" >
+									<TR>
+										<TD colspan="2" align="center" height="50px">
+										
+										<input type="button" name="Submit" value="返回" class="button" onclick="back()"/>
+										
+										</TD>
+									</TR>
+								</form>
+								</ww:else>
 							</table>
 						</td>
 					</tr>

@@ -75,7 +75,7 @@ a:visited img{
             <td><table width="100%" border="0" cellspacing="0" cellpadding="0" class="ban">
               <tr>
                 <td width="20" height="41" align="center" valign="middle"><img src="images-msn/dot.gif" width="11" height="10"></td>
-                <td valign="middle"><a href="http://localhost:8888/robot/index.jsp">业务定制和使用</a></td>
+                <td valign="middle"><a href="http://localhost:9999/robot/index.jsp">业务定制和使用</a></td>
               </tr>
             </table></td>
             <td><table width="100%" border="0" cellspacing="0" cellpadding="0" class="ban">
@@ -100,12 +100,12 @@ a:visited img{
 	  <td width="397" height="511" valign="middle" class="redbg">
 	  <table width="100%" border="0" cellpadding="0" cellspacing="0" >
           <tr>
-            <td class="button_01" align="center" valign="middle"><a class="black_01" href="woknow.action?userid=<ww:property value="userid"/>&from=<ww:property value="from"/>">网友问题</a></td>
+            <td class="button_01" align="center" valign="middle"><a class="black_01" href="woknow.action?userid=<ww:property value="userid"/>&chanel=other&from=<ww:property value="from"/>">网友问题</a></td>
             <ww:if test="userid!=null && !userid.equals(\"\")">
-            <td class="button_02" align="center" valign="middle"><a class="black_01" href="woknowmine.action?userid=<ww:property value="userid"/>&from=<ww:property value="from"/>">我的问题</a></td>
+            <td class="button_02" align="center" valign="middle"><a class="black_01" href="woknowmine.action?userid=<ww:property value="userid"/>&chanel=mine&from=<ww:property value="from"/>">我的问题</a></td>
             </ww:if>
              <ww:if test="vip==\"1\"">
-            <td class="button_02" align="center" valign="middle"><a class="black_01" href="woknowvip.action?userid=<ww:property value="userid"/>&from=<ww:property value="from"/>">VIP问题</a></td>
+            <td class="button_02" align="center" valign="middle"><a class="black_01" href="woknowvip.action?userid=<ww:property value="userid"/>&chanel=vip&from=<ww:property value="from"/>">VIP问题</a></td>
           	</ww:if>
           </tr>
         </table>
@@ -124,7 +124,7 @@ a:visited img{
                   <tr>
                     <td><table width="100%" border="0" cellspacing="1" cellpadding="1" class="grey_01">
                       <tr>
-                        <td colspan="4" class="content"> <a class="black_01" href="woanswer.action?q_id=<ww:property value="['Q_ID']"/>&userid=<ww:property value="['userid']"/>&op=brows&chanel=other&from=<ww:property value="from"/>"><font style="font-size:15px"  face="微软雅黑"><ww:if test="Q_CONTENT.length()>20"><ww:property value="['Q_CONTENT'].substring(0,20)"/>......</ww:if><ww:else><ww:property value="['Q_CONTENT']"/></ww:else></font></a></td>
+                        <td colspan="4" class="content"> <a class="black_01" href="woanswer.action?q_id=<ww:property value="['Q_ID']"/>&userid=<ww:property value="['userid']"/>&op=brows&chanel=<ww:property value="chanel"/>&from=<ww:property value="from"/>"><font style="font-size:15px"  face="微软雅黑"><ww:if test="Q_CONTENT.length()>20"><ww:property value="['Q_CONTENT'].substring(0,20)"/>......</ww:if><ww:else><ww:property value="['Q_CONTENT']"/></ww:else></font></a></td>
                       </tr>
                       <tr>
                     <td>&nbsp;</td>
@@ -132,8 +132,12 @@ a:visited img{
                       <tr>
                         <td align="right">&nbsp;</td>
                         <td align="right" class="orange"></td>
-                        <td align="right" class="black_01"><ww:if test="Q_STATE==\"1\"">已完结</ww:if><ww:else><FONT color=red>未完结</FONT></ww:else>&nbsp;&nbsp;访问：<ww:if test="BROWS==null">0</ww:if><ww:else><ww:property value="['BROWS']"/></ww:else>&nbsp;&nbsp;回复：<ww:if test="ANSWERS==null">0</ww:if><ww:else><ww:property value="['ANSWERS']"/></ww:else></td>
-                        <td align="right" class="black_01">提问时间：<ww:property value="['Q_DATE'].toString().substring(0,16)"/></td>
+                        <td align="right" class="black_01" colspan=2>提问人：<ww:if test="USER_TEL==null">未绑定手机</ww:if><ww:else><ww:property value="['USER_TEL'].substring(0,3)"/>****<ww:property value="['USER_TEL'].substring(7,11)"/></ww:else>&nbsp;&nbsp;<ww:if test="Q_STATE==\"1\"">【已完结】</ww:if><ww:else><FONT color=red>【未完结】</FONT></ww:else></td>
+                      </tr>
+                      <tr>
+                        <td align="right">&nbsp;</td>
+                        <td align="right" class="orange"></td>
+                        <td align="right" class="black_01" colspan=2>访问：<ww:if test="BROWS==null">0</ww:if><ww:else><ww:property value="['BROWS']"/></ww:else>&nbsp;回复：<ww:if test="ANSWERS==null">0</ww:if><ww:else><ww:property value="['ANSWERS']"/></ww:else>&nbsp;提问时间：<ww:property value="['Q_DATE'].toString().substring(0,16)"/></td>
                       </tr>
                     </table></td>
                   </tr>
