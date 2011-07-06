@@ -46,7 +46,7 @@ function over(){
                             <td align="center"><a href="woknow.action?userid=<ww:property value="userid"/>&chanel=other&from=web" class="a4"><ww:if test="chanel==\"other\""><font color=red>网友问题</font></ww:if><ww:else>网友问题</ww:else></a></td>
                           <ww:if test="vip==\"1\"">
                             <td align="center"><a href="woknowvip.action?userid=<ww:property value="userid"/>&chanel=vip&from=web" class="a4"><ww:if test="chanel==\"vip\""><font color=red>VIP问题</font></ww:if><ww:else>VIP问题</ww:else></a></td></ww:if>
-                            <td align="center"><a href="#" class="a4">话费分析</a></td>
+                            <!-- td align="center"><a href="#" class="a4">话费分析</a></td -->
                           </tr>
                         </table></td>
                       </tr>
