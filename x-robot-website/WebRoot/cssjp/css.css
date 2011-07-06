@@ -48,7 +48,7 @@ body {
 .input_login {
 	border: 1px solid #666666;
 	height: 23px;
-	background-image: url(../images-msn/input_bg.gif);
+	background-image: url(../imagesmsn/input_bg.gif);
 	font-size: 16px;
 	font-family: Arial, Helvetica, sans-serif;
 	width: 150px;
@@ -56,7 +56,7 @@ body {
 .input_login1 {
 	border: 1px solid #666666;
 	height: 21px;
-	background-image: url(../images-msn/input_bg.gif);
+	background-image: url(../imagesmsn/input_bg.gif);
 	font-size: 16px;
 	font-family: Arial, Helvetica, sans-serif;
 	width: 150px;
@@ -64,7 +64,7 @@ body {
 .input_login2 {
 	border: 1px solid #666666;
 	height: 21px;
-	background-image: url(../images-msn/input_bg.gif);
+	background-image: url(../imagesmsn/input_bg.gif);
 	font-size: 16px;
 	font-family: Arial, Helvetica, sans-serif;
 	width: 80px;
@@ -72,7 +72,7 @@ body {
 .input_loginadd {
 	border: 1px solid #666666;
 	height: 21px;
-	background-image: url(../images-msn/input_bg.gif);
+	background-image: url(../imagesmsn/input_bg.gif);
 	font-size: 16px;
 	font-family: Arial, Helvetica, sans-serif;
 	width: 120px;
@@ -80,48 +80,48 @@ body {
 .input_login_yzm {
 	border: 1px solid #666666;
 	height: 23px;
-	background-image: url(../images-msn/input_bg.gif);
+	background-image: url(../imagesmsn/input_bg.gif);
 	font-size: 16px;
 	font-family: Arial, Helvetica, sans-serif;
 	width: 60px;
 }
 .input_button1 {
-	background:url(../images-msn/button1.png);
+	background:url(../imagesmsn/button1.png);
 	border:0px;
 	height: 25px;
 	width: 77px;
 	color: #666666;
 } 
 .input_button2 {
-	background:url(../images-msn/button2.png);
+	background:url(../imagesmsn/button2.png);
 	border:0px;
 	height: 25px;
 	width: 59px;
 	color: #666666;
 } 
 .input_button02 {
-	background:url(../images-msn/button2.gif);
+	background:url(../imagesmsn/button2.gif);
 	border:0px;
 	height: 25px;
 	width: 59px;
 	color: #666666;
 } 
 .input_button3 {
-	background:url(../images-msn/button2.png);
+	background:url(../imagesmsn/button2.png);
 	border:0px;
 	height: 25px;
 	width: 59px;
 	color: #5A020B;
 } 
 .input_button03 {
-	background:url(../images-msn/button2.gif);
+	background:url(../imagesmsn/button2.gif);
 	border:0px;
 	height: 25px;
 	width: 59px;
 	color: #5A020B;
 } 
 .input_button4 {
-	background:url(../images-msn/button_bg_search.png);
+	background:url(../imagesmsn/button_bg_search.png);
 	border:0px;
 	height: 16px;
 	width: 37px;
@@ -129,7 +129,7 @@ body {
 	font-size: 12px;
 }
 .input_button5 {
-	background:url(../images-msn/button_bg_select.png);
+	background:url(../imagesmsn/button_bg_select.png);
 	border:0px;
 	height: 19px;
 	width: 53px;
@@ -137,14 +137,14 @@ body {
 	font-size: 10px;
 }
 .input_button6 {
-	background:url(../images-msn/button_select.png);
+	background:url(../imagesmsn/button_select.png);
 	border:0px;
 	height: 22px;
 	width: 76px;
 	color: #5A020B;
 } 
 .input_buttonindex {
-	background:url(../images-msn/button_index.png);
+	background:url(../imagesmsn/button_index.png);
 	border:0px;
 	height: 17px;
 	width: 38px;
@@ -216,7 +216,7 @@ font-family:   Verdana,   Arial,   Helvetica,   sans-serif,   "宋体 ";
 } 
 .body
   {
-  background-image: url(../images-msn/button_index.png);
+  background-image: url(../imagesmsn/button_index.png);
   background-repeat: no-repeat;
   color:#FFFFFF;
   font-size:12px;
@@ -225,14 +225,14 @@ font-family:   Verdana,   Arial,   Helvetica,   sans-serif,   "宋体 ";
 .body a:active,
 .body a:visited
   {
-  background-image: url(../images-msn/button_index.png);
+  background-image: url(../imagesmsn/button_index.png);
   background-repeat: no-repeat;
   color:#FFFFFF;
   font-size:12px;
   }
 .body a:hover
   {
-  background-image: url(../images-msn/button_index.png);
+  background-image: url(../imagesmsn/button_index.png);
   background-repeat: no-repeat;
   color:#E8D306;
   font-size:12px;
@@ -244,11 +244,11 @@ font-family:   Verdana,   Arial,   Helvetica,   sans-serif,   "宋体 ";
 	background-color:#6e020f;
 }  
 .bottom {
- 	background:url(../images-msn/bottom.jpg) repeat-x left top;
+ 	background:url(../imagesmsn/bottom.jpg) repeat-x left top;
 	height:41px;
 } 
 .button_01 {
-	background:url(../images-msn/button_01.jpg) no-repeat;
+	background:url(../imagesmsn/button_01.jpg) no-repeat;
 	height:38px;
 	width:82px;
 	padding-top:7px;
@@ -258,7 +258,7 @@ font-family:   Verdana,   Arial,   Helvetica,   sans-serif,   "宋体 ";
 	background-position: center bottom;
 }
 .button_02 {
-	background:url(../images-msn/button_02.jpg) no-repeat;
+	background:url(../imagesmsn/button_02.jpg) no-repeat;
 	height:50px;
 	width:82px;
 	padding-top:7px;
@@ -268,19 +268,19 @@ font-family:   Verdana,   Arial,   Helvetica,   sans-serif,   "宋体 ";
 	background-position: center bottom;
 }
 .top_01 {
-	background:url(../images-msn/top_01.jpg) repeat-x left top;
+	background:url(../imagesmsn/top_01.jpg) repeat-x left top;
 	height:16px;
 }
 .bottom_01 {
-	background:url(../images-msn/bottom_01.jpg) repeat-x left bottom;
+	background:url(../imagesmsn/bottom_01.jpg) repeat-x left bottom;
 	height:16px;
 }
 .right_01 {
-	background:url(../images-msn/right_01.jpg) repeat-y right top;
+	background:url(../imagesmsn/right_01.jpg) repeat-y right top;
 	height:16px;
 }
 .left_01 {
-	background:url(../images-msn/left_01.jpg) repeat-y left top;
+	background:url(../imagesmsn/left_01.jpg) repeat-y left top;
 	height:16px;
 }
 .whitebg {
@@ -310,11 +310,11 @@ font-family:   Verdana,   Arial,   Helvetica,   sans-serif,   "宋体 ";
 	border-bottom:1px solid #c9c9c9;
 }
 .left_02 {
-	background:url(../images-msn/main_10.jpg) repeat-y left top;
+	background:url(../imagesmsn/main_10.jpg) repeat-y left top;
 	width:41px;
 }
 .right_02 {
-	background:url(../images-msn/main_12.jpg) repeat-y left top;
+	background:url(../imagesmsn/main_12.jpg) repeat-y left top;
 	width:41px;
 }
 a.orange:link{
