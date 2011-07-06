@@ -109,7 +109,7 @@ public class WoknowQryBrowsAction extends ActionSupport {
 			}
 		}
 		
-		if(op.equals("view"))
+		if(op.equals("view") || op.equals("brows"))
 		{
 			List qList=null;
 			if(ft.equals("w_question"))
@@ -154,25 +154,24 @@ public class WoknowQryBrowsAction extends ActionSupport {
 				
 				return "view_unicom";
 			}
-			
-			
 		}
-		if(op.equals("answer"))
+		if(op.equals("answer_qry"))
 		{
 			woanswerDao.saveAnswer(questionid, A_CONTENT, userid);
 			wovisitDao.addAnswer(questionid);
+			System.out.println("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
 			return "answer";
 		}
 		if(op.equals("best"))
 		{
 			woanswerDao.setBestAnswer(a_id);
 			woknowDao.setQuestionState("1", questionid);
-			return "best";
+			return "answer";
 		}
 		if(op.equals("over"))
 		{
 			woknowDao.setQuestionState("1", questionid);
-			return "best";
+			return "answer";
 		}
 		return SUCCESS;
 	}

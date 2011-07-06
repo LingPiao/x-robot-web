@@ -51,6 +51,20 @@ public class WoknowAction extends ActionSupport {
 	}
 	
 	public String execute() throws Exception {
+		System.out.println(from);
+		System.out.println(ServletActionContext.getRequest().getHeader("User-Agent"));
+
+		if(ServletActionContext.getRequest().getHeader("User-Agent").indexOf("IE")>0 || ServletActionContext.getRequest().getHeader("User-Agent").indexOf("Firefox")>0)
+		{
+			if(from == null || from.equals(""))
+				from = "web";
+		}
+		else
+		{
+			from = "mobile";
+		}
+		
+		System.out.println(from);
 		if(userid==null || userid.equals(""))
 			userid=userId;
 		nickname=tuserDao.getNicknameByUserid(userid);
@@ -78,25 +92,15 @@ public class WoknowAction extends ActionSupport {
 		if(from.equals("mobile"))
 			pageRows = 15;
 		if(from.equals("web"))
-			pageRows = 8;
+			pageRows = 7;
 		if(from.equals("msn"))
 			pageRows = 8;
 		pageInfo = new PageInfo();
 		pageInfo.setPage(page);
 		pageInfo.setPageRows(pageRows);
 		woknowDao.getQuestionList("", pageInfo);
-		System.out.println(ServletActionContext.getRequest().getHeader("User-Agent"));
-		if(from.equals("") || from==null)
-		{
-			if(ServletActionContext.getRequest().getHeader("User-Agent").indexOf("IE")>0 || ServletActionContext.getRequest().getHeader("User-Agent").indexOf("Firefox")>0)
-			{
-				from = "web";
-			}
-			else
-			{
-				from = "mobile";
-			}
-		}
+		
+		
 		if(from.equals("mobile"))
 			return "mobile";
 		else if (from.equals("msn")) 

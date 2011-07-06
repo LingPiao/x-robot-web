@@ -18,7 +18,7 @@ public class WoanswerImpl implements WoanswerDao {
 	private SqlDao sqlDao;
 	public void saveAnswer(String qid,String content,String userid)
 	{
-		if(userid.equals("") || userid == null)
+		if( userid == null || userid.equals("") )
 			userid="热心网友";
 		String sql="insert into W_ANSWERS (A_ID,Q_ID,A_CONTENT,A_USER,A_LEVELS,A_DEL) values (A_ID.nextval,"+qid+",'"+content+"','"+userid+"','0','0')";
 		sqlDao.insertBySQLText(sql);

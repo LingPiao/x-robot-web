@@ -72,7 +72,7 @@ public class WoknowMineAction extends ActionSupport {
 		if(from.equals("mobile"))
 			pageRows = 15;
 		if(from.equals("web"))
-			pageRows = 8;
+			pageRows = 7;
 		if(from.equals("msn"))
 			pageRows = 8;
 		pageInfo = new PageInfo();

@@ -13,6 +13,7 @@ import org.project.dao.WoknowDao;
 import org.project.dao.WovisitDao;
 
 import com.catic.tool.ConvertDate;
+import com.opensymphony.webwork.ServletActionContext;
 import com.opensymphony.xwork.ActionContext;
 import com.opensymphony.xwork.ActionSupport;
 
@@ -75,6 +76,18 @@ public class WoanswerAction extends ActionSupport {
 	}
 
 	public String execute() throws Exception {
+		if(ServletActionContext.getRequest().getHeader("User-Agent").indexOf("IE")>0 || ServletActionContext.getRequest().getHeader("User-Agent").indexOf("Firefox")>0)
+		{
+			if(from == null || from.equals(""))
+				from = "web";
+		}
+		else
+		{
+			from = "mobile";
+		}
+		System.out.println(from);
+		System.out.println("**************************************");
+		System.out.println("**************************************");
 		if(userid==null || userid.equals(""))
 			userid=userId;
 		nickname=tuserDao.getNicknameByUserid(userid);
@@ -107,7 +120,10 @@ public class WoanswerAction extends ActionSupport {
 				state=  map.get("Q_STATE").toString();
 				q_date= map.get("Q_DATE").toString();
 				q_user=map.get("Q_USER").toString();
-				
+				if(map.get("USER_TEL")==null)
+					user_tel="";
+				else
+					user_tel=map.get("USER_TEL").toString();
 			}
 			
 			ansList = woanswerDao.getAnswerByQid(q_id);
@@ -138,18 +154,7 @@ public class WoanswerAction extends ActionSupport {
 		}
 		if(op.equals("answer"))
 		{
-//			String tempuseridString="";
-//			System.out.println(userid);
-//			System.out.println(user_mobile);
-//			System.out.println(nickname);
-//			if(!usermobile.equals("") && usermobile!=null)
-//				tempuseridString=usermobile;
-//			else if(checkEmail(userid))
-//				tempuseridString=userid;
-//			else if(!nickname.equals("") && nickname!=null)
-//				tempuseridString=nickname;
-//			else
-//				tempuseridString="热心网友";
+
 			woanswerDao.saveAnswer(q_id, A_CONTENT, userid);
 			wovisitDao.addAnswer(q_id);
 			return "answer";
@@ -213,6 +218,15 @@ public class WoanswerAction extends ActionSupport {
 
 	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+	private String user_tel;
+	
+	public String getUser_tel() {
+		return user_tel;
+	}
+
+	public void setUser_tel(String user_tel) {
+		this.user_tel = user_tel;
 	}
 	private String bestflag;
 	private String content;
