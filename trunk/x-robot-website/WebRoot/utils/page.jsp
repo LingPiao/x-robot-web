@@ -14,9 +14,9 @@
          
           <td align="left" width="70%">
           <input type="hidden" name="page" class="textborder" style="width:50px;">
-          <a href="#" onclick="goPageByImg(document.forms[0],'FIRST')"><img src="images-jp/1.jpg" width="31" height="23" border="0" alt="Ê×Ò³"></A>&nbsp;
-          <a href="#" onclick="goPageByImg(document.forms[0],'PERVIOUS')"><img src="images-jp/2.jpg" width="31" height="23" border="0" alt="ÉÏÒ³"></A>&nbsp;     
-          <A href="#" onclick="goPageByImg(document.forms[0],'NEXT')"><img src="images-jp/3.jpg" width="31" height="23" border="0" alt="ÏÂÒ³"></A>&nbsp;
-          <A href="#" onclick="goPageByImg(document.forms[0],'LAST')"><img src="images-jp/4.jpg" width="31" height="23" border="0" alt="Î²Ò³"></A></td>
+          <a href="#" onclick="goPageByImg(document.forms[0],'FIRST')"><img src="imagesjp/1.jpg" width="31" height="23" border="0" alt="Ê×Ò³"></A>&nbsp;
+          <a href="#" onclick="goPageByImg(document.forms[0],'PERVIOUS')"><img src="imagesjp/2.jpg" width="31" height="23" border="0" alt="ÉÏÒ³"></A>&nbsp;     
+          <A href="#" onclick="goPageByImg(document.forms[0],'NEXT')"><img src="imagesjp/3.jpg" width="31" height="23" border="0" alt="ÏÂÒ³"></A>&nbsp;
+          <A href="#" onclick="goPageByImg(document.forms[0],'LAST')"><img src="imagesjp/4.jpg" width="31" height="23" border="0" alt="Î²Ò³"></A></td>
         </tr>
       </table>
