@@ -97,9 +97,9 @@
 			document.getElementById("adtion").value = "add";
 			document.getElementById("add").style.display = "block";
 			document.getElementById("listform").style.display="none";
-			document.getElementById("SEQID").value=""; 
+			document.getElementById("GROUPID").value=""; 
 			
-			document.getElementById("GROUPNAME").value="";
+			document.getElementById("NAME").value="";
 		
 		}
 		function canceladd()
@@ -114,10 +114,10 @@
 		function formCheck()
 		{
 			
-			if(pager.GROUPNAME.value=="")
+			if(pager.NAME.value=="")
 			{
 				document.getElementById("errbox").innerHTML = "<font color=red>请输入组名称！</font>";
-				pager.GROUPNAME.focus();
+				pager.NAME.focus();
 				return false;
 			}
 			
@@ -153,11 +153,11 @@
 		function editbook(id,con)
 		{
 			
-			document.getElementById("GROUPNAME").value=con; 
+			document.getElementById("NAME").value=con; 
 			document.getElementById("add").style.display = "block";
 			document.getElementById("adtion").value = "edit";
 			document.getElementById("listform").style.display="none";
-			pager.SEQID.value=id;
+			pager.GROUPID.value=id;
 						
 		}
 	
@@ -200,7 +200,7 @@
 			<img src="../images/sms/message_use_bg_01.gif" width="359" height="17" alt=""></td>
 	</tr>
 	<tr>
-		<td width="93" height="337" align="right" valign="top" background="../images/sms/message_use_bg_02.gif"><table width="95%" height="100%">
+		<td width="93" height="337" align="right" valign="top" background="../images/sms/message_use_bg_02.gif"><table width="95%">
           <tr>
             <td valign="top"><table id="__01" width="100%" height="23" border="0" cellpadding="0" cellspacing="0">
 	<tr>
@@ -214,10 +214,15 @@
           </tr>
           <tr>
             <td valign="top"><table width="100%" >
+            <tr>
+                <td  class="ban">
+				<a href="telbook.action?op=view&user_msn=<ww:property value="['user_msn']"/>">所有联系人</a>
+				</td>
+              </tr>
              <ww:iterator value="telgroupList" status="row">
               <tr>
-                <td height="28" class="ban">
-				<a href="telbook.action?op=view&user_msn=<ww:property value="['user_msn']"/>&groupid=<ww:property value="['SEQID']"/>"><ww:property value="['GROUPNAME']"/></a>
+                <td  class="ban">
+				<a href="telbook.action?op=view&user_msn=<ww:property value="['user_msn']"/>&groupid=<ww:property value="['GROUPID']"/>"><ww:property value="['NAME']"/></a>
 				</td>
               </tr>
               </ww:iterator>
@@ -258,11 +263,11 @@
 				  <ww:iterator value="pageInfo.records" status="row">
 				  <tr>
 				    <td height="22" align="center" valign="top" class="STYLE9"><label>
-				      <input name="delID" type="checkbox" value="<ww:property value="['SEQID']"/>">
+				      <input name="delID" type="checkbox" value="<ww:property value="['GROUPID']"/>">
 				    </label></td>
-				    <td width="30%" height="22" colspan="3" align="center" class="STYLE9"><ww:property value="['GROUPNAME']"/> </td>
+				    <td width="30%" height="22" colspan="3" align="center" class="STYLE9"><ww:property value="['NAME']"/> </td>
 					
-					<td width="20%" height="22" colspan="3" align="center" class="STYLE8"><a href="#" onclick="javaScript:editbook(<ww:property value="['SEQID']"/>,'<ww:property value="['GROUPNAME']"/>');"><img src="../images/bj.gif" width="15" height="13" border=0/></a></td>
+					<td width="20%" height="22" colspan="3" align="center" class="STYLE8"><a href="#" onclick="javaScript:editbook(<ww:property value="['GROUPID']"/>,'<ww:property value="['NAME']"/>');"><img src="../images/bj.gif" width="15" height="13" border=0/></a></td>
 				  </tr>
 				</ww:iterator>
 				
@@ -309,11 +314,11 @@
                                   <tr>
                                     <td align="right" valign="middle" bgcolor="#F6F6F6" class="STYLE2">组名称 : </td>
                                     <td align="left" valign="middle" bgcolor="#FFFFFF" class="STYLE2">&nbsp;
-                                      <input name="GROUPNAME" id="GROUPNAME" type="text" size="15" class="STYLE2" style="width:130px;"/></td>
+                                      <input name="mtelbook_group.NAME" id="NAME" type="text" size="15" class="STYLE2" style="width:130px;"/></td>
                                   </tr>
                                  
                                   <input type = hidden name=adtion id=adtion value="">
-                                  <input type = hidden name=SEQID id=SEQID value="">
+                                  <input type = hidden name=mtelbook_group.GROUPID id=GROUPID value="">
                                 </table></td>
                             </tr>
                             <tr>

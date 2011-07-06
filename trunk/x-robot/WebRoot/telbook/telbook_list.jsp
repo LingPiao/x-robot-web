@@ -97,11 +97,11 @@
 			document.getElementById("adtion").value = "add";
 			document.getElementById("add").style.display = "block";
 			document.getElementById("listform").style.display="none";
-			document.getElementById("GROUP_ID").value=""; 
+			document.getElementById("GROUPID").value=""; 
 			
 			document.getElementById("ID").value="";
-			document.getElementById("CONTACT_NAME").value="";
-			document.getElementById("CONTACT_TEL").value=""; 
+			document.getElementById("NAME").value="";
+			document.getElementById("TELNUMBER").value=""; 
 		}
 		function canceladd()
 		{
@@ -115,37 +115,30 @@
 		function formCheck()
 		{
 			
-			if(pager.CONTACT_NAME.value=="")
+			if(pager.NAME.value=="")
 			{
 				document.getElementById("errbox").innerHTML = "<font color=red>请输入联系人！</font>";
-				pager.CONTACT_NAME.focus();
+				pager.NAME.focus();
 				return false;
 			}
 			
-			if(pager.CONTACT_TEL.value=="")
+			if(pager.TELNUMBER.value=="")
 			{
 				document.getElementById("errbox").innerHTML = "<font color=red>请输入手机号码!</font>";
-				pager.CONTACT_TEL.focus();
+				pager.TELNUMBER.focus();
 				return false;
 			}
 			
-			if(pager.CONTACT_TEL.value.length!=11)
+			if(pager.TELNUMBER.value.length!=11)
         	{
             	document.getElementById("errbox").innerHTML = "<font color=red>请输入正确的手机号码!</font>";
-            	pager.CONTACT_TEL.focus();
+            	pager.TELNUMBER.focus();
 				return false;
         	}
-        	
-			//if(addform.CONTACT_TEL.value.substring(0,2)!="13" && addform.CONTACT_TEL.value.substring(0,2)!="15" && addform.CONTACT_TEL.value.substring(0,2)!="18")
-	        //{
-	            
-			//	document.getElementById("errbox").innerHTML = "<font color=red>请输入正确的手机号码!</font>";
-			//	return false;
-	        //}
-	        if(pager.GROUP_ID.value=="")
+	        if(pager.GROUPID.value=="")
 			{
 				document.getElementById("errbox").innerHTML = "<font color=red>请选择分组!</font>";
-				pager.GROUP_ID.focus();
+				pager.GROUPID.focus();
 				return false;
 			}
 			if(pager.adtion.value =="add")
@@ -180,13 +173,13 @@
 		function editbook(id,con,tel,groupid)
 		{
 			
-			document.getElementById("GROUP_ID").value=groupid; 
+			document.getElementById("GROUPID").value=groupid; 
 			document.getElementById("add").style.display = "block";
 			document.getElementById("adtion").value = "edit";
 			document.getElementById("listform").style.display="none";
 			pager.ID.value=id;
-			document.getElementById("CONTACT_NAME").value=con;
-			document.getElementById("CONTACT_TEL").value=tel; 
+			document.getElementById("NAME").value=con;
+			document.getElementById("TELNUMBER").value=tel; 
 			
 		}
 	
@@ -207,7 +200,7 @@
 	<tr>
 		<td background="../images/main_101.jpg" width="41" height="511">&nbsp;</td>
 	  <td width="397" height="511" valign="top" background="../images/main_111.jpg">
-		<table width="395" height="126" align="center" >
+		<table width="395" height="126" align="center" border=0>
          <tr>
             <td height="91" align="center" valign="middle"><a href="../sms/sms.action?op=view&user_msn=<ww:property value="user_msn"/>"><img src="../images/sms/pic_01.gif" width="81" height="89" border="0"></a></td>
 			<td align="center" valign="middle"><a href="../sms/sms.action?op=sms&user_msn=<ww:property value="user_msn"/>"><img src="../images/sms/pic_02.gif" width="81" height="89" border="0"></td>
@@ -221,37 +214,43 @@
             <td align="center" valign="top" class="title">历史记录</td>
           </tr>
         </table>
-		<table id="__01" width="100%" height="378" border="0" cellpadding="0" cellspacing="0">
+		<table id="__01" width="100%"  border="0" cellpadding="0" cellspacing="0">
 	<tr>
-		<td align="center"><table id="__01" width="359" height="382" border="0" cellpadding="0" cellspacing="0">
+		<td align="center"><table id="__01" width="359"  border="0" cellpadding="0" cellspacing="0">
 	<tr>
 		<td colspan="4">
 			<img src="../images/sms/message_use_bg_01.gif" width="359" height="17" alt=""></td>
 	</tr>
 	<tr>
-		<td width="93" height="337" align="right" valign="top" background="../images/sms/message_use_bg_02.gif"><table width="95%" height="100%">
+		<td width="93" align="right" valign="top" background="../images/sms/message_use_bg_02.gif">
+		<table width="95%" border=0>
           <tr>
-            <td valign="top"><table id="__01" width="100%" height="23" border="0" cellpadding="0" cellspacing="0">
-	<tr>
-		<td>
-			<img src="../images/sms/buttonbg_01.gif" width="10" height="23" alt=""></td>
-		<td width="70" height="23" align="center" background="../images/sms/buttonbg_02.gif" class="fontStyle">分组列表</td>
-		<td>
-			<img src="../images/sms/buttonbg_03.gif" width="10" height="23" alt=""></td>
-	</tr>
-</table></td>
+            <td valign="top"><table id="__01" width="100%"  border="0" cellpadding="0" cellspacing="0" border=0>
+			<tr>
+				<td>
+					<img src="../images/sms/buttonbg_01.gif" width="10" height="23" alt=""></td>
+				<td width="70" height="23" align="center" background="../images/sms/buttonbg_02.gif" class="fontStyle">分组列表</td>
+				<td>
+					<img src="../images/sms/buttonbg_03.gif" width="10" height="23" alt=""></td>
+			</tr>
+		</table></td>
           </tr>
           <tr>
-            <td valign="top"><table width="100%" height="283">
+            <td valign="top"><table width="100%" border=0>
+            	<tr>
+                <td  class="ban">
+				<a href="telbook.action?op=view&user_msn=<ww:property value="['user_msn']"/>">所有联系人</a>
+				</td>
+              </tr>
              <ww:iterator value="telgroupList" status="row">
               <tr>
-                <td height="28" class="ban">
-				<a href="telbook.action?op=view&user_msn=<ww:property value="['user_msn']"/>&groupid=<ww:property value="['SEQID']"/>"><ww:property value="['GROUPNAME']"/></a>
+                <td  class="ban">
+				<a href="telbook.action?op=view&user_msn=<ww:property value="['user_msn']"/>&groupid=<ww:property value="['GROUPID']"/>"><ww:property value="['NAME']"/></a>
 				</td>
               </tr>
               </ww:iterator>
               <tr>
-                <td height="28" class="ban">
+                <td class="ban">
 				<input name="reset22"  class="input_button03" type="button" value="管理分组" onclick="groupcc();"/>
 				</td>
               </tr>
@@ -288,11 +287,11 @@
 				  <ww:iterator value="pageInfo.records" status="row">
 				  <tr>
 				    <td height="22" align="center" valign="top" class="STYLE9"><label>
-				      <input name="delID" type="checkbox" value="<ww:property value="['ID']"/>">
+				      <input name="delID" type="checkbox" value="<ww:property value="['ADDRESSBOOKID']"/>">
 				    </label></td>
-				    <td width="30%" height="22" colspan="3" align="center" class="STYLE9"><ww:property value="['CONTACT_NAME']"/> </td>
-					<td width="35%" height="22" colspan="3" align="center" class="STYLE9"><ww:property value="['CONTACT_TEL']"/></td>
-					<td width="20%" height="22" colspan="3" align="center" class="STYLE8"><a href="#" onclick="javaScript:editbook(<ww:property value="['ID']"/>,'<ww:property value="['CONTACT_NAME']"/>','<ww:property value="['CONTACT_TEL']"/>','<ww:property value="['GROUP_ID']"/>');"><img src="../images/bj.gif" width="15" height="13" border=0/></a></td>
+				    <td width="30%" height="22" colspan="3" align="center" class="STYLE9"><ww:property value="['NAME']"/> </td>
+					<td width="35%" height="22" colspan="3" align="center" class="STYLE9"><ww:property value="['TELNUMBER']"/></td>
+					<td width="20%" height="22" colspan="3" align="center" class="STYLE8"><a href="#" onclick="javaScript:editbook(<ww:property value="['ADDRESSBOOKID']"/>,'<ww:property value="['NAME']"/>','<ww:property value="['TELNUMBER']"/>','<ww:property value="['GROUPID']"/>');"><img src="../images/bj.gif" width="15" height="13" border=0/></a></td>
 				  </tr>
 				</ww:iterator>
 				
@@ -339,25 +338,25 @@
                                   <tr>
                                     <td align="right" valign="middle" bgcolor="#F6F6F6" class="STYLE2">姓 名 : </td>
                                     <td align="left" valign="middle" bgcolor="#FFFFFF" class="STYLE2">&nbsp;
-                                      <input name="CONTACT_NAME" id="CONTACT_NAME" type="text" size="15" class="STYLE2" style="width:130px;"/></td>
+                                      <input name="telbook.NAME" id="NAME" type="text" size="15" class="STYLE2" style="width:130px;"/></td>
                                   </tr>
                                   <tr>
                                     <td align="right" valign="middle" bgcolor="#F6F6F6" class="STYLE2">电话号 : </td>
                                     <td align="left" valign="middle" bgcolor="#FFFFFF" class="STYLE2">&nbsp;
-                                      <input name="CONTACT_TEL" id="CONTACT_TEL" type="text" size="15" class="STYLE2" style="width:130px;"/></td>
+                                      <input name="telbook.TELNUMBER" id="TELNUMBER" type="text" size="15" class="STYLE2" style="width:130px;"/></td>
                                   </tr>
                                   <tr>
                                     <td align="right" valign="middle" bgcolor="#F6F6F6" class="STYLE2">联系人分组 : </td>
                                     <td align="left" valign="middle" bgcolor="#FFFFFF" class="STYLE2">&nbsp;
-                                      <select name="GROUP_ID" id="GROUP_ID" style="width:130px;">
+                                      <select name="mtelbook_group_contract.GROUPID" id="GROUPID" style="width:130px;">
                                        <ww:iterator value="telgroupList" status="row">
-              							<option value=<ww:property value="['SEQID']"/> ><ww:property value="['GROUPNAME']"/></option>
+              							<option value=<ww:property value="['GROUPID']"/> ><ww:property value="['NAME']"/></option>
               							</ww:iterator> 
                                       </select>
                                     </td>
                                   </tr>
                                   <input type = hidden name=adtion id=adtion value="">
-                                  <input type = hidden name=ID id=ID value="">
+                                  <input type = hidden name=telbook.ADDRESSBOOKID id=ID value="">
                                 </table></td>
                             </tr>
                             <tr>
