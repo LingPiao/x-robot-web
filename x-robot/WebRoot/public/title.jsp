@@ -44,17 +44,17 @@ a:active {
 		<td width="397" height="41" background="../images/main_08.jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
             <td height="41">&nbsp;</td>
-            <td><a href="../index.jsp"><img src="../images/index.gif" width="38" height="15" border="0" onMouseOver="this.src='../images/index_link.gif'" onMouseOut="this.src='../images/index.gif'"></a></td>
+            <td><a href="http://www.x-robot.cn/unicom/index.jsp"><img src="../images/index.gif" width="38" height="15" border="0" onMouseOver="this.src='../images/index_link.gif'" onMouseOut="this.src='../images/index.gif'"></a></td>
             <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
                 <td width="20" height="41" align="center" valign="middle"><img src="../images/dot.gif" width="12" height="12"></td>
-                <td valign="middle"><a href="http://localhost:9999/robotsite/woknow.action?userid=<ww:property value="user_msn"/>&chanel=other&from=msn">“沃”知道 </a></td>
+                <td valign="middle"><a href="http://www.x-robot.cn/robotweb/woknow.action?userid=<ww:property value="user_msn"/>&chanel=other&from=msn">“沃”知道 </a></td>
               </tr>
             </table></td>
             <td><table width="100%" border="0" cellspacing="0" cellpadding="0" >
               <tr>
                 <td width="20" height="41" align="center" valign="middle"><img src="../images/dot.gif" width="12" height="12"></td>
-                <td valign="middle"><a href="http://localhost:9999/robot/index.jsp">业务定制和使用</a></td>
+                <td valign="middle"><a href="http://www.x-robot.cn/unicom/index.jsp">业务定制和使用</a></td>
               </tr>
             </table></td>
             <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -66,7 +66,7 @@ a:active {
             <td><table width="100%" border="0" cellspacing="0" cellpadding="0" >
               <tr>
                 <td width="20" height="41" align="center" valign="middle"><img src="../images/dot.gif" width="12" height="12"></td>
-                <td valign="middle"><a href="http://localhost:9999/robot/invitebuddy/index.jsp">邀请好友</a></td>
+                <td valign="middle"><a href="http://www.x-robot.cn/unicom/invitebuddy/index.jsp">邀请好友</a></td>
               </tr>
             </table></td>
           </tr>
