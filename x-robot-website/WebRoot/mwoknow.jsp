@@ -41,20 +41,20 @@ href="cssjp/main1.css" type=text/css rel=stylesheet>
                                           <td height="30"><TABLE cellSpacing=0 cellPadding=0 width="100%" align=right border=0>
   <TBODY>
   <TR>
-    <TD align=""><a href="woknow.action?userid=<ww:property value="userid"/>&from=<ww:property value="from"/>"><img src="imagesjp/q1.jpg" border="0" alt="网友问题"></A>
+    <TD align=""><a href="woknow.action?userid=<ww:property value="userid"/>&chanel=other&from=<ww:property value="from"/>"><img src="imagesjp/q1.jpg" border="0" alt="网友问题"></A>
     <ww:if test="userid!=null && !userid.equals(\"\")">
 		
-		    <a href="woknowmine.action?userid=<ww:property value="userid"/>&from=<ww:property value="from"/>"><img src="imagesjp/q2.jpg" border="0" align="我的问题"></A>
+		    <a href="woknowmine.action?userid=<ww:property value="userid"/>&chanel=mine&from=<ww:property value="from"/>"><img src="imagesjp/q2.jpg" border="0" align="我的问题"></A>
 	</ww:if>	    
 		    <ww:if test="vip==\"1\"">
 	
-		    <a href="woknowvip.action?userid=<ww:property value="userid"/>&from=<ww:property value="from"/>"><img src="imagesjp/q3.jpg" border="0" align="VIP问题"></A>
+		    <a href="woknowvip.action?userid=<ww:property value="userid"/>&chanel=vip&from=<ww:property value="from"/>"><img src="imagesjp/q3.jpg" border="0" align="VIP问题"></A>
 		    </ww:if></TD>
   </TR></TBODY></TABLE></td>
                                         </tr>
                    <ww:iterator value="pageInfo.records" status="row">
                                         <tr>
-                                          <td width="96%"  class="line"><a href="woanswer.action?q_id=<ww:property value="['Q_ID']"/>&userid=<ww:property value="['userid']"/>&op=brows&chanel=other&from=<ww:property value="from"/>"><font style="font-size:15px"  face="微软雅黑"><ww:if test="Q_CONTENT.length()>20"><ww:property value="['Q_CONTENT'].substring(0,20)"/>......</ww:if><ww:else><ww:property value="['Q_CONTENT']"/></ww:else></font></a><br>
+                                          <td width="96%"  class="line"><a href="woanswer.action?q_id=<ww:property value="['Q_ID']"/>&userid=<ww:property value="['userid']"/>&op=brows&chanel=<ww:property value="chanel"/>&from=<ww:property value="from"/>"><font style="font-size:15px"  face="微软雅黑"><ww:if test="Q_CONTENT.length()>20"><ww:property value="['Q_CONTENT'].substring(0,20)"/>......</ww:if><ww:else><ww:property value="['Q_CONTENT']"/></ww:else></font></a><br>
                                          </br>  提问人：<ww:if test="USER_TEL==null">未绑定手机</ww:if><ww:else><ww:property value="['USER_TEL'].substring(0,3)"/>****<ww:property value="['USER_TEL'].substring(7,11)"/></ww:else>
                                            <br/> 
                                            <ww:if test="Q_STATE==\"1\"">已完结</ww:if><ww:else><FONT color=red>未完结</FONT></ww:else>&nbsp;&nbsp;访问：<ww:if test="BROWS==null">0</ww:if><ww:else><ww:property value="['BROWS']"/></ww:else>&nbsp;&nbsp;回复：<ww:if test="ANSWERS==null">0</ww:if><ww:else><ww:property value="['ANSWERS']"/></ww:else><br />

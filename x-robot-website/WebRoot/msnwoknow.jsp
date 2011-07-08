@@ -51,7 +51,7 @@ a:visited img{
           <tr>
             <td width="33" height="52"><br>
             <img src="imagesmsn/nav_left.gif" width="33" height="23"></td>
-            <td align="center" valign="top"><img src="imagesmsn/banner_unicom.gif" width="208" height="44"></td>
+            <td align="left" valign="top"><img src="imagesmsn/banner_unicom.gif" width="275" height="46"></td>
             <td width="33"><br>
             <img src="imagesmsn/nav_right.gif" width="33" height="23"></td>
           </tr>
@@ -65,7 +65,7 @@ a:visited img{
 		<td width="397" height="41" class="bottom"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
             <td height="41">&nbsp;</td>
-            <td><a href="http://www.x-robot.cn/unicom/index.jsp"><img src="imagesmsn/index.gif" width="38" height="15" border="0" onMouseOver="this.src='imagesmsn/index_link.gif'" onMouseOut="this.src='imagesmsn/index.gif'"></a></td>
+            <td><a href="http://www.x-robot.cn/unicom/index.jsp"><img src="imagesmsn/index.gif" width="35" height="20" border="0" onMouseOver="this.src='imagesmsn/index_link.gif'" onMouseOut="this.src='imagesmsn/index.gif'"></a></td>
             <td><table width="100%" border="0" cellspacing="0" cellpadding="0" class="ban">
               <tr>
                 <td width="20" height="41" align="center" valign="middle"><img src="imagesmsn/dot.gif" width="11" height="10"></td>
