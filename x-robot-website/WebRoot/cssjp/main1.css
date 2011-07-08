@@ -29,7 +29,7 @@ TD {
 	BACKGROUND-COLOR: #e7e7e7
 }
 .bg {
-	background:url(../images-jp/bg.jpg) repeat;
+	background:url(../imagesjp/bg.jpg) repeat;
 }
 .line { 
 	border-bottom:1px solid #d4d4d4;
@@ -38,39 +38,39 @@ TD {
 	background-color:#ffffff;
 }
 .corner1 {
-	background:url(../images-jp/corner1.jpg) left top no-repeat;
+	background:url(../imagesjp/corner1.jpg) left top no-repeat;
 }
 .ll {
-	background:url(../images-jp/left.jpg) repeat-y left top;
+	background:url(../imagesjp/left.jpg) repeat-y left top;
 }
 .corner2 {
-	background:url(../images-jp/corner2.jpg) left bottom no-repeat;
+	background:url(../imagesjp/corner2.jpg) left bottom no-repeat;
 }
 .corner3 {
-	background:url(../images-jp/corner3.jpg) right bottom no-repeat;
+	background:url(../imagesjp/corner3.jpg) right bottom no-repeat;
 }
 .top {
-	background:url(../images-jp/top.jpg) repeat-x left top;
+	background:url(../imagesjp/top.jpg) repeat-x left top;
 }
 .rightline {
-	background:url(../images-jp/right.jpg) repeat-y right top;
+	background:url(../imagesjp/right.jpg) repeat-y right top;
 }
 .corner4 {
-	background:url(../images-jp/corner4.jpg) right bottom no-repeat;
+	background:url(../imagesjp/corner4.jpg) right bottom no-repeat;
 }
 .bottom {
-	background:url(../images-jp/bottom.jpg) left bottom repeat-x;
+	background:url(../imagesjp/bottom.jpg) left bottom repeat-x;
 }
 .q {
-	background:url(../images-jp/q.jpg) left top repeat-x;
+	background:url(../imagesjp/q.jpg) left top repeat-x;
 	height:26px;
 }
 .al {
-	background:url(../images-jp/al.gif) repeat-x left bottom;
+	background:url(../imagesjp/al.gif) repeat-x left bottom;
 	height:25px;
 }
 .gb {
-	background:url(../images-jp/greyb.jpg) repeat-y left top;
+	background:url(../imagesjp/greyb.jpg) repeat-y left top;
 }
 .gb td {height:19px;}
 .d { color:#919191;}
@@ -81,35 +81,35 @@ TD {
 .i { width:32px;height:20px;border:1px solid #CCCCCC;background-color:#FFFFFF;}
 
 .cbg {
-	background:url(../images-jp/c_t2.jpg) top left repeat-x;
+	background:url(../imagesjp/c_t2.jpg) top left repeat-x;
 }
 .c_t {
-	background:url(../images-jp/c_t.jpg) top left repeat-x;
+	background:url(../imagesjp/c_t.jpg) top left repeat-x;
 }
 .c_l {
-	background:url(../images-jp/c_l.jpg) left top repeat-y;
+	background:url(../imagesjp/c_l.jpg) left top repeat-y;
 }
 .c_in {
-	background:url(../images-jp/c_in.jpg) left top repeat-x;
+	background:url(../imagesjp/c_in.jpg) left top repeat-x;
 	height:35px;
 }
 .c_input {
 	border:0px solid #fff;}
 .pm {
-	background:url(../images-jp/pmb.jpg) left top repeat-x;
+	background:url(../imagesjp/pmb.jpg) left top repeat-x;
 	height:27px;
 }	
 .nc_t {
-	background:url(../images-jp/nc_t.jpg) repeat-x left top;
+	background:url(../imagesjp/nc_t.jpg) repeat-x left top;
 }
 .nc_b {
-	background:url(../images-jp/nc_b.jpg) repeat-x left bottom;
+	background:url(../imagesjp/nc_b.jpg) repeat-x left bottom;
 }
 .nc_r {
-	background:url(../images-jp/nc_r.jpg) repeat-y right top;
+	background:url(../imagesjp/nc_r.jpg) repeat-y right top;
 }
 .nc_l {
-	background:url(../images-jp/nc_l.jpg) repeat-y left top;
+	background:url(../imagesjp/nc_l.jpg) repeat-y left top;
 }
 .nc_bo {
 	border-top:1px solid #8e8e8e;
@@ -118,4 +118,4 @@ TD {
 	padding-bottom:5px;
 }
 .pib{
-	background:url(..images-jp/c_c1.jpg) repeat-x left top;}
+	background:url(../imagesjp/c_c1.jpg) repeat-x left top;}
