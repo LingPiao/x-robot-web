@@ -12,7 +12,7 @@
 <link rel="stylesheet" type="text/css" href="../css/business.css">
 
 	</head>
-<script type="text/javascript" src="../../js/clock.js"></script>
+<script type="text/javascript" src="../js/clock.js"></script>
 	
 	<body>
 	 

@@ -44,6 +44,7 @@ public class KeyWordAction
       else {
         this.sCond = "1=1 order by KEYWORD_ID";
       }
+      System.out.println(this.sCond);
       this.queryData.setRecordSet("T_UNICOM_KEYWORD", "KEYWORD_ID,KEYWORD_NAME", this.sCond);
       this.rs = this.queryData.getResultSet();
 

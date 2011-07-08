@@ -23,7 +23,7 @@ public class DataBase {
 
 	private FileInputStream fis; // 定义文件输入流
 
-	private String ip = "127.0.0.1";
+	private String ip = "localhost";
 
 	private String port = "1521";
 
