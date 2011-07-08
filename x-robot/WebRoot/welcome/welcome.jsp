@@ -416,29 +416,29 @@ function flyin(obj){
 				<a href="../bill/bill.action?op=view&user_msn=<ww:property value="user_msn"/>">
             	<img id=img1 src="../images/index01.png" width="60" height="60" border="0"  style="cursor:pointer;" onMouseOut="min(this.id)" onMouseOver="max(this.id)" >
             	</a>&nbsp;&nbsp;
+            	<a href="http://www.x-robot.cn/statistic.action?userId=<ww:property value="user_msn"/>">
+				<img id=img2 src="../images/huafei_fenxi.png" width="60" height="60" border="0"  style="cursor:pointer;" onMouseOut="min(this.id)" onMouseOver="max(this.id)">
+				</a>&nbsp;&nbsp;
             	<a href="../mms/mms.action?op=mms&user_msn=<ww:property value="user_msn"/>">
-				<img id=img2 src="../images/index02.png" width="60" height="60" border="0"  style="cursor:pointer;" onMouseOut="min(this.id)" onMouseOver="max(this.id)">
+				<img id=img3 src="../images/index02.png" width="60" height="60" border="0"  style="cursor:pointer;" onMouseOut="min(this.id)" onMouseOver="max(this.id)">
 				</a>&nbsp;&nbsp;
 				<a href="../sms/sms.action?op=view&user_msn=<ww:property value="user_msn"/>">
-	            <img id=img5  src="../images/index05.png" width="60" height="60" border="0"  style="cursor:pointer;" onMouseOut="min(this.id)" onMouseOver="max(this.id)">
-	            </a>&nbsp;&nbsp;
-				<a href="login.action?op=bind&user_msn=<ww:property value="user_msn"/>">
-				<img id=img4 src="../images/index04.png" width="60" height="60" border="0"  style="cursor:pointer;" onMouseOut="min(this.id)" onMouseOver="max(this.id)">
-				</a>	
+	            <img id=img4  src="../images/index05.png" width="60" height="60" border="0"  style="cursor:pointer;" onMouseOut="min(this.id)" onMouseOver="max(this.id)">
+	            </a>
 				</li>
                 <li class=ban>
                 	话费查询&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                	话费分析&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 	发送彩信&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                	发送短信&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                	重新绑定
+                	发送短信
                 </li>
                 <li>
 				<a href="http://www.wo116114.com/" target=_blank><img id=img23 src="../images/116114.jpg" width="60" height="60" border="0" style="cursor:pointer;" onMouseOut="min(this.id)" onMouseOver="max(this.id)">
 				</a>&nbsp;&nbsp;
 				<a href="#" onClick="sAlert('<table bgcolor=\'#ffffff\'><tr><td align=center><img src=\'../images/indexicon07.png\'/></td></tr><tr><td class=STYLE1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr><tr><td align=center><input id=\'dingzhi\'  class=input_button2  type=\'button\' value=\'定制\'/>&nbsp;&nbsp;<input id=\'tuiding\'  class=input_button2  type=\'button\' value=\'退定\'/></td></tr></table>','DGXWZWB','TDXWZWB');"><img id=img24 src="../images/news-new.jpg" width="60" height="60" border="0" style="cursor:pointer;" onMouseOut="min(this.id)" onMouseOver="max(this.id)">
 				</a>&nbsp;&nbsp;
-				<a href="#" onClick="sAlert('<table bgcolor=\'#ffffff\'><tr><td align=center><img src=\'../images/indexicon07.png\'/></td></tr><tr><td class=STYLE1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;手机报精华版,资费为3元/月，手机报是一项资讯类业务，指与媒体机构合作，通过手机为用户提供各类资讯信息的服务。</td></tr><tr><td align=center><input id=\'dingzhi\' class=input_button2  type=\'button\' value=\'定制\'/>&nbsp;&nbsp;<input id=\'tuiding\' class=input_button2  type=\'button\' value=\'退定\'/></td></tr></table>','','');">
-				<img id=img7 src="../images/index07.png" width="60" height="60" border="0" style="cursor:pointer;" onMouseOut="min(this.id)" onMouseOver="max(this.id)">
+				<a href="login.action?op=bind&user_msn=<ww:property value="user_msn"/>">
+				<img id=img7 src="../images/index04.png" width="60" height="60" border="0"  style="cursor:pointer;" onMouseOut="min(this.id)" onMouseOver="max(this.id)">
 				</a>&nbsp;&nbsp;
 				<a href="login.action?op=bind&user_msn=<ww:property value="user_msn"/>">
 				<img id=img8 src="../images/index10.png" width="60" height="60" border="0" style="cursor:pointer;" onMouseOut="min(this.id)" onMouseOver="max(this.id)">
@@ -447,7 +447,7 @@ function flyin(obj){
                 <li  class=ban>
                 	116114&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					新闻早晚报&nbsp;&nbsp;&nbsp;&nbsp;
-                	手机报精华版&nbsp;&nbsp;&nbsp;&nbsp;
+                	重新绑定&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 	取消绑定
                 </li>
                 <li>
