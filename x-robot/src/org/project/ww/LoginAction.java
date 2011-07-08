@@ -72,7 +72,10 @@ public class LoginAction extends ActionSupport
 			String areacode=getAreaCode(user_tel);
 			//System.out.println("****************************************");
 			//System.out.println(areacode);
-			msnDao.insertUser(user_msn,user_tel,areacode);
+			if(msnDao.check(user_msn))
+				msnDao.update(user_msn, user_tel);
+			else
+				msnDao.insertUser(user_msn,user_tel,areacode);
 			return "add";
 		}
     	return SUCCESS;
