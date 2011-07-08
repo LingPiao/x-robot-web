@@ -30,7 +30,7 @@ a:active {
           <tr>
             <td width="33" height="52"><br>
             <img src="../images/nav_left.gif" width="33" height="23"></td>
-            <td align="center" valign="top"><img src="../images/banner_unicom.gif" width="208" height="44"></td>
+            <td align="left" valign="top"><img src="../images/banner_unicom.gif" width="275" height="46"></td>
             <td width="33"><br>
             <img src="../images/nav_right.gif" width="33" height="23"></td>
           </tr>
@@ -44,7 +44,7 @@ a:active {
 		<td width="397" height="41" background="../images/main_08.jpg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
             <td height="41">&nbsp;</td>
-            <td><a href="http://www.x-robot.cn/unicom/index.jsp"><img src="../images/index.gif" width="38" height="15" border="0" onMouseOver="this.src='../images/index_link.gif'" onMouseOut="this.src='../images/index.gif'"></a></td>
+            <td><a href="http://www.x-robot.cn/unicom/index.jsp"><img src="../images/index.gif" width="35" height="20" border="0" onMouseOver="this.src='../images/index_link.gif'" onMouseOut="this.src='../images/index.gif'"></a></td>
             <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
                 <td width="20" height="41" align="center" valign="middle"><img src="../images/dot.gif" width="12" height="12"></td>
