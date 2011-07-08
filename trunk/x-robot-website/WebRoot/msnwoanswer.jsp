@@ -202,7 +202,7 @@ function over(){
                       </tr>
                       <tr>
                         <td align="right"><ww:if test="state ==\"0\"">
-													<ww:if test="bestflag==\"0\" && userid==q_user">
+													<ww:if test="bestflag==\"0\" && (chanel=='mine' || chanel=='vip')">
 														<a href="woanswer.action?&userid=<ww:property value="['userid']"/>&op=best&q_id=<ww:property value="['q_id']"/>&a_id=<ww:property value="['A_ID']"/>&from=<ww:property value="from"/>">设为最佳答案</a>
 													</ww:if>
 											  </ww:if></td>
