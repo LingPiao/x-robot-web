@@ -35,9 +35,8 @@ public class QuestionRefServlet extends HttpServlet {
 		// QRY_QUESTIONREF
 		// SELECT * FROM T_UNICOM_QUESTION
 		log.info("初始化快速回复缓存...");
-		// List<QuestionRefVo> list = sqlDao.qryBySQLName("QRY_QUESTIONREF",
-		// null, QuestionRefVo.class);
-		List<QuestionRefVo> list = sqlDao.qryBySQLText("SELECT * FROM T_UNICOM_QUESTION where rownum<=100", null, QuestionRefVo.class);
+		List<QuestionRefVo> list = sqlDao.qryBySQLName("QRY_QUESTIONREF", null, QuestionRefVo.class);
+		//List<QuestionRefVo> list = sqlDao.qryBySQLText("SELECT * FROM T_UNICOM_QUESTION where rownum<=100", null, QuestionRefVo.class);
 		QuestionRefCache.getInstance().initCache(list);
 		log.info("快速回复缓存初始化完成.");
 	}
