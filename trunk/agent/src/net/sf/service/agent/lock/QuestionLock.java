@@ -17,7 +17,7 @@ public class QuestionLock {
 
 	// Prevent initiation
 	private QuestionLock() {
-		this.ses.scheduleAtFixedRate(new LockNumen(this), 0, LOCK_CHECK_PERIOD, TimeUnit.MINUTES);
+		this.ses.scheduleWithFixedDelay(new LockNumen(this), 0, LOCK_CHECK_PERIOD, TimeUnit.MINUTES);
 	}
 
 	private static class QuestionLockHolder {

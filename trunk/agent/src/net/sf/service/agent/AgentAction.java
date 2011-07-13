@@ -10,11 +10,14 @@ import net.sf.robot.util.db.TiSqlDao;
 import net.sf.service.agent.lock.QuestionLock;
 import net.sf.service.agent.server.AgentServer;
 import net.sf.service.agent.server.AgentUser;
+import net.sf.service.agent.server.PlatformMessager;
 import net.sf.service.agent.vo.AnswerVo;
 import net.sf.service.agent.vo.QuestionVo;
 import net.sf.service.common.Constants;
 import net.sf.service.common.DBUtils;
 import net.sf.service.common.HttpUtil;
+
+import org.apache.commons.lang.StringUtils;
 
 import com.opensymphony.webwork.ServletActionContext;
 import com.opensymphony.xwork.ActionSupport;
@@ -67,17 +70,6 @@ public class AgentAction extends ActionSupport {
 			}
 		}
 
-		// long totalCount = 1;
-		// QuestionVo q = new QuestionVo();
-		// q.setQ_id(1);
-		// q.setQ_state("1");
-		// q.setQ_user("email");
-		// q.setQ_content("Question 1");
-		// q.setQ_date(new Date());
-		// List<QuestionVo> questionList = new ArrayList<QuestionVo>();
-		// questionList.add(q);
-		// questionList.add(q);
-
 		JSONObject json = new JSONObject();
 		JSONArray questions = JSONArray.fromObject(questionList);
 		json.put("totalCount", totalCount);
@@ -111,7 +103,7 @@ public class AgentAction extends ActionSupport {
 			// UPDATE W_QUESTION SET Q_STATE='1' WHERE Q_ID=?
 			sqlDao.updateBySQLName("UPDATE_QUESTION", new Object[] { q_id });
 			// Send the answer to the platform.
-			// PlatformMessager.sendAnswer(userMsn, decodedAnswer);
+			PlatformMessager.sendAnswer(userMsn, decodedAnswer);
 		}
 
 		QuestionLock.getInstance().removeLock(String.valueOf(qid));
@@ -170,6 +162,82 @@ public class AgentAction extends ActionSupport {
 		HttpUtil.writeHtml(json.toString());
 
 		return NONE;
+	}
+
+	private String searchKey;
+	private String searchUser;
+	private String searchDateRange;
+
+	@SuppressWarnings("unchecked")
+	public String search() throws Exception {
+		String sql = "SELECT * FROM W_QUESTION WHERE Q_DATE ";
+		Object[] paras = null;
+		if (StringUtils.isNotBlank(searchDateRange)) {
+			String[] dt = searchDateRange.split("\\|");
+			sql = sql + "BETWEEN TO_DATE('" + dt[0] + "','YYYY-MM-DD') AND TO_DATE('" + dt[1] + "','YYYY-MM-DD')";
+		} else {
+			sql = sql + ">=SYSDATE-30";
+		}
+
+		if (StringUtils.isNotBlank(searchKey)) {
+			this.searchKey = URLDecoder.decode(searchKey, "UTF-8");
+		}
+
+		if (StringUtils.isNotBlank(searchKey) && StringUtils.isNotBlank(searchUser)) {
+			sql = sql + " AND Q_CONTENT LIKE ? AND Q_USER LIKE ?";
+			paras = new Object[] { allLike(searchKey), allLike(searchUser) };
+		} else if (StringUtils.isNotBlank(searchUser)) {
+			sql = sql + " AND Q_USER LIKE ?";
+			paras = new Object[] { allLike(searchUser) };
+		} else if (StringUtils.isNotBlank(searchKey)) {
+			sql = sql + " AND Q_CONTENT LIKE ?";
+			paras = new Object[] { allLike(searchKey) };
+		}
+
+		long totalCount = 0;
+		Integer startRowNo = start == null ? new Integer(1) : Integer.parseInt(start);
+		Integer endRowNo = limit == null ? new Integer(11) : (startRowNo + Integer.parseInt(limit));
+		if (startRowNo == 0) {
+			endRowNo = endRowNo + 1;
+		}
+
+		totalCount = sqlDao.qryAllCountBySqlText(sql, paras);
+		if (totalCount < 1) {
+			return NONE;
+		}
+		Object[] para4Paging = new Object[paras.length + 2];
+		for (int i = 0; i < paras.length; i++) {
+			para4Paging[i] = paras[i];
+		}
+		para4Paging[paras.length] = startRowNo;
+		para4Paging[paras.length + 1] = endRowNo;
+		List<QuestionVo> questionList = (List<QuestionVo>) sqlDao.qryPageRecordsBySqlText(sql, para4Paging, QuestionVo.class);
+
+		JSONObject json = new JSONObject();
+		JSONArray questions = JSONArray.fromObject(questionList);
+
+		json.put("totalCount", totalCount);
+		json.put("questions", questions);
+
+		HttpUtil.writeHtml(json.toString());
+
+		return NONE;
+	}
+
+	private String allLike(String key) {
+		return "%" + key + "%";
+	}
+
+	public void setSearchDateRange(String searchDateRange) {
+		this.searchDateRange = searchDateRange;
+	}
+
+	public void setSearchKey(String searchKey) {
+		this.searchKey = searchKey;
+	}
+
+	public void setSearchUser(String searchUser) {
+		this.searchUser = searchUser;
 	}
 
 	public void setStart(String start) {

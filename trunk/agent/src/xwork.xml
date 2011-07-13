@@ -3,4 +3,5 @@
 <xwork>
 	<include file="webwork-default.xml" />
 	<include file="xwork_agent.xml" />
+	<include file="xwork_customer.xml" />
 </xwork>

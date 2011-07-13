@@ -4,6 +4,19 @@
 	response.setHeader("Pragma", "No-cache");
 	response.setHeader("Cache-Control", "no-cache");
 	response.setDateHeader("Expires", 0);
+
+	String ckUser = null;
+	String ckPwd = null;
+	Cookie c[] = request.getCookies();
+	for (int i = 0; i < c.length; i++) {
+		if ("userName".equals(c[i].getName()))
+			ckUser = c[i].getValue();
+		if ("password".equals(c[i].getName()))
+			ckPwd = c[i].getValue();
+	}
+	if (ckUser != null && ckPwd != null) {
+		response.sendRedirect("./agentServer?act=login&userName=" + ckUser + "&password=" + ckPwd);
+	}
 %>
 
 <html>
@@ -27,7 +40,7 @@ function login(){
       } 
 	  if(document.fmLogin.password.value.length<1) { 
               alert( "ÇëÊäÈëÃÜÂë! "); 
-			   document.fmLogin.password.focus();
+			  document.fmLogin.password.focus();
               return false; 
       } 
       document.fmLogin.submit(); 
@@ -88,7 +101,8 @@ function login(){
 
 																					</TR>
 																					<TR>
-																						<TD colspan="2"><input type="submit" value="µÇÂ½" /></TD>
+																						<TD colspan="2"><input type="submit" value="µÇÂ½" /> <input id="rememberMe" name="rememberMe"
+																							tabindex="3" type="checkbox" value="1" /><label for="rememberMe">ÏÂ´Î×Ô¶¯µÇÂ¼</label></TD>
 																					</TR>
 																					</form>
 																				</TBODY>
