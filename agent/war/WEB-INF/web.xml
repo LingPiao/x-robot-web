@@ -58,6 +58,12 @@
 	</servlet>
 
 	<servlet>
+		<servlet-name>questionRef</servlet-name>
+		<servlet-class>net.sf.service.agent.QuestionRefServlet</servlet-class>
+		<load-on-startup>5</load-on-startup>
+	</servlet>
+
+	<servlet>
 		<servlet-name>velocity</servlet-name>
 		<servlet-class>com.opensymphony.webwork.views.velocity.WebWorkVelocityServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
@@ -82,6 +88,11 @@
 	<servlet-mapping>
 		<servlet-name>agentServer</servlet-name>
 		<url-pattern>/agent/agentServer</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>questionRef</servlet-name>
+		<url-pattern>/agent/questionRef</url-pattern>
 	</servlet-mapping>
 
 	<session-config>

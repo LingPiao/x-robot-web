@@ -1,0 +1,33 @@
+<!DOCTYPE xwork PUBLIC "-//OpenSymphony Group//XWork 1.0//EN" "http://www.opensymphony.com/xwork/xwork-1.0.dtd">
+
+<xwork>
+	<package name="customer" extends="webwork-default">
+		<interceptors>
+			<interceptor-stack name="WSStack">
+				<interceptor-ref name="model-driven" />
+				<interceptor-ref name="params" />
+			</interceptor-stack>
+		</interceptors>
+		<action name="viewCustomer" class="net.sf.service.customer.CustomerAction" method="viewCustomer">
+			<result name="success" type="dispatcher">
+				<param name="location">/error/error.jsp</param>
+			</result>
+			<interceptor-ref name="WSStack" />
+		</action>
+
+		<action name="addCustomer" class="net.sf.service.customer.CustomerAction" method="addCustomer">
+			<result name="success" type="dispatcher">
+				<param name="location">/error/error.jsp</param>
+			</result>
+			<interceptor-ref name="WSStack" />
+		</action>
+
+		<action name="removeCustomer" class="net.sf.service.customer.CustomerAction" method="removeCustomer">
+			<result name="success" type="dispatcher">
+				<param name="location">/error/error.jsp</param>
+			</result>
+			<interceptor-ref name="WSStack" />
+		</action>
+	</package>
+
+</xwork>

@@ -47,15 +47,37 @@ p {
 	background-image: url(../js/ext/shared/icons/fam/folder_go.png);
 }
 
+.remove {
+	background-image: url(../js/ext/shared/icons/fam/delete.gif) !important;
+}
+
+.add {
+	background-image: url(../js/ext/shared/icons/fam/add.gif) !important;
+}
+
+.save {
+	background-image: url(../js/ext/shared/icons/save.gif) !important;
+}
+
 #appletContainer {
 	visibility: hidden;
 	visibility: true !important;
 }
+
+.x-date-middle {
+	padding-top: 2px;
+	padding-bottom: 2px;
+	width: 130px; /* FF3 */
+}
 </style>
 <script type="text/javascript">
 agentName="<%=agentName%>";
+isSearch = false;
 function notify(){
-	ds.reload();
+	if(!isSearch){
+		ds.reload();
+		document.ringPlayer.play();
+	}
 }
 function updateQuestion(qid,status){
 	ds.getById(qid).set('q_state',status); 
@@ -70,6 +92,7 @@ function htmlConvert(value){
 	}
 	return r;
 }
+
 </script>
 </head>
 <body>
@@ -77,11 +100,18 @@ function htmlConvert(value){
 <script type="text/javascript" src="./questions.js"></script>
 <div id="north">
 <p>用户:<%=agentName%>&nbsp;&nbsp;类型:<%=agentTypeLable%>&nbsp;&nbsp;状态:在线&nbsp;&nbsp; <span id="showAgents"
-	style="cursor: hand">坐席查看</span></p>
+	style="cursor: hand">坐席查看</span> <%
+ 	if (agentType != null && agentType.equals(Constants.VIP_MANAGER)) {
+ %><span id="customerMan" style="cursor: hand">客户管理</span> <%
+ 	}
+ %><input id="ring" name="ring" type="checkbox" value="1" onclick="javascript:document.ringPlayer.play();" /><label for="ring">提示音</label>
+<a href="./agentServer?act=logout">注销</a></p>
 </div>
 <div id="history"></div>
 <div id="response"><textarea id="resContent" name="resContent" rows="6" style="width: 100%; height: 100%"></textarea></div>
 <div id="question-grid" style="width: 200px; height: 200px;"></div>
+<div id="west-north"></div>
+<div id="west-center"></div>
 
 <div id="appletContainer"><object classid="clsid:8AD9C840-044E-11D1-B3E9-00805F499D93" width="0px" height="0px"
 	style="border-width: 0;" id="agent" name="agent"
@@ -101,7 +131,9 @@ function htmlConvert(value){
 	<noembed> 浏览器没不支持JAVA环境 </noembed>
 	</embed> </comment> </object></div>
 
-<script type="text/javascript" src="./agentsWin.js"></script>
 
+<script type="text/javascript" src="./agentsWin.js"></script>
+<script type="text/javascript" src="./customersWin.js"></script>
+<embed id="ringPlayer" name="ringPlayer" src="ring.wav" autostart="false" loop="false" hidden="true" />
 </body>
 </html>

@@ -81,6 +81,7 @@ public class AgentServer extends Thread {
 			server = new ServerSocket(serverPort);
 		} catch (IOException ioe) {
 			log.error("坐席服务创建异常,端口:" + serverPort + ",异常:", ioe);
+			return;
 		}
 		log.info("坐席服务已启动,端口:" + serverPort);
 
