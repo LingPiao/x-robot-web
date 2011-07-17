@@ -68,6 +68,28 @@ public class PlatformMessager implements Runnable {
 		PlatformMessagerHolder.instance.conn = connect2Server();
 	}
 
+	public static void stop() {
+		if (PlatformMessager.getInstance().queue.size() > 0) {
+			log.info("The Platform message queue is not empty, waiting for finish...");
+			while (PlatformMessager.getInstance().queue.size() > 0) {
+				try {
+					Thread.sleep(CHECK_PERIOD);
+				} catch (InterruptedException e) {
+					log.error(e);
+				}
+			}
+			log.info("The Platform message queue is finished.");
+		}
+		PlatformMessager.getInstance().ses.shutdown();
+		if (PlatformMessager.getInstance().conn != null) {
+			try {
+				PlatformMessager.getInstance().conn.close();
+			} catch (IOException e) {
+				log.error(e);
+			}
+		}
+	}
+
 	/**
 	 * Send answer to the platform.
 	 * 

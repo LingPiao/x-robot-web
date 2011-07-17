@@ -1,0 +1,73 @@
+@charset "utf-8";
+
+/* CSS Document */
+body {
+	padding: 0;
+	margin: 0;
+	font-size: 14px;
+	color: #191919;
+	background-color: #ffffff;
+}
+
+.top {
+	width: 100%;
+	height: 70px;
+	background: url(top.jpg) repeat-x left top;
+	margin: auto;
+}
+
+.banner {
+	width: 845px;
+	height: 70px;
+	background: url(banner.jpg) no-repeat;
+	margin: auto;
+}
+
+.login {
+	width: 370px;
+	height: 213px;
+	position: relative;
+	top: 80px;
+	background: url(login_bg2.jpg) no-repeat left top;
+	margin: auto;
+	padding-top: 40px;
+	text-align: center;
+}
+
+.input {
+	border-top: 1px solid #8d8d8d;
+	border-left: 1px solid #8d8d8d;
+	border-right: 1px solid #535353;
+	border-bottom: 1px solid #535353;
+	height: 16px;
+	width: 120px;
+	padding-top: 2px;
+	bacnground-color: #fffff;
+}
+
+ul li {
+	padding-top: 18px;
+	list-style-type: none;
+}
+
+.button {
+	width: 70px;
+	height: 25px;
+	color: #000000;
+	background: url(buttonbg.jpg) no-repeat;
+	border: 0;
+	margin-right: 6px;
+}
+
+.bottom {
+	width: 100%;
+	height: 20px;
+	padding-top: 7px;
+	background: url(bottom.jpg) repeat-x left top;
+	text-align: center;
+	font-size: 12px;
+	color: #515151;
+	position: fixed;
+	bottom: 0;
+	_position: absolute;
+}

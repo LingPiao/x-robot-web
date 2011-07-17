@@ -44,9 +44,12 @@ public class AgentServer extends Thread {
 
 	private ServerSocket server;
 	private Map<Integer, ServerHandler> agentList = null;
+	private boolean running = true;
 
 	// Prevent initiation
-	private AgentServer() {
+	private AgentServer(String name) {
+		super(name);
+		this.setDaemon(true);
 		Properties p = new Properties();
 		try {
 			p.load(Agent.class.getResourceAsStream(Constants.SOCKET_CONFIGURATION));
@@ -69,7 +72,7 @@ public class AgentServer extends Thread {
 	}
 
 	private static class AgentServerHolder {
-		private static final AgentServer instance = new AgentServer();
+		private static final AgentServer instance = new AgentServer("#AgentServer");
 	}
 
 	public static AgentServer getInstance() {
@@ -86,7 +89,7 @@ public class AgentServer extends Thread {
 		log.info("坐席服务已启动,端口:" + serverPort);
 
 		int id = 0;
-		while (true) {
+		while (running) {
 			try {
 				Socket connection = server.accept();
 				connection.setSoTimeout(socketTimeout);
@@ -113,6 +116,21 @@ public class AgentServer extends Thread {
 	public void close(String agentId) {
 		ServerHandler sh = agentList.get(new Integer(agentId));
 		sh.close();
+	}
+
+	public void shutdown() {
+		running = false;
+		if (agentList != null) {
+			for (Integer id : agentList.keySet()) {
+				ServerHandler ah = agentList.get(id);
+				ah.close();
+			}
+		}
+		try {
+			server.close();
+		} catch (IOException e) {
+			log.error(e);
+		}
 	}
 
 	public void sendMessage(String msg) {
