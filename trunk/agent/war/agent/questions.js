@@ -1,6 +1,12 @@
 var gridId = "question-grid";
 var gridContainer = Ext.get(gridId);
 var ds;
+
+var userDateKey = "[[USER_DATE]]";
+var contentKey = "[[CONTENT]]";
+var robotAnswerTmp = '<table><tr><td width=100% align=center colspan=3><table width=100% cellspacing=0 cellpadding=0 border=0><tr><td width=1% align=left class=top><img width=8 height=19 src=../images/agent/chat_corner.jpg></td><td width=16% class=top></td><td width=52% align=left class=top><img width=60 height=19 src=../images/agent/a1.jpg></td><td width=31% align=right class=top><img width=8 height=19 src=../images/agent/chat_corner2.jpg></td></tr></table><table width=100% cellspacing=0 cellpadding=0 border=0><tr><td class=lr_border>&nbsp;</td><td align=left><table width=100% cellspacing=0 cellpadding=0 border=0><tr><td valign=top class=chat1_color><table width=100% cellspacing=0 cellpadding=0 border=0><tr><td class=chat1_bg><table width=100% cellspacing=1 cellpadding=1 border=0><tr><td width=3% align=left><img width=28 height=27 src=../images/agent/chat_pic1.jpg></td><td width=97% class=greycolor>&nbsp;&nbsp;[[USER_DATE]]</td></tr><tr><td class=blackcolor colspan=2>[[CONTENT]]</td></tr></table></td></tr></table></td></tr></table></td><td class=rr_border>&nbsp;</td></tr></table><table width=100% cellspacing=0 cellpadding=0 border=0><tr><td width=10 valign=top align=left class=bottom><img width=8 height=15 src=../images/agent/chat_corner3.jpg></td><td width=1196 height=5 class=bottom>&nbsp;</td><td width=13 valign=top align=right class=bottom><img width=8 height=15 src=../images/agent/chat_corner4.jpg></td></tr></table></td></tr></table>';
+var userAnswerTmp = '<table><tr><td width=100% align=center colspan=3><table width=100% cellspacing=0 cellpadding=0 border=0><tr><td width=1% align=left class=top_11><img width=8 height=19 src=../images/agent/chat_corner_2.jpg></td><td width=16% class=top_11></td><td width=52% align=right class=top_11><img width=60 height=19 src=../images/agent/a1_1.jpg></td><td width=31% align=right class=top_11><img width=8 height=19 src=../images/agent/chat_corner2_1.jpg></td></tr></table><table width=100% cellspacing=0 cellpadding=0 border=0><tr><td class=lr_border_11>&nbsp;</td><td align=left><table width=100% cellspacing=0 cellpadding=0 border=0><tr><td valign=top class=chat2_color><table width=100% cellspacing=0 cellpadding=0 border=0><tr><td class=chat2_bg><table width=100% cellspacing=1 cellpadding=1 border=0><tr><td width=3% align=left><img width=28 height=27 src=../images/agent/chat_pic2.jpg></td><td width=97% class=greycolor>&nbsp;&nbsp;[[USER_DATE]]</td></tr><tr><td class=blackcolor colspan=2>[[CONTENT]]</td></tr></table></td></tr></table></td></tr></table></td><td class=rr_border_11>&nbsp;</td></tr></table><table width=100% cellspacing=0 cellpadding=0 border=0><tr><td width=10 valign=top align=left class=bottom_11><img width=8 height=15 src=../images/agent/chat_corner3_1.jpg></td><td width=1196 height=5 class=bottom_11>&nbsp;</td><td width=13 valign=top align=right class=bottom_11><img width=8 height=15 src=../images/agent/chat_corner4_1.jpg></td></tr></table></td></tr></table>';
+
 Ext.onReady( function() {
 	Ext.state.Manager.setProvider(new Ext.state.CookieProvider());
 	var cm = new Ext.grid.ColumnModel( [ new Ext.grid.RowNumberer(), {
@@ -13,7 +19,11 @@ Ext.onReady( function() {
 		width : 150
 	}, {
 		header : '提问人',
-		dataIndex : 'q_user'
+		dataIndex : 'q_user',
+		renderer : function(value, cellMeta, record, rowIndex, columnIndex, store) {
+			var tel = record.data['user_tel'];
+			return tel ? tel : value;
+		}
 	}, {
 		header : '日期',
 		dataIndex : 'q_date',
@@ -71,6 +81,8 @@ Ext.onReady( function() {
 			dateFormat : 'time'
 		}, {
 			name : 'q_state'
+		}, {
+			name : 'user_tel'
 		} ])
 	});
 
@@ -250,8 +262,9 @@ Ext.onReady( function() {
 		var r = grid.getSelectionModel().getSelected();
 		his.dom.innerHTML = "";
 		if (day == 0) {
-			his.dom.innerHTML = r.data.q_user + "&nbsp;&nbsp;" + r.data.q_date.format('Y-m-d H:i:s')
-					+ "<br>&nbsp;&nbsp;" + htmlConvert(r.data.q_content) + "<br>";
+			var ud = r.data.q_user + "&nbsp;&nbsp;" + r.data.q_date.format('Y-m-d H:i:s');
+			his.dom.innerHTML = userAnswerTmp.replace(userDateKey, ud).replace(contentKey,
+					htmlConvert(r.data.q_content));
 		}
 		var qid = r.data.q_id;
 		Ext.Ajax.request( {
@@ -267,10 +280,17 @@ Ext.onReady( function() {
 				if (jsonData.answers) {
 					var astr = "";
 					for (i = 0; i < jsonData.answers.length; i++) {
-						astr = astr + jsonData.answers[i].a_user + "&nbsp;&nbsp;"
-								+ new Date(jsonData.answers[i].a_date.time).format('Y-m-d H:i:s') + "<br>&nbsp;&nbsp;"
-								+ htmlConvert(jsonData.answers[i].a_content) + "<br>";
-
+						var ud = jsonData.answers[i].a_user + "&nbsp;&nbsp;"
+								+ new Date(jsonData.answers[i].a_date.time).format('Y-m-d H:i:s');
+						if (jsonData.answers[i].a_user == "www.10010.com@live.cn") {
+							astr = astr
+									+ robotAnswerTmp.replace(userDateKey, ud).replace(contentKey,
+											htmlConvert(jsonData.answers[i].a_content));
+						} else {
+							astr = astr
+									+ userAnswerTmp.replace(userDateKey, ud).replace(contentKey,
+											htmlConvert(jsonData.answers[i].a_content));
+						}
 					}
 					his.dom.innerHTML = his.dom.innerHTML + astr;
 				}
@@ -362,9 +382,9 @@ Ext.onReady( function() {
 		var his = Ext.get("history");
 		submitAnswer(a);
 		answerCont.dom.value = "";
-		his.dom.innerHTML = his.dom.innerHTML + "<font color='blue'><br>" + agentName + "&nbsp;&nbsp;"
-				+ new Date().format('Y-m-d H:i:s') + "&nbsp;&nbsp;回复:<br>&nbsp;&nbsp;" + htmlConvert(a) + "</font>";
-
+		var ud = agentName + " " + new Date().format('Y-m-d H:i:s');
+		his.dom.innerHTML = his.dom.innerHTML
+				+ userAnswerTmp.replace(userDateKey, ud).replace(contentKey, htmlConvert(a));
 	}
 
 	var dayInt = 3;
@@ -442,7 +462,7 @@ Ext.onReady( function() {
 			if (v != qaSf.dom.value.trim() && Ext.util.Format.trim(qaSf.dom.value).length > 0) {
 				v = qaSf.dom.value.trim();
 				clearTimeout(qaTimeout);
-				qaTimeout = setTimeout(requestQa, 300);
+				qaTimeout = setTimeout(requestQa, questionRefReqDelay);
 			}
 		}, c);
 	};
@@ -452,7 +472,7 @@ Ext.onReady( function() {
 		items : [ new Ext.BoxComponent( { // raw
 					region : 'north',
 					el : 'north',
-					height : 32
+					height : 68
 				}), {
 			region : 'center',
 			layout : 'border',

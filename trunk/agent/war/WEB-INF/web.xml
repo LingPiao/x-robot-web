@@ -62,6 +62,11 @@
 		<servlet-class>net.sf.service.agent.QuestionRefServlet</servlet-class>
 		<load-on-startup>5</load-on-startup>
 	</servlet>
+	<servlet>
+		<servlet-name>cleaner</servlet-name>
+		<servlet-class>net.sf.service.common.CleanerServlet</servlet-class>
+		<load-on-startup>6</load-on-startup>
+	</servlet>
 
 	<servlet>
 		<servlet-name>velocity</servlet-name>

@@ -19,8 +19,11 @@
 <html>
 <title>联通贝贝坐席</title>
 <head>
+<script type="text/javascript" src="../js/cookie.js"></script>
 <!-- >> EXT LIBS -->
 <link rel="stylesheet" type="text/css" href="../js/ext/resources/css/ext-all.css" />
+<link rel="stylesheet" type="text/css" href="../images/agent/help.css" />
+
 <script type="text/javascript" src="../js/ext/adapter/ext/ext-base.js"></script>
 <script type="text/javascript" src="../js/ext/ext-core.js"></script>
 <script type="text/javascript" src="../js/ext/ext-all.js"></script>
@@ -72,11 +75,14 @@ p {
 </style>
 <script type="text/javascript">
 agentName="<%=agentName%>";
+questionRefReqDelay="<%=Constants.QUESTIONREF_REQUEST_DELAY%>";
 isSearch = false;
 function notify(){
 	if(!isSearch){
 		ds.reload();
-		document.ringPlayer.play();
+		if(document.getElementById("ring").value=="1"){
+			document.ringPlayer.play();
+		}
 	}
 }
 function updateQuestion(qid,status){
@@ -93,20 +99,47 @@ function htmlConvert(value){
 	return r;
 }
 
+function setRing() {
+	var r = document.getElementById("ring");
+	var rf = document.getElementById("ring-flag");
+	if (r.value == "0") {
+		r.value = "1";
+		var d = new Date();
+		rf.src = "../images/agent/ring.png";
+		d.setDate(d.getDate() + 365);
+		Cookies.set("ring", r.value, d);
+	} else {
+		r.value = "0";
+		var d = new Date();
+		rf.src = "../images/agent/ring-disabled.png";
+		d.setDate(d.getDate() - 10);
+		Cookies.set("ring", "", d);
+	}
+}
+
 </script>
 </head>
 <body>
 
 <script type="text/javascript" src="./questions.js"></script>
-<div id="north">
-<p>用户:<%=agentName%>&nbsp;&nbsp;类型:<%=agentTypeLable%>&nbsp;&nbsp;状态:在线&nbsp;&nbsp; <span id="showAgents"
-	style="cursor: hand">坐席查看</span> <%
+<div id="north" style="background: url(../images/login/banner.jpg) no-repeat">
+<div style="float: right; margin-top: 25px">
+<p>欢迎:<%=agentName%>&nbsp;[<%=agentTypeLable%>]&nbsp;&nbsp;<img src="../images/agent/online.png" alt="在线" title="在线" /> <span
+	id="showAgents" style="cursor: hand"><img src="../images/agent/view_agents.png" alt="坐席查看" title="坐席查看" /></span> <%
  	if (agentType != null && agentType.equals(Constants.VIP_MANAGER)) {
- %><span id="customerMan" style="cursor: hand">客户管理</span> <%
+ %><span id="customerMan" style="cursor: hand"><img src="../images/agent/user_mng.png" alt="用户管理" title="用户管理" /></span> <%
  	}
- %><input id="ring" name="ring" type="checkbox" value="1" onclick="javascript:document.ringPlayer.play();" /><label for="ring">提示音</label>
-<a href="./agentServer?act=logout">注销</a></p>
+ %><input id="ring" name="ring" type="hidden" value="1" /><span style="cursor: hand" onclick="setRing()"><img
+	id="ring-flag" src="../images/agent/ring.png" alt="声音提示" title="声音提示" /></span> <a href="./agentServer?act=logout"><img
+	src="../images/agent/logout.png" alt="注销" title="注销" /></a></p>
 </div>
+<script type="text/javascript">
+if(Cookies.get("ring")!="1"){
+	document.getElementById("ring").value="0";
+	var rf = document.getElementById("ring-flag");
+	rf.src = "../images/agent/ring-disabled.png";
+}
+</script></div>
 <div id="history"></div>
 <div id="response"><textarea id="resContent" name="resContent" rows="6" style="width: 100%; height: 100%"></textarea></div>
 <div id="question-grid" style="width: 200px; height: 200px;"></div>

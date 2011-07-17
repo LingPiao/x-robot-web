@@ -9,11 +9,11 @@ Ext.onReady( function() {
 		var agentsCm = new Ext.grid.ColumnModel( [ new Ext.grid.RowNumberer(), {
 			header : '坐席',
 			dataIndex : 'agentName',
-			width : 150
+			width : 100
 		}, {
 			header : '类型',
 			dataIndex : 'agentType',
-			width : 60,
+			width : 80,
 			renderer : function(value) {
 				if (value == 1) {
 					return "客户经理";
@@ -22,6 +22,7 @@ Ext.onReady( function() {
 				}
 			}
 		}, {
+			width : 60,
 			header : '状态',
 			dataIndex : 'agentName',
 			renderer : function(value) {
@@ -54,7 +55,7 @@ Ext.onReady( function() {
 		win = new Ext.Window( {
 			title : '在线坐席列表',
 			closable : true,
-			width : 320,
+			width : 260,
 			height : 200,
 			plain : true,
 			layout : 'border',

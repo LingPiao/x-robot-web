@@ -25,6 +25,7 @@ public class ServerHandler extends Thread {
 		this.agentId = connId;
 		this.in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 		this.out = new PrintWriter(new OutputStreamWriter(conn.getOutputStream()));
+		this.setDaemon(true);
 	}
 
 	public void run() {

@@ -10,6 +10,7 @@ public class QuestionVo {
 	private Timestamp q_date;
 	private String q_state;
 	private String q_validity;
+	private String user_tel;
 
 	public long getQ_id() {
 		return q_id;
@@ -57,6 +58,14 @@ public class QuestionVo {
 
 	public void setQ_date(Timestamp q_date) {
 		this.q_date = q_date;
+	}
+
+	public String getUser_tel() {
+		return user_tel;
+	}
+
+	public void setUser_tel(String user_tel) {
+		this.user_tel = user_tel;
 	}
 
 }

@@ -24,6 +24,12 @@ public class QuestionLock {
 		private static final QuestionLock instance = new QuestionLock();
 	}
 
+	public static void stop() {
+		if (QuestionLock.getInstance().ses != null) {
+			QuestionLock.getInstance().ses.shutdown();
+		}
+	}
+
 	public static QuestionLock getInstance() {
 		return QuestionLockHolder.instance;
 	}
