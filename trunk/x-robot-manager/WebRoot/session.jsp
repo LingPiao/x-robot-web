@@ -5,7 +5,7 @@ String username = (String) session.getAttribute("username");
 String userrole = (String) session.getAttribute("userrole");
 String userpwd = (String) session.getAttribute("userpwd");
 if ((username==null)||(username.equals("")) || userrole == null || userrole.equals("")){
-	String url= request.getContextPath()+"/admanager/index.jsp";
+	String url= request.getContextPath()+"/index.jsp";
 
 %>
 <script>
