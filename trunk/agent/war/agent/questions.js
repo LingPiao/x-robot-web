@@ -89,15 +89,18 @@ Ext.onReady( function() {
 	function doSearch() {
 		var sk = Ext.get('search-key');
 		var su = Ext.get('search-user');
-		if (Ext.util.Format.trim(sk.dom.value).length < 1 && Ext.util.Format.trim(su.dom.value).length < 1) {
-			alert("请输入查询内容.");
-			sk.focus();
-			return false;
-		}
+
 		var db = Ext.get('dateBegin');
 		var de = Ext.get('dateEnd');
 		if ((!db.getValue() && de.getValue()) || (db.getValue() && !de.getValue())) {
 			alert("日期范围应包括开始的结束时间.");
+			return false;
+		}
+
+		if (Ext.util.Format.trim(sk.dom.value).length < 1 && Ext.util.Format.trim(su.dom.value).length < 1
+				&& Ext.util.Format.trim(db.dom.value).length < 1 && Ext.util.Format.trim(de.dom.value).length < 1) {
+			alert("请输入查询内容.");
+			sk.focus();
 			return false;
 		}
 
@@ -282,7 +285,7 @@ Ext.onReady( function() {
 					for (i = 0; i < jsonData.answers.length; i++) {
 						var ud = jsonData.answers[i].a_user + "&nbsp;&nbsp;"
 								+ new Date(jsonData.answers[i].a_date.time).format('Y-m-d H:i:s');
-						if (jsonData.answers[i].a_user == "www.10010.com@live.cn") {
+						if (jsonData.answers[i].a_responser == "ROBOT") {
 							astr = astr
 									+ robotAnswerTmp.replace(userDateKey, ud).replace(contentKey,
 											htmlConvert(jsonData.answers[i].a_content));
@@ -396,7 +399,7 @@ Ext.onReady( function() {
 	}, {
 		header : '问题',
 		dataIndex : 'question',
-		width : 150
+		width : 180
 	} ]);
 
 	var qaDs = new Ext.data.Store( {

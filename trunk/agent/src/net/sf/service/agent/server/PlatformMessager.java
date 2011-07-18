@@ -139,8 +139,11 @@ public class PlatformMessager implements Runnable {
 			}
 		}
 		// 内容: <msnacc>用户帐号</msnacc><msg>回复内容<msg>
-		out.write("<msnacc>" + userMsn + "</msnacc><msg>" + answer + "</msg>");
+		String msg = "<msnacc>" + userMsn + "</msnacc><msg>" + answer + "</msg>";
+		out.write(msg);
 		out.flush();
+		log.info("通知平台信息内容:" + msg);
+
 		return true;
 	}
 

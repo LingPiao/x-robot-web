@@ -45,6 +45,9 @@ public class QuestionRefCache {
 	}
 
 	private boolean contains(String str, String[] keysWords) {
+		if (StringUtils.isBlank(str) || keysWords == null) {
+			return false;
+		}
 		boolean r = true;
 		for (String k : keysWords) {
 			r = r && str.toUpperCase().contains(k.toUpperCase());
