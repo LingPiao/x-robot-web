@@ -13,9 +13,9 @@ public class VipCustomerImpl implements VipCustomerDao {
 
 	public List getCustomerMobileByManagerMobile(String mobile)
 	{
-		String sql = "SELECT * FROM T_VIP_CUSTOMER "
-			+ " WHERE M_MOBILE =?";
-		return sqlDao.qryBySQLText(sql,new Object[] { mobile });
+		String sql = "SELECT * FROM T_VIP_CUSTOMER tc,t_vip_manager tm WHERE tm.M_MOBILE='"+mobile+"' and tm.seqid=tc.m_mobile";
+		System.out.println(sql);
+		return sqlDao.qryBySQLText(sql);
 	}
 	public SqlDao getSqlDao() {
 		return sqlDao;

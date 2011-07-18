@@ -24,18 +24,20 @@ public class Msn_certificationImpl implements Msn_certificationDao {
 		String sql = "SELECT USER_TEL FROM msn_certification "
 			+ " WHERE USER_MSN =?";
 		List listtempList= sqlDao.qryBySQLText(sql,new Object[] { user_msn });
+		System.out.println("PPPPPPP");
 		if(listtempList.size()>0)
 		{
+			System.out.println("QQQQQQ");
 			Map map = (Map)listtempList.get(0);
 			if(map.get("USER_TEL")==null)
 				return "";
 			else
 				return map.get("USER_TEL").toString();
 		}
-		else {
+		else 
+		{
 			return "";
 		}
-
 	}
 	public void BindMobile(String userid,String mobile)
 	{

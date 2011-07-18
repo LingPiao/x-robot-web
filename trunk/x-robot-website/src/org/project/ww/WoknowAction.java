@@ -67,8 +67,11 @@ public class WoknowAction extends ActionSupport {
 		System.out.println(from);
 		if(userid==null || userid.equals(""))
 			userid=userId;
+		System.out.println("11111");
 		nickname=tuserDao.getNicknameByUserid(userid);
+		System.out.println("22222");
 		usermobile=msnDao.getMobileByUserMsn(userid);
+		System.out.println("33333");
 		if (!usermobile.equals("")) 
 		{
 			if(vipmanagerDao.isExistMobile(usermobile))
@@ -80,8 +83,10 @@ public class WoknowAction extends ActionSupport {
 		{
 			vip="0";
 		}
+		System.out.println("444444");
 		if(chanel == null)
 			chanel="other";
+		System.out.println("555555");
 		if(usermobile.length()==11)
 		{
 			user_mobile=usermobile.substring(0,3)+"****"+usermobile.substring(7, 11);
@@ -89,6 +94,7 @@ public class WoknowAction extends ActionSupport {
 		else {
 			user_mobile=usermobile;
 		}
+		System.out.println("666666");
 		if(from.equals("mobile"))
 			pageRows = 15;
 		if(from.equals("web"))
