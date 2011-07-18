@@ -151,7 +151,7 @@ public class AgentAction extends ActionSupport {
 		}
 		List<AnswerVo> answersList = null;
 		if (days != null && days > 0) {
-			answersList = (List<AnswerVo>) sqlDao.qryBySQLName("QRY_CHATLOG", new Object[] { qid, qid, days, qid }, AnswerVo.class);
+			answersList = (List<AnswerVo>) sqlDao.qryBySQLName("QRY_CHATLOG", new Object[] { qid, days, qid, days, qid }, AnswerVo.class);
 		} else {
 			answersList = (List<AnswerVo>) sqlDao.qryBySQLName("QRY_ANSWERS", new Object[] { qid }, AnswerVo.class);
 		}
@@ -205,12 +205,13 @@ public class AgentAction extends ActionSupport {
 		if (totalCount < 1) {
 			return NONE;
 		}
-		Object[] para4Paging = new Object[paras.length + 2];
-		for (int i = 0; i < paras.length; i++) {
+		int c = paras == null ? 0 : paras.length;
+		Object[] para4Paging = new Object[c + 2];
+		for (int i = 0; i < c; i++) {
 			para4Paging[i] = paras[i];
 		}
-		para4Paging[paras.length] = startRowNo;
-		para4Paging[paras.length + 1] = endRowNo;
+		para4Paging[c] = startRowNo;
+		para4Paging[c + 1] = endRowNo;
 		List<QuestionVo> questionList = (List<QuestionVo>) sqlDao.qryPageRecordsBySqlText(sql, para4Paging, QuestionVo.class);
 
 		JSONObject json = new JSONObject();

@@ -8,7 +8,7 @@
 	String ckUser = null;
 	String ckPwd = null;
 	Cookie c[] = request.getCookies();
-	for (int i = 0; i < c.length; i++) {
+	for (int i = 0; c != null && i < c.length; i++) {
 		if ("userName".equals(c[i].getName()))
 			ckUser = c[i].getValue();
 		if ("password".equals(c[i].getName()))
@@ -53,8 +53,8 @@ function login(){
 <ul>
 	<li>用 户：<input tabindex="1" type="text" name="userName" class="input" /></li>
 	<li>密 码：<input tabindex="2" type="password" name="password" class="input" /></li>
-	<li><input id="rememberMe" name="rememberMe" tabindex="3"
-		type="checkbox" value="1" /><label for="rememberMe">下次自动登录</label> <input type="submit" value="登录" class="button" /></li>
+	<li><input id="rememberMe" name="rememberMe" tabindex="3" type="checkbox" value="1" /><label for="rememberMe">下次自动登录</label>
+	<input type="submit" value="登录" class="button" /></li>
 </ul>
 </form>
 </div>

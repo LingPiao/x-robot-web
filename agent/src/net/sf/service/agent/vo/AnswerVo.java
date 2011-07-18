@@ -8,6 +8,7 @@ public class AnswerVo {
 	private String a_user;
 	private String a_content;
 	private Timestamp a_date;
+	private String a_responser;
 
 	public long getA_id() {
 		return a_id;
@@ -47,6 +48,14 @@ public class AnswerVo {
 
 	public void setA_date(Timestamp a_date) {
 		this.a_date = a_date;
+	}
+
+	public String getA_responser() {
+		return a_responser;
+	}
+
+	public void setA_responser(String a_responser) {
+		this.a_responser = a_responser;
 	}
 
 }
