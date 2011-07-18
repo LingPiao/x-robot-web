@@ -11,7 +11,7 @@
 <link rel="stylesheet" type="text/css" href="css/css.css">
 <link rel="stylesheet" type="text/css" href="css/business.css">
 </head>
-<script type="text/javascript" src="js/clock.js"></script>
+<script type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
 <script>
 function qry()
 {
@@ -29,8 +29,8 @@ function qry()
 		alert("开始时间与结束时间相差不能超过30天！")
 		return false;
 	}
-	theFrom.action="robot_log.jsp?action=qry";
-	theFrom.submit();
+	document.forms["theFrom"].action="robot_log.jsp?action=qry";
+	document.forms["theFrom"].submit()
 }
 </script>	
 	<body>
@@ -69,6 +69,7 @@ function qry()
 		 		if(usercode!=null && !usercode.equals(""))
 		 			con=con +" and tl.contactemail like '%"+usercode+"%' ";
 		 		sql=sql + con +" order by tl.createdate desc";
+		 		
 		 		query.setRecordSet(sql);
 		 		System.out.println(sql);
 		 	}
@@ -113,11 +114,11 @@ function qry()
 																cellspacing="1" bgcolor="#666666">
 																<form name="theFrom" action="#" method="post">
 																<tr>
-																	<td colspan=4 align="left" valign="middle" bgcolor="#FFFFFF"
+																	<td colspan=5 align="left" valign="middle" bgcolor="#FFFFFF"
 																		class="zl_huitxt" width=10%>
-																		起始日期：<input type="text" runat="server" onclick="fPopCalendar(BIRTH1,BIRTH1); return false"  id="BIRTH1" class="input-text" style="width:150px;" name="BIRTH1" value="<%=data1%>" />
+																		起始日期：<input type="text" onClick="WdatePicker()"   id="BIRTH1" class="input-text" style="width:150px;" name="BIRTH1" value="<%=data1%>" />
 																		
-																		截止日期：<input type="text" runat="server" onclick="fPopCalendar(BIRTH2,BIRTH2); return false"  id="BIRTH2" class="input-text" style="width:150px;" name="BIRTH2" value="<%=data2%>" />
+																		截止日期：<input type="text" onClick="WdatePicker()"   id="BIRTH2" class="input-text" style="width:150px;" name="BIRTH2" value="<%=data2%>" />
 																	
 																		用户帐号：<input type="text" id="usercode" class="input-text" style="width:150px;" name="usercode" />
 																		<input type="button" name="button" class="button" value="查询" onclick="return qry()"/>
@@ -147,7 +148,7 @@ function qry()
 																		用户帐号
 																	</td>
 																	<td  align="center" valign="middle" bgcolor="#FFFFFF"
-																		class="zl_huitxt" width=35%>
+																		class="zl_huitxt" width=30%>
 																		用户说
 																	</td>
 																	<td  align="center" valign="middle" bgcolor="#FFFFFF"
@@ -155,8 +156,12 @@ function qry()
 																		机器人帐号
 																	</td>
 																	<td  align="center" valign="middle" bgcolor="#FFFFFF"
-																		class="zl_huitxt" width=35%>
+																		class="zl_huitxt" width=30%>
 																		机器人回复
+																	</td>
+																	<td  align="center" valign="middle" bgcolor="#FFFFFF"
+																		class="zl_huitxt" width=10%>
+																		时间
 																	</td>
 																	
 																</tr>
@@ -192,7 +197,10 @@ function qry()
 																		class="zl_huitxt" width=35%>
 																		<%=rs3.getString("response") %>
 																	</td>
-																	
+																	<td  align="center" valign="middle" bgcolor="#FFFFFF"
+																		class="zl_huitxt" width=35%>
+																		<%=rs3.getString("createdate") %>
+																	</td>
 																</tr>
 																<%
 																			}

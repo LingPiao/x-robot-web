@@ -47,7 +47,7 @@ function setuset()
 			window.location.href = "service_mind.jsp";
 		}
 	</script>
-	<script type="text/javascript" src="clock.js"></script>
+<script type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
 		<link href="css/css1.css" rel="stylesheet" type="text/css">
 	<body>
 		<table width="100%" height="100%" border="0" cellpadding="0"
@@ -95,7 +95,7 @@ function setuset()
 																	开始时间：
 																</td>
 																<td bgcolor="#FFFFFF" class="zl_huitxt"  align="left">
-																	<input type="text" readonly onclick="fPopCalendar(begin,begin); return false"  id="begin" class="input-text" style="width:100px;" name="begin" value="" />
+																	<input type="text" readonly onClick="WdatePicker()"  id="begin" class="input-text" style="width:100px;" name="begin" value="" />
 																	<select name="Hours" class="search" style="width:40">
 														      <% 
 														      		int i=0;

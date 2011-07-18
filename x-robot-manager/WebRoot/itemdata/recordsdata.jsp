@@ -13,7 +13,7 @@
 <link rel="stylesheet" type="text/css" href="../css/business.css">
 
 	</head>
-<script type="text/javascript" src="../../js/clock.js"></script>
+<script type="text/javascript" src="../My97DatePicker/WdatePicker.js"></script>
 	
 	<body>
 	 
@@ -100,10 +100,10 @@ int sum5=0;
 																<tr>
 																	<td colspan=<%=num+2 %> align="left" valign="middle" bgcolor="#FFFFFF"
 																		class="zl_huitxt" width=10%>
-																		起始日期：<input type="text" runat="server" onclick="fPopCalendar(BIRTH1,BIRTH1); return false"  id="BIRTH1" class="input-text" style="width:150px;" name="BIRTH1" value="<%=data1%>" />
+																		起始日期：<input type="text" runat="server" onClick="WdatePicker()"  id="BIRTH1" class="input-text" style="width:150px;" name="BIRTH1" value="<%=data1%>" />
 																	
 																		
-																		截止日期：<input type="text" runat="server" onclick="fPopCalendar(BIRTH2,BIRTH2); return false"  id="BIRTH2" class="input-text" style="width:150px;" name="BIRTH2" value="<%=data2%>" />
+																		截止日期：<input type="text" runat="server" onClick="WdatePicker()"  id="BIRTH2" class="input-text" style="width:150px;" name="BIRTH2" value="<%=data2%>" />
 																	
 																		
 																		<input type="submit" name="button" class="button" value="查询"/>
