@@ -1,8 +1,11 @@
 package net.sf.service.agent.server;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Properties;
 import java.util.concurrent.BlockingQueue;
@@ -140,7 +143,7 @@ public class PlatformMessager implements Runnable {
 		}
 		// 内容: <msnacc>用户帐号</msnacc><msg>回复内容<msg>
 		String msg = "<msnacc>" + userMsn + "</msnacc><msg>" + answer + "</msg>";
-		out.write(msg);
+		out.println(msg);
 		out.flush();
 		log.info("通知平台信息内容:" + msg);
 
@@ -163,6 +166,22 @@ public class PlatformMessager implements Runnable {
 	}
 
 	public static void main(String[] args) throws InterruptedException {
+		new Thread() {
+			public void run() {
+				int serverPort = 45678;
+				try {
+					ServerSocket server = new ServerSocket(serverPort);
+					System.out.println("Socket server started at port:" + serverPort);
+					Socket connection = server.accept();
+					while (true) {
+						BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+						System.out.println("Received: " + in.readLine());
+					}
+				} catch (Exception ioe) {
+					ioe.printStackTrace();
+				}
+			}
+		}.start();
 
 		boolean r = PlatformMessager.sendAnswer("us@11.com", "aa");
 		PlatformMessager.sendAnswer("us@11.com", "aa1");
@@ -171,7 +190,6 @@ public class PlatformMessager implements Runnable {
 		PlatformMessager.sendAnswer("us@11.com", "aa");
 
 	}
-
 }
 
 class Message {
