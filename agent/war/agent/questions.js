@@ -56,8 +56,10 @@ Ext.onReady( function() {
 			params.searchUser = Ext.get('search-user').dom.value;
 			var db = Ext.get('dateBegin');
 			var de = Ext.get('dateEnd');
-			if (db.getValue() && de.getValue()) {
-				params.searchDateRange = db.getValue() + "|" + de.getValue();
+			if (db.getValue() || de.getValue()) {
+				var b = db.getValue() ? db.getValue() : " ";
+				var e = de.getValue() ? de.getValue() : " ";
+				params.searchDateRange = b + "|" + e;
 			}
 		}
 	});
@@ -92,21 +94,22 @@ Ext.onReady( function() {
 
 		var db = Ext.get('dateBegin');
 		var de = Ext.get('dateEnd');
-		if ((!db.getValue() && de.getValue()) || (db.getValue() && !de.getValue())) {
-			alert("日期范围应包括开始的结束时间.");
-			return false;
-		}
 
 		if (Ext.util.Format.trim(sk.dom.value).length < 1 && Ext.util.Format.trim(su.dom.value).length < 1
-				&& Ext.util.Format.trim(db.dom.value).length < 1 && Ext.util.Format.trim(de.dom.value).length < 1) {
-			alert("请输入查询内容.");
+				&& Ext.util.Format.trim(db.dom.value).length < 1 && Ext.util.Format.trim(de.dom.value).length < 1
+				&& !db.getValue() && !de.getValue()) {
+			alert("请输入查询条件.");
 			sk.focus();
 			return false;
 		}
 
 		isSearch = true;
 		ds.proxy.conn.url = './search.action';
-		ds.reload();
+		ds.reload( {
+			params : {
+				start : 0
+			}
+		});
 	}
 
 	function cleanSearch() {
@@ -116,7 +119,11 @@ Ext.onReady( function() {
 		Ext.get('dateBegin').dom.value = "";
 		Ext.get('dateEnd').dom.value = "";
 		ds.proxy.conn.url = './agent.action';
-		ds.reload();
+		ds.reload( {
+			params : {
+				start : 0
+			}
+		});
 	}
 
 	var searchPanel = new Ext.FormPanel( {
@@ -215,6 +222,9 @@ Ext.onReady( function() {
 		ds : ds,
 		cm : cm,
 		loadMask : true,
+		viewConfig : {
+			forceFit : true
+		},
 		listeners : {
 			'rowdblclick' : showHistory
 		},
@@ -415,10 +425,11 @@ Ext.onReady( function() {
 			name : 'question'
 		} ])
 	});
-
+	var answerRef = "";
 	var showQuestionRef = function() {
 		var r = qaGrid.getSelectionModel().getSelected();
 		if (r) {
+			answerRef = "";
 			Ext.Ajax.request( {
 				url : './questionRef?act=view',
 				params : {
@@ -428,7 +439,8 @@ Ext.onReady( function() {
 				success : function(result, request) {
 					var qr = Ext.util.JSON.decode(result.responseText);
 					var v = Ext.get("west-center");
-					v.dom.innerHTML = "<div style='padding:3px'>" + qr.questions[0].ANSWER + "</div>";
+					answerRef = qr.questions[0].ANSWER;
+					v.dom.innerHTML = "<div style='padding:3px'>" + answerRef + "</div>";
 				},
 				failure : function(result, request) {
 				}
@@ -441,6 +453,9 @@ Ext.onReady( function() {
 		border : false,
 		ds : qaDs,
 		cm : qaCm,
+		viewConfig : {
+			forceFit : true
+		},
 		selModel : new Ext.grid.RowSelectionModel( {
 			singleSelect : true
 		}),
@@ -524,6 +539,13 @@ Ext.onReady( function() {
 				title : '回复内容',
 				margins : '0 0 3 1',
 				bbar : [ '->', {
+					pressed : true,
+					text : '清除',
+					handler : function() {
+						var answerCont = Ext.get("resContent");
+						answerCont.dom.value = "";
+					}
+				}, '-', {
 					id : 'btnAnswer',
 					pressed : true,
 					disabled : true,
@@ -567,7 +589,15 @@ Ext.onReady( function() {
 			}, {
 				title : '内容',
 				region : 'center',
-				contentEl : 'west-center'
+				contentEl : 'west-center',
+				bbar : [ '->', {
+					pressed : true,
+					text : '快速粘贴',
+					handler : function() {
+						var answerCont = Ext.get("resContent");
+						answerCont.dom.value = answerRef;
+					}
+				} ]
 			} ]
 		} ]
 	});

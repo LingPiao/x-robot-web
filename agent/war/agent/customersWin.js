@@ -67,7 +67,7 @@ Ext.onReady( function() {
 
 			function add() {
 				var m = Ext.get('mobile');
-				var r = /^13[\d]{9}$/;
+				var r = /^1[3,5,8][\d]{9}$/;
 				if (!r.test(m.dom.value)) {
 					alert("请输入正确的手机号码!");
 					m.focus();

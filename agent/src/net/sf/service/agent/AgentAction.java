@@ -174,7 +174,13 @@ public class AgentAction extends ActionSupport {
 		Object[] paras = null;
 		if (StringUtils.isNotBlank(searchDateRange)) {
 			String[] dt = searchDateRange.split("\\|");
-			sql = sql + "BETWEEN TO_DATE('" + dt[0] + "','YYYY-MM-DD') AND TO_DATE('" + dt[1] + "','YYYY-MM-DD')";
+			if(StringUtils.isNotBlank(dt[0]) && StringUtils.isNotBlank(dt[1]) ){
+				sql = sql + "BETWEEN TO_DATE('" + dt[0] + "','YYYY-MM-DD') AND TO_DATE('" + dt[1] + "','YYYY-MM-DD')";
+			}else if(StringUtils.isNotBlank(dt[0])){
+				sql = sql + ">= TO_DATE('" + dt[0] + "','YYYY-MM-DD')";
+			}else if(StringUtils.isNotBlank(dt[1])){
+				sql = sql + "<= TO_DATE('" + dt[1] + "','YYYY-MM-DD')";
+			}
 		} else {
 			sql = sql + ">=SYSDATE-30";
 		}
