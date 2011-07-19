@@ -65,7 +65,7 @@ function qry()
 		 	{
 		 		String sql="select tl.contactemail,tl.robotemail,tl.content,tl.createdate,tlr.content as response from t_log tl,t_log_response tlr where ";
 		 		con=con +"  tl.logid=tlr.logid ";
-		 		con=con +" and tl.createdate between to_date('"+data1+"','yyyy-mm-dd') and to_date('"+data2+"','yyyy-mm-dd')";
+		 		con=con +" and to_char(tl.createdate,'yyyy-mm-dd')>='"+data1+"' and to_char(tl.createdate,'yyyy-mm-dd')<='"+data2+"'";
 		 		if(usercode!=null && !usercode.equals(""))
 		 			con=con +" and tl.contactemail like '%"+usercode+"%' ";
 		 		sql=sql + con +" order by tl.createdate desc";
