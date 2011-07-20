@@ -107,7 +107,8 @@ Ext.onReady( function() {
 		ds.proxy.conn.url = './search.action';
 		ds.reload( {
 			params : {
-				start : 0
+				start : 0,
+				limit : 20
 			}
 		});
 	}
@@ -121,7 +122,8 @@ Ext.onReady( function() {
 		ds.proxy.conn.url = './agent.action';
 		ds.reload( {
 			params : {
-				start : 0
+				start : 0,
+				limit : 20
 			}
 		});
 	}

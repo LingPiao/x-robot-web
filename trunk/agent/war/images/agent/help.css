@@ -1,156 +1,216 @@
 @charset "gb2312";
-*{ 
-font-size:12px; 
-font-family:"Arial"; 
+
+* {
+	font-size: 12px;
+	font-family: "Arial";
 }
-body{
-	padding:0;
-	margin:0;
+
+body {
+	padding: 0;
+	margin: 0;
 }
 
 A:link {
-	COLOR: #000; TEXT-DECORATION: none
+	COLOR: #000;
+	TEXT-DECORATION: none
 }
+
 A:visited {
-	COLOR: #000; TEXT-DECORATION: none
+	COLOR: #000;
+	TEXT-DECORATION: none
 }
+
 A:hover {
-	COLOR: #999; TEXT-DECORATION: none
+	COLOR: #999;
+	TEXT-DECORATION: none
 }
+
 A:active {
-	COLOR: #000; TEXT-DECORATION: none
+	COLOR: #000;
+	TEXT-DECORATION: none
 }
+
 .bg {
-	background:url(./bg.jpg) repeat;
+	background: url(./bg.jpg) repeat;
 }
+
 .bg1 {
-	background-color:#FFFFFF;
+	background-color: #FFFFFF;
 }
-.line { 
-	border-bottom:1px solid #d4d4d4;
+
+.line {
+	border-bottom: 1px solid #d4d4d4;
 }
+
 .top {
-	background:url(./chat_top1.jpg) repeat-x left bottom;
+	background: url(./chat_top1.jpg) repeat-x left bottom;
 }
-.top_11{
-	background:url(./chat_top1_1.jpg) repeat-x left bottom;
+
+.top_11 {
+	background: url(./chat_top1_1.jpg) repeat-x left bottom;
 }
+
 .bottom {
-	background:url(./chat_bottom.jpg) repeat-x left top;
+	background: url(./chat_bottom.jpg) repeat-x left top;
 }
+
 .bottom_11 {
-	background:url(./chat_bottom_1.jpg) repeat-x left top;
+	background: url(./chat_bottom_1.jpg) repeat-x left top;
 }
+
 .top_1 {
-	background:url(./top_1.png) repeat-x left bottom;
+	background: url(./top_1.png) repeat-x left bottom;
 }
+
 .bottom_1 {
-	background:url(./bottom_1.png) repeat-x left top;
+	background: url(./bottom_1.png) repeat-x left top;
 }
+
 .line_b {
-	border-bottom:1px solid #CACACA;
-	color:#282828;
-	font-weight:bold;
-	font-size:12px;
+	border-bottom: 1px solid #CACACA;
+	color: #282828;
+	font-weight: bold;
+	font-size: 12px;
 }
-.line_b2{
-	border-bottom:1px solid #CACACA;
-	color:#282828;
-	font-size:14px;
+
+.line_b2 {
+	border-bottom: 1px solid #CACACA;
+	color: #282828;
+	font-size: 14px;
 }
-.line_b3{
-	color:#282828;
-	font-size:14px;
+
+.line_b3 {
+	color: #282828;
+	font-size: 14px;
 }
+
 .currentbg {
-	background:url(./currentbg.jpg) repeat-x left top;
-	height:25px;
-	color:#fff;
-	font-weight:bold;
+	background: url(./currentbg.jpg) repeat-x left top;
+	height: 25px;
+	color: #fff;
+	font-weight: bold;
 }
+
 .lr_border {
-	background:url(./chat_left.jpg) repeat-y right top;
-	width:8px;
+	background: url(./chat_left.jpg) repeat-y right top;
+	width: 8px;
 }
+
 .rr_border {
-	background:url(./chat_right.jpg) repeat-y left top;
-	width:8px;
+	background: url(./chat_right.jpg) repeat-y left top;
+	width: 8px;
 }
+
 .lr_border_11 {
-	background:url(./chat_left_1.jpg) repeat-y right top;
-	width:8px;
+	background: url(./chat_left_1.jpg) repeat-y right top;
+	width: 8px;
 }
+
 .rr_border_11 {
-	background:url(./chat_right_1.jpg) repeat-y left top;
-	width:8px;
+	background: url(./chat_right_1.jpg) repeat-y left top;
+	width: 8px;
 }
+
 .chat1_bg {
-	background:url(./chat_bg.jpg) repeat-x left top;
+	background: url(./chat_bg.jpg) repeat-x left top;
 }
+
 .chat2_bg {
-	background:url(./chat_bg_1.jpg) repeat-x left top;
+	background: url(./chat_bg_1.jpg) repeat-x left top;
 }
+
 .chat1_color {
-	background-color:#D8E2FB;
+	background-color: #D8E2FB;
 }
+
 .chat2_color {
-	background-color:#A2FFAE;
+	background-color: #A2FFAE;
 }
-.bdline { 
-	border-bottom:1px solid #a8a8a8;
-	text-align:left;
+
+.bdline {
+	border-bottom: 1px solid #a8a8a8;
+	text-align: left;
 }
+
 .in_put {
-	width:143px;
-	height:17px;
-	border:0px;
-	background-image:url(./in_bg.jpg)
+	width: 143px;
+	height: 17px;
+	border: 0px;
+	background-image: url(./in_bg.jpg)
 }
+
 .center {
 	text-align: -moz-center !important; /*For Firefox*/
-	text-align:center;/*For IE*/
+	text-align: center; /*For IE*/
 }
+
 .phone {
-	color:#F32EAE;
-	font-size:16px;
-	font-weight:bold;
+	color: #F32EAE;
+	font-size: 16px;
+	font-weight: bold;
 }
+
 .set {
-	font-size:16px;
-	color:#ED145B;
-	font-weight:bold;
+	font-size: 16px;
+	color: #ED145B;
+	font-weight: bold;
 }
+
 .ll {
-	background:url(./left11.jpg) repeat-y left top;
+	background: url(./left11.jpg) repeat-y left top;
 }
+
 .top1 {
-	background:url(./top11.jpg) repeat-x left top;
+	background: url(./top11.jpg) repeat-x left top;
 }
 
 .bottom1 {
-	background:url(./bottom11.jpg) left bottom repeat-x;
+	background: url(./bottom11.jpg) left bottom repeat-x;
 }
+
 .rightline {
-	background:url(./right11.jpg) repeat-y right top;
+	background: url(./right11.jpg) repeat-y right top;
 }
+
 .topbg11 {
-	background:url(./topbg.jpg) repeat-x left bottom;
-	height:20px;
+	background: url(./topbg.jpg) repeat-x left bottom;
+	height: 20px;
 }
+
 .bottombg11 {
-	background:url(./bottombg.jpg) repeat-x left top;
-	height:20px;
+	background: url(./bottombg.jpg) repeat-x left top;
+	height: 20px;
 }
+
 .greycolor {
-	font-size:11px;
-	font-family:Arial, Helvetica, sans-serif;
-	font-style:italic;
-	color:#797979;
+	font-size: 11px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-style: italic;
+	color: #797979;
 }
+
 .blackcolor {
-	font-size:12px;
-	font-family:ËÎÌו;
-	color:#000;
-	line-height:18px;
-	font-style:normal;
+	font-size: 12px;
+	font-family: ËÎÌו;
+	color: #000;
+	line-height: 18px;
+	font-style: normal;
+}
+
+.top_bg {
+	width: 100%;
+	height: 72px;
+	background: url(./topbg.jpg) repeat-x left top;
+	margin: auto;
+	font-size: 14px;
+}
+
+.red {
+	color: #FF0000;
+}
+
+.top_right {
+	width: 100%;
+	height: 70px;
+	background: url(./rightbg.png) no-repeat right top;
 }
