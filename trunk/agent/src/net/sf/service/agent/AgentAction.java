@@ -1,6 +1,7 @@
 package net.sf.service.agent;
 
 import java.net.URLDecoder;
+import java.util.ArrayList;
 import java.util.List;
 
 import net.sf.json.JSONArray;
@@ -174,11 +175,11 @@ public class AgentAction extends ActionSupport {
 		Object[] paras = null;
 		if (StringUtils.isNotBlank(searchDateRange)) {
 			String[] dt = searchDateRange.split("\\|");
-			if(StringUtils.isNotBlank(dt[0]) && StringUtils.isNotBlank(dt[1]) ){
+			if (StringUtils.isNotBlank(dt[0]) && StringUtils.isNotBlank(dt[1])) {
 				sql = sql + "BETWEEN TO_DATE('" + dt[0] + "','YYYY-MM-DD') AND TO_DATE('" + dt[1] + "','YYYY-MM-DD')";
-			}else if(StringUtils.isNotBlank(dt[0])){
+			} else if (StringUtils.isNotBlank(dt[0])) {
 				sql = sql + ">= TO_DATE('" + dt[0] + "','YYYY-MM-DD')";
-			}else if(StringUtils.isNotBlank(dt[1])){
+			} else if (StringUtils.isNotBlank(dt[1])) {
 				sql = sql + "<= TO_DATE('" + dt[1] + "','YYYY-MM-DD')";
 			}
 		} else {
@@ -208,17 +209,17 @@ public class AgentAction extends ActionSupport {
 		}
 
 		totalCount = sqlDao.qryAllCountBySqlText(sql, paras);
-		if (totalCount < 1) {
-			return NONE;
+		List<QuestionVo> questionList = new ArrayList<QuestionVo>(0);
+		if (totalCount > 0) {
+			int c = paras == null ? 0 : paras.length;
+			Object[] para4Paging = new Object[c + 2];
+			for (int i = 0; i < c; i++) {
+				para4Paging[i] = paras[i];
+			}
+			para4Paging[c] = startRowNo;
+			para4Paging[c + 1] = endRowNo;
+			questionList = (List<QuestionVo>) sqlDao.qryPageRecordsBySqlText(sql, para4Paging, QuestionVo.class);
 		}
-		int c = paras == null ? 0 : paras.length;
-		Object[] para4Paging = new Object[c + 2];
-		for (int i = 0; i < c; i++) {
-			para4Paging[i] = paras[i];
-		}
-		para4Paging[c] = startRowNo;
-		para4Paging[c + 1] = endRowNo;
-		List<QuestionVo> questionList = (List<QuestionVo>) sqlDao.qryPageRecordsBySqlText(sql, para4Paging, QuestionVo.class);
 
 		JSONObject json = new JSONObject();
 		JSONArray questions = JSONArray.fromObject(questionList);
