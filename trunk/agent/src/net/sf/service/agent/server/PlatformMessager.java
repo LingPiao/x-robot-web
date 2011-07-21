@@ -147,6 +147,19 @@ public class PlatformMessager implements Runnable {
 		out.flush();
 		log.info("通知平台信息内容:" + msg);
 
+		
+		try 
+		{
+			out.close();
+			out = null;
+			conn.close();
+			conn = null;
+		} catch (IOException e) 
+		{
+			log.error(e, e);
+		}
+		
+		
 		return true;
 	}
 
