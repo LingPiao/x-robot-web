@@ -297,7 +297,7 @@ Ext.onReady( function() {
 					for (i = 0; i < jsonData.answers.length; i++) {
 						var ud = jsonData.answers[i].a_user + "&nbsp;&nbsp;"
 								+ new Date(jsonData.answers[i].a_date.time).format('Y-m-d H:i:s');
-						if (jsonData.answers[i].a_responser == "ROBOT") {
+						if (jsonData.answers[i].a_responser == "ROBOT" || jsonData.answers[i].a_responser == "AGENT") {
 							astr = astr
 									+ robotAnswerTmp.replace(userDateKey, ud).replace(contentKey,
 											htmlConvert(jsonData.answers[i].a_content));
