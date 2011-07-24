@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.Map;
 
+import net.sf.service.common.Constants;
+
 import org.apache.log4j.Logger;
 
 public class LockNumen implements Runnable {
@@ -27,7 +29,7 @@ public class LockNumen implements Runnable {
 				String k = keyIt.next();
 				LockItem l = lockList.get(k);
 				cal.setTime(now);
-				cal.add(Calendar.MINUTE, 0 - QuestionLock.LOCK_TIME_OUT);
+				cal.add(Calendar.MINUTE, 0 - Constants.LOCK_TIME_OUT);
 				if (cal.getTime().after(l.getLockDate())) {// 已超时
 					keyIt.remove();
 					log.debug("删除已超时的锁定问题[" + k + "]");

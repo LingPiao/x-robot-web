@@ -17,28 +17,20 @@ import net.sf.json.JSONObject;
 import net.sf.robot.util.SpringInstance;
 import net.sf.robot.util.db.TiSqlDao;
 import net.sf.service.agent.vo.QuestionRefVo;
+import net.sf.service.cache.QuestionRefCache;
 import net.sf.service.common.HttpUtil;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.log4j.Logger;
 
 public class QuestionRefServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-	private final static Logger log = Logger.getLogger(QuestionRefServlet.class);
 
 	private TiSqlDao sqlDao = (TiSqlDao) SpringInstance.getBean("sqlDao");
 
-	@SuppressWarnings("unchecked")
 	public void init(ServletConfig servletConfig) throws ServletException {
 		super.init(servletConfig);
-		// QRY_QUESTIONREF
-		// SELECT * FROM T_UNICOM_QUESTION
-		log.info("初始化快速回复缓存...");
-		List<QuestionRefVo> list = sqlDao.qryBySQLName("QRY_QUESTIONREF", null, QuestionRefVo.class);
-		//List<QuestionRefVo> list = sqlDao.qryBySQLText("SELECT * FROM T_UNICOM_QUESTION where rownum<=100", null, QuestionRefVo.class);
-		QuestionRefCache.getInstance().initCache(list);
-		log.info("快速回复缓存初始化完成.");
+		QuestionRefCache.getInstance().initCache();
 	}
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {

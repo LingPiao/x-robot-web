@@ -1,6 +1,7 @@
 package net.sf.service.agent;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.List;
 import java.util.Map;
 
@@ -15,6 +16,7 @@ import net.sf.robot.util.SpringInstance;
 import net.sf.robot.util.db.TiSqlDao;
 import net.sf.service.agent.server.AgentServer;
 import net.sf.service.agent.server.AgentUser;
+import net.sf.service.cache.QuestionCacheManager;
 import net.sf.service.common.Constants;
 import net.sf.service.common.HttpUtil;
 
@@ -31,14 +33,14 @@ public class AgentServerServlet extends HttpServlet {
 	public void init(ServletConfig servletConfig) throws ServletException {
 		super.init(servletConfig);
 		// Start the Agent Server.
-		AgentServer.getInstance().start();
+		// AgentServer.getInstance().start();
 	}
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		doPost(req, res);
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		String act = req.getParameter("act");
 		AgentUser agentUser = null;
@@ -52,9 +54,8 @@ public class AgentServerServlet extends HttpServlet {
 			String rmb = req.getParameter("rememberMe");
 			List<Map> list = sqlDao.qryBySQLName("QRY_AGENT", new Object[] { un, pwd });
 			if (list.isEmpty()) {
-				String errorMessage = "用户名或密码错误,请重新<a href=../agent/login.jsp>登录</a>!";
-				req.setAttribute("errorMsg", errorMessage);
-				req.getRequestDispatcher("../error.jsp").forward(req, res);
+				String errorMessage = URLEncoder.encode("用户名或密码错误,请重新登录!", "GB2312");
+				res.sendRedirect("./login.jsp?errorMsg=" + errorMessage);
 				return;
 			}
 			agentUser = AgentUser.parse(list.get(0));
@@ -69,6 +70,7 @@ public class AgentServerServlet extends HttpServlet {
 				res.addCookie(cp);
 			}
 			res.sendRedirect("./agent.jsp?agent=" + un + "&agentType=" + agentUser.getAgentType() + "&mobileNo=" + agentUser.getMobileNo());
+			return;
 		} else if ("logout".equals(act)) {
 			req.getSession().removeAttribute(Constants.AGENT_SESSSION_KEY);
 			Cookie cu = new Cookie("userName", null);
@@ -78,7 +80,10 @@ public class AgentServerServlet extends HttpServlet {
 			res.addCookie(cu);
 			res.addCookie(cp);
 			res.sendRedirect("../");
+			return;
 		} else if ("notify".equals(act)) {
+			// Clean the question cache
+			QuestionCacheManager.getInstance().flushAll();
 			// Notify the agent after received a new question.
 			AgentServer.getInstance().sendMessage(AgentServer.JAVASCRIPT_PREFIX + "notify()");
 		} else if ("send".equals(act)) {

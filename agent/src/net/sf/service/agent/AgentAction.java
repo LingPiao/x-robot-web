@@ -14,11 +14,13 @@ import net.sf.service.agent.server.AgentUser;
 import net.sf.service.agent.server.PlatformMessager;
 import net.sf.service.agent.vo.AnswerVo;
 import net.sf.service.agent.vo.QuestionVo;
+import net.sf.service.cache.QuestionCacheManager;
 import net.sf.service.common.Constants;
 import net.sf.service.common.DBUtils;
 import net.sf.service.common.HttpUtil;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
 
 import com.opensymphony.webwork.ServletActionContext;
 import com.opensymphony.xwork.ActionSupport;
@@ -27,11 +29,11 @@ public class AgentAction extends ActionSupport {
 
 	private static final long serialVersionUID = 1L;
 	private TiSqlDao sqlDao = (TiSqlDao) SpringInstance.getBean("sqlDao");
-
+	private final static Logger log = Logger.getLogger(AgentAction.class);
 	private String start;
 	private String limit;
 
-	@SuppressWarnings( { "unchecked" })
+	@SuppressWarnings({ "unchecked" })
 	public String execute() throws Exception {
 
 		String queryName = "QRY_QUESTION";
@@ -60,12 +62,35 @@ public class AgentAction extends ActionSupport {
 				para4Paging = new Object[] { startRowNo, endRowNo };
 			}
 		}
-		totalCount = sqlDao.qryAllCountBySqlName(queryName, para4Count);
-		if (totalCount < 1) {
-			return NONE;
+		List<QuestionVo> questionList = new ArrayList<QuestionVo>(0);
+		if (!isManager && startRowNo == 0) {// 普通坐席并且请求第一页,则从缓存中取
+			log.debug("从缓存获取问题列表...");
+			Object tc = QuestionCacheManager.getInstance().get(Constants.QUESTION_COUNT_CACHE_KEY);
+			if (tc != null) {
+				totalCount = (Long) tc;
+			}
+			if (totalCount > 0) {
+				Object l = QuestionCacheManager.getInstance().get(Constants.QUESTION_LIST_CACHE_KEY);
+				if (l != null) {
+					questionList = (List<QuestionVo>) l;
+				}
+				log.debug("已从缓存获取到问题列表,totalCount=" + totalCount + ",questionList size=" + questionList.size());
+			}
 		}
-		List<QuestionVo> questionList = (List<QuestionVo>) sqlDao.qryPageRecordsBySqlName(queryName, para4Paging, QuestionVo.class);
-		for (QuestionVo questionVo : questionList) {
+		if (totalCount == 0 && questionList.isEmpty()) {// 无缓存时从数据库取
+			log.debug("未从缓存获取到问题列表,从数据查询.");
+			totalCount = sqlDao.qryAllCountBySqlName(queryName, para4Count);
+			if (totalCount > 0) {
+				questionList = (List<QuestionVo>) sqlDao.qryPageRecordsBySqlName(queryName, para4Paging, QuestionVo.class);
+				if (!isManager && startRowNo == 0 && !questionList.isEmpty()) {// 缓存数据
+					QuestionCacheManager.getInstance().put(Constants.QUESTION_COUNT_CACHE_KEY, totalCount);
+					QuestionCacheManager.getInstance().put(Constants.QUESTION_LIST_CACHE_KEY, questionList);
+					log.debug("已缓存查询到的问题列表.");
+				}
+			}
+			log.debug("问题列表查询完成,totalCount=" + totalCount + ",questionList size=" + questionList.size());
+		}
+		for (QuestionVo questionVo : questionList) {// 修改锁定问题状态
 			if (QuestionLock.getInstance().isLocked(String.valueOf(questionVo.getQ_id()))) {
 				questionVo.setQ_state(String.valueOf(QuestionStatus.PROCESSING.getCode()));
 			}
@@ -118,8 +143,23 @@ public class AgentAction extends ActionSupport {
 		return NONE;
 	}
 
-	public String lockQuestion() throws Exception {
+	public String unlockQuestion() throws Exception {
+		if (qid == null) {
+			HttpUtil.writeHtml(Constants.OPERATION_FAILURE);
+			return NONE;
+		}
+		AgentUser au = (AgentUser) ServletActionContext.getRequest().getSession().getAttribute(Constants.AGENT_SESSSION_KEY);
+		String r = Constants.OPERATION_FAILURE;
+		if (QuestionLock.getInstance().tryUnlockQuestion(String.valueOf(qid), au.getAgentName())) {
+			// Clean the question cache
+			QuestionCacheManager.getInstance().flushAll();
+			r = Constants.OPERATION_OK;
+		}
+		HttpUtil.writeHtml(r);
+		return NONE;
+	}
 
+	public String lockQuestion() throws Exception {
 		if (qid == null) {
 			HttpUtil.writeHtml(Constants.OPERATION_FAILURE);
 			return NONE;

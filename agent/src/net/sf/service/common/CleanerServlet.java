@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import net.sf.service.agent.lock.QuestionLock;
 import net.sf.service.agent.server.AgentServer;
 import net.sf.service.agent.server.PlatformMessager;
+import net.sf.service.cache.QuestionRefCache;
 
 import org.apache.log4j.Logger;
 
@@ -33,9 +34,13 @@ public class CleanerServlet extends HttpServlet {
 		QuestionLock.stop();
 		log.info("QuestionLock is stopped.");
 
+		log.info("Stopping QuestionRefCache...");
+		QuestionRefCache.stop();
+		log.info("QuestionRefCache is stopped.");
+
 		try {
-			// Waiting 1 second for cleaning.
-			Thread.sleep(1000);
+			// Waiting 3 second for cleaning.
+			Thread.sleep(3000);
 		} catch (InterruptedException e) {
 			log.error(e);
 		}
