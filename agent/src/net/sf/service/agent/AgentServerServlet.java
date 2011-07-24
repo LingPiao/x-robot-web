@@ -33,7 +33,7 @@ public class AgentServerServlet extends HttpServlet {
 	public void init(ServletConfig servletConfig) throws ServletException {
 		super.init(servletConfig);
 		// Start the Agent Server.
-		// AgentServer.getInstance().start();
+		AgentServer.getInstance().start();
 	}
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
