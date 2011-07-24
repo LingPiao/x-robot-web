@@ -35,6 +35,13 @@
 			<interceptor-ref name="WSStack" />
 		</action>
 
+		<action name="unlockQuestion" class="net.sf.service.agent.AgentAction" method="unlockQuestion">
+			<result name="success" type="dispatcher">
+				<param name="location">./agent/agent.jsp</param>
+			</result>
+			<interceptor-ref name="WSStack" />
+		</action>
+
 		<action name="viewAnswers" class="net.sf.service.agent.AgentAction" method="viewAnswers">
 			<result name="success" type="dispatcher">
 				<param name="location">./agent/agent.jsp</param>

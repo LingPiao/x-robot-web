@@ -12,13 +12,13 @@ body,td,th,select {
 <body>
 
 <%
+	response.setStatus(200);
 	String code = request.getParameter("code") == null ? null : (String) request.getParameter("code");
 
 	String errorMsg = "";
 	String errorClass = "";
 	if (code != null) {
-		if (code.equals("404") || code.equals("401") || code.equals("403") || code.equals("404")
-				|| code.equals("500")) {
+		if (code.equals("404") || code.equals("401") || code.equals("403") || code.equals("404") || code.equals("500")) {
 			errorMsg = "请求出错或页面未找到!";
 		} else {
 			errorMsg = "我还不能识别(" + code + ")错误!";
