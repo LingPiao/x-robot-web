@@ -35,7 +35,7 @@ public class PlatformMessager implements Runnable {
 		conn = connect2Server();
 		Properties p = new Properties();
 		try {
-			p.load(Agent.class.getResourceAsStream(Constants.SOCKET_CONFIGURATION));
+			p.load(Agent.class.getResourceAsStream(Constants.AGENT_CONFIGURATION));
 			String sip = p.getProperty(Constants.PLATFORM_SERVER_IP_KEY);
 			if (sip != null && sip.trim().length() > 0) {
 				ip = sip;
@@ -45,7 +45,7 @@ public class PlatformMessager implements Runnable {
 				port = Integer.parseInt(pt.trim());
 			}
 		} catch (Exception e) {
-			log.warn("Load " + Constants.SOCKET_CONFIGURATION + " error, using default values[ip=" + ip + ",port=" + port + "],error:", e);
+			log.warn("Load " + Constants.AGENT_CONFIGURATION + " error, using default values[ip=" + ip + ",port=" + port + "],error:", e);
 		}
 		this.ses.scheduleWithFixedDelay(this, 0, CHECK_PERIOD, TimeUnit.MILLISECONDS);
 	}
@@ -147,19 +147,15 @@ public class PlatformMessager implements Runnable {
 		out.flush();
 		log.info("通知平台信息内容:" + msg);
 
-		
-		try 
-		{
+		try {
 			out.close();
 			out = null;
 			conn.close();
 			conn = null;
-		} catch (IOException e) 
-		{
-			log.error(e, e);
+		} catch (IOException e) {
+			log.error(e);
 		}
-		
-		
+
 		return true;
 	}
 

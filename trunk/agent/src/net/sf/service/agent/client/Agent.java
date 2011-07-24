@@ -40,27 +40,46 @@ public class Agent extends Applet {
 	}
 
 	public boolean initAgent() {
-		try {
-			System.out.println("Connecting to the host[IP:" + this.getCodeBase().getHost() + ",port:" + serverPort + "]");
-			agentName = getParameter("agent");
-			agentType = getParameter("agentType");
-			mobileNo = getParameter("mobileNo");
-			conn = new Socket(this.getCodeBase().getHost(), serverPort);
-			jsObject = JSObject.getWindow(this);
-			monitor = new AgentMonitor(conn);
-			System.out.println("Server connected.");
-		} catch (Exception e) {
-			e.printStackTrace();
-			conn = null;
+		System.out.println("Connecting to the host[IP:" + this.getCodeBase().getHost() + ",port:" + serverPort + "]");
+		agentName = getParameter("agent");
+		agentType = getParameter("agentType");
+		mobileNo = getParameter("mobileNo");
+		jsObject = JSObject.getWindow(this);
+		int i = 3;
+		String errorMsg = "";
+		while (conn == null && i-- > 0) {
+			if (i < 3) {
+				System.out.println("Retry to connect to the server[" + (3 - i) + " times retried]");
+			}
+			try {
+				conn = new Socket(this.getCodeBase().getHost(), serverPort);
+				monitor = new AgentMonitor(conn);
+			} catch (Exception e) {
+				e.printStackTrace();
+				errorMsg = e.getMessage();
+				conn = null;
+			}
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
-		if (conn == null)
+		if (conn == null) {
+			System.out.println("Connecting server exception:" + errorMsg);
+			jsObject.eval("javascript:alert('坐席连接服务器异常[" + errorMsg + "],请退出重新登陆!');");
 			return false;
-
+		}
+		System.out.println("Server connected.");
 		try {
+			System.out.println("Agent is logging in to the server...");
 			handler = new ClientHandler(conn, jsObject);
 			handler.agentLogin(agentName, agentType, mobileNo);
+			System.out.println("Agent is logged in to the server.");
 		} catch (IOException e) {
 			e.printStackTrace();
+			System.out.println("Agent can not log in to the server caused by:" + e.getMessage());
+			jsObject.eval("javascript:alert('登陆坐席服务器异常[" + e.getMessage() + "],请退出重新登陆!');");
 			return false;
 		}
 		handler.start();

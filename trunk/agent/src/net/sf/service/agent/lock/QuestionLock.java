@@ -6,18 +6,16 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+import net.sf.service.common.Constants;
+
 public class QuestionLock {
-	// Minute
-	public final static int LOCK_TIME_OUT = 30;
-	// Minute
-	public final static int LOCK_CHECK_PERIOD = 5;
 
 	private Map<String, LockItem> lockList = new ConcurrentHashMap<String, LockItem>();
 	private ScheduledExecutorService ses = Executors.newSingleThreadScheduledExecutor();
 
 	// Prevent initiation
 	private QuestionLock() {
-		this.ses.scheduleWithFixedDelay(new LockNumen(this), 0, LOCK_CHECK_PERIOD, TimeUnit.MINUTES);
+		this.ses.scheduleWithFixedDelay(new LockNumen(this), 0, Constants.LOCK_CHECK_PERIOD, TimeUnit.MINUTES);
 	}
 
 	private static class QuestionLockHolder {
@@ -44,10 +42,29 @@ public class QuestionLock {
 		}
 		LockItem l = lockList.get(qid);
 		if (l == null) {
-			return true;
+			return false;
 		}
 		// 允许同一用户重复锁定同一问题
 		return !l.getLockUser().equals(agentName);
+	}
+
+	public LockItem getLockedItem(String qid, String agentName) {
+		if (!lockList.containsKey(qid)) {
+			return null;
+		}
+		LockItem l = lockList.get(qid);
+		if (l != null && l.getLockUser().equals(agentName)) {
+			return l;
+		}
+		return null;
+	}
+
+	public boolean tryUnlockQuestion(String qid, String agentName) {
+		if (getLockedItem(qid, agentName) != null) {
+			removeLock(qid);
+			return true;
+		}
+		return false;
 	}
 
 	public boolean tryLockQuestion(String qid, String agentName) {
