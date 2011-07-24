@@ -1,5 +1,5 @@
 <%@ page pageEncoding="gb2312" contentType="text/html;charset=gb2312"%>
-<%@ taglib prefix="ww" uri="webwork"%>
+<%@ page import="java.net.URLDecoder"%>
 <%
 	response.setHeader("Pragma", "No-cache");
 	response.setHeader("Cache-Control", "no-cache");
@@ -7,15 +7,29 @@
 
 	String ckUser = null;
 	String ckPwd = null;
-	Cookie c[] = request.getCookies();
-	for (int i = 0; c != null && i < c.length; i++) {
-		if ("userName".equals(c[i].getName()))
-			ckUser = c[i].getValue();
-		if ("password".equals(c[i].getName()))
-			ckPwd = c[i].getValue();
-	}
-	if (ckUser != null && ckPwd != null) {
-		response.sendRedirect("./agentServer?act=login&userName=" + ckUser + "&password=" + ckPwd);
+	String unKey = "userName";
+	String pwdKey = "password";
+	String errorMsg = request.getParameter("errorMsg");
+	if (errorMsg != null) {
+		errorMsg = new String(URLDecoder.decode(errorMsg, "GB2312")
+				.getBytes("ISO-8859-1"));
+		//Cleaning the cookies while error.
+		Cookie cu = new Cookie(unKey, null);
+		Cookie cp = new Cookie(pwdKey, null);
+		response.addCookie(cu);
+		response.addCookie(cp);
+	} else {
+		Cookie c[] = request.getCookies();
+		for (int i = 0; c != null && i < c.length; i++) {
+			if (unKey.equals(c[i].getName()))
+				ckUser = c[i].getValue();
+			if (pwdKey.equals(c[i].getName()))
+				ckPwd = c[i].getValue();
+		}
+		if (ckUser != null && ckPwd != null) {
+			response.sendRedirect("./agentServer?act=login&userName="
+					+ ckUser + "&password=" + ckPwd);
+		}
 	}
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -53,8 +67,15 @@ function login(){
 <ul>
 	<li>用 户：<input tabindex="1" type="text" name="userName" class="input" /></li>
 	<li>密 码：<input tabindex="2" type="password" name="password" class="input" /></li>
-	<li><input id="rememberMe" name="rememberMe" tabindex="3" type="checkbox" value="1" /><label for="rememberMe">下次自动登录</label>
-	<input type="submit" value="登录" class="button" /></li>
+	<li><input id="rememberMe" name="rememberMe" tabindex="3" type="checkbox" value="1" /><label for="rememberMe"
+		style="font-size: 12px;">下次自动登录</label> <input type="submit" value="登录" class="button" /></li>
+	<%
+		if (errorMsg != null) {
+	%>
+	<li style="padding-top: 8px; font-size: 12px; color: red"><%=errorMsg%></li>
+	<%
+		}
+	%>
 </ul>
 </form>
 </div>

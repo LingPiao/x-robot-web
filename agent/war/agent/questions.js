@@ -6,8 +6,25 @@ var userDateKey = "[[USER_DATE]]";
 var contentKey = "[[CONTENT]]";
 var robotAnswerTmp = '<table><tr><td width=100% align=center colspan=3><table width=100% cellspacing=0 cellpadding=0 border=0><tr><td width=1% align=left class=top><img width=8 height=19 src=../images/agent/chat_corner.jpg></td><td width=16% class=top></td><td width=52% align=left class=top><img width=60 height=19 src=../images/agent/a1.jpg></td><td width=31% align=right class=top><img width=8 height=19 src=../images/agent/chat_corner2.jpg></td></tr></table><table width=100% cellspacing=0 cellpadding=0 border=0><tr><td class=lr_border>&nbsp;</td><td align=left><table width=100% cellspacing=0 cellpadding=0 border=0><tr><td valign=top class=chat1_color><table width=100% cellspacing=0 cellpadding=0 border=0><tr><td class=chat1_bg><table width=100% cellspacing=1 cellpadding=1 border=0><tr><td width=3% align=left><img width=28 height=27 src=../images/agent/chat_pic1.jpg></td><td width=97% class=greycolor>&nbsp;&nbsp;[[USER_DATE]]</td></tr><tr><td class=blackcolor colspan=2>[[CONTENT]]</td></tr></table></td></tr></table></td></tr></table></td><td class=rr_border>&nbsp;</td></tr></table><table width=100% cellspacing=0 cellpadding=0 border=0><tr><td width=10 valign=top align=left class=bottom><img width=8 height=15 src=../images/agent/chat_corner3.jpg></td><td width=1196 height=5 class=bottom>&nbsp;</td><td width=13 valign=top align=right class=bottom><img width=8 height=15 src=../images/agent/chat_corner4.jpg></td></tr></table></td></tr></table>';
 var userAnswerTmp = '<table><tr><td width=100% align=center colspan=3><table width=100% cellspacing=0 cellpadding=0 border=0><tr><td width=1% align=left class=top_11><img width=8 height=19 src=../images/agent/chat_corner_2.jpg></td><td width=16% class=top_11></td><td width=52% align=right class=top_11><img width=60 height=19 src=../images/agent/a1_1.jpg></td><td width=31% align=right class=top_11><img width=8 height=19 src=../images/agent/chat_corner2_1.jpg></td></tr></table><table width=100% cellspacing=0 cellpadding=0 border=0><tr><td class=lr_border_11>&nbsp;</td><td align=left><table width=100% cellspacing=0 cellpadding=0 border=0><tr><td valign=top class=chat2_color><table width=100% cellspacing=0 cellpadding=0 border=0><tr><td class=chat2_bg><table width=100% cellspacing=1 cellpadding=1 border=0><tr><td width=3% align=left><img width=28 height=27 src=../images/agent/chat_pic2.jpg></td><td width=97% class=greycolor>&nbsp;&nbsp;[[USER_DATE]]</td></tr><tr><td class=blackcolor colspan=2>[[CONTENT]]</td></tr></table></td></tr></table></td></tr></table></td><td class=rr_border_11>&nbsp;</td></tr></table><table width=100% cellspacing=0 cellpadding=0 border=0><tr><td width=10 valign=top align=left class=bottom_11><img width=8 height=15 src=../images/agent/chat_corner3_1.jpg></td><td width=1196 height=5 class=bottom_11>&nbsp;</td><td width=13 valign=top align=right class=bottom_11><img width=8 height=15 src=../images/agent/chat_corner4_1.jpg></td></tr></table></td></tr></table>';
+var oriState = "3";
+var finishedState = "1";
+var processingState = "2";
+function cleanSearch() {
+	isSearch = false;
+	Ext.get('search-key').dom.value = "";
+	Ext.get('search-user').dom.value = "";
+	Ext.get('dateBegin').dom.value = "";
+	Ext.get('dateEnd').dom.value = "";
+	ds.proxy.conn.url = './agent.action';
+	ds.reload( {
+		params : {
+			start : 0,
+			limit : 20
+		}
+	});
+}
 
-Ext.onReady( function() {
+Ext.onReady(function() {
 	Ext.state.Manager.setProvider(new Ext.state.CookieProvider());
 	var cm = new Ext.grid.ColumnModel( [ new Ext.grid.RowNumberer(), {
 		header : 'ID',
@@ -87,6 +104,7 @@ Ext.onReady( function() {
 			name : 'user_tel'
 		} ])
 	});
+	ds.setDefaultSort('q_date', 'DESC');
 
 	function doSearch() {
 		var sk = Ext.get('search-key');
@@ -113,102 +131,87 @@ Ext.onReady( function() {
 		});
 	}
 
-	function cleanSearch() {
-		isSearch = false;
-		Ext.get('search-key').dom.value = "";
-		Ext.get('search-user').dom.value = "";
-		Ext.get('dateBegin').dom.value = "";
-		Ext.get('dateEnd').dom.value = "";
-		ds.proxy.conn.url = './agent.action';
-		ds.reload( {
-			params : {
-				start : 0,
-				limit : 20
-			}
-		});
-	}
-
 	var searchPanel = new Ext.FormPanel( {
 		frame : true,
 		border : false,
 		layout : 'form',
 		labelAlign : 'right',
 		labelWidth : 50,
-		items : [ {//1st row
-					layout : 'column',
-					border : false,
-					items : [ {
-						layout : 'form',
-						columnWidth : .5,
-						border : false,
-						items : [ {
-							xtype : "textfield",
-							fieldLabel : '关键字',
-							name : 'search-key',
-							id : 'search-key',
-							anchor : '98%'
-						} ]
-					}, {
-						layout : 'form',
-						columnWidth : .5,
-						border : false,
-						items : [ {
-							xtype : "textfield",
-							fieldLabel : '提问人',
-							name : 'search-user',
-							id : 'search-user',
-							anchor : '98%'
-						} ]
-					} ]
-				}, {//2nd row
-					layout : 'column',
-					border : false,
-					items : [ {
-						layout : 'form',
-						columnWidth : .5,
-						border : false,
-						items : [ {
-							xtype : "datefield",
-							fieldLabel : '时间从',
-							format : 'Y-m-d',
-							name : 'dateBegin',
-							id : 'dateBegin',
-							readOnly : true,
-							anchor : '98%',
-							menuListeners : {
-								'select' : function(menu, val) {
-									this.setValue(val);
-									var end = Ext.getCmp('dateEnd');
-									if (end.getValue() && val > end.getValue()) {
-										end.setValue(val);
-									}
-								}
+		items : [ {// 1st row
+			layout : 'column',
+			border : false,
+			items : [ {
+				layout : 'form',
+				columnWidth : .5,
+				border : false,
+				items : [ {
+					xtype : "textfield",
+					fieldLabel : '关键字',
+					name : 'search-key',
+					id : 'search-key',
+					anchor : '98%'
+				} ]
+			}, {
+				layout : 'form',
+				columnWidth : .5,
+				border : false,
+				items : [ {
+					xtype : "textfield",
+					fieldLabel : '提问人',
+					name : 'search-user',
+					id : 'search-user',
+					anchor : '98%'
+				} ]
+			} ]
+		}, {// 2nd row
+			layout : 'column',
+			border : false,
+			items : [ {
+				layout : 'form',
+				columnWidth : .5,
+				border : false,
+				items : [ {
+					xtype : "datefield",
+					fieldLabel : '时间从',
+					format : 'Y-m-d',
+					name : 'dateBegin',
+					id : 'dateBegin',
+					readOnly : true,
+					anchor : '98%',
+					menuListeners : {
+						'select' : function(menu, val) {
+							this.setValue(val);
+							var end = Ext.getCmp('dateEnd');
+							if (end.getValue() && val > end.getValue()) {
+								end.setValue(val);
 							}
-						} ]
-					}, {
-						layout : 'form',
-						columnWidth : .5,
-						border : false,
-						items : [ {
-							xtype : "datefield",
-							format : 'Y-m-d',
-							readOnly : true,
-							fieldLabel : '至',
-							name : 'dateEnd',
-							id : 'dateEnd',
-							anchor : '98%',
-							menuListeners : {
-								'select' : function(menu, val) {
-									this.setValue(val);
-									var bg = Ext.getCmp('dateBegin');
-									if (bg.getValue() && val <= bg.getValue()) {
-										this.setValue(bg.getValue());
-									}
-								}
+						}
+					}
+				} ]
+			}, {
+				layout : 'form',
+				columnWidth : .5,
+				border : false,
+				items : [ {
+					xtype : "datefield",
+					format : 'Y-m-d',
+					readOnly : true,
+					fieldLabel : '至',
+					name : 'dateEnd',
+					id : 'dateEnd',
+					anchor : '98%',
+					menuListeners : {
+						'select' : function(menu, val) {
+							this.setValue(val);
+							var bg = Ext.getCmp('dateBegin');
+							if (bg.getValue() && val <= bg.getValue()) {
+								this.setValue(bg.getValue());
 							}
-						} ]
-					} ]
-				} ],
+						}
+					}
+				} ]
+			} ]
+		} ],
 		buttons : [ {
 			text : '查询',
 			handler : doSearch
@@ -331,7 +334,6 @@ Ext.onReady( function() {
 		}
 	}
 	function openToAnswer() {
-		Ext.getCmp('btnAnswer').enable();
 		var r = grid.getSelectionModel().getSelected();
 		if (!r) {
 			Ext.MessageBox.alert('提示', '请选择记录后操作!');
@@ -348,16 +350,51 @@ Ext.onReady( function() {
 				success : function(result, request) {
 					if (result.responseText == "1") {
 						setHistory(0);
+						ds.getById(qid).set('q_state', processingState);
+						Ext.getCmp('btnAnswer').enable();
+						Ext.getCmp('btnUnlock').enable();
 					} else {
 						Ext.MessageBox.alert('提示', '问题已被其他坐席锁定,可选择其他问题或稍候重试!');
 					}
-
 				},
 				failure : function(result, request) {
 					Ext.MessageBox.alert('提示', '锁定问题出错,请重试!');
 				}
 			});
 		}
+	}
+
+	function unlockQuestion() {
+		Ext.getCmp('btnAnswer').disable();
+		var r = grid.getSelectionModel().getSelected();
+		if (!r) {
+			Ext.MessageBox.alert('提示', '请选择记录后操作!');
+			return false;
+		}
+		if (r.data.q_state != "2") {
+			Ext.MessageBox.alert('提示', '请选择已锁定的记录后操作!');
+			return false;
+		}
+		var qid = r.data.q_id;
+		Ext.Ajax.request( {
+			url : './unlockQuestion.action',
+			sync : true,
+			params : {
+				qid : qid
+			},
+			method : 'GET',
+			success : function(result, request) {
+				if (result.responseText == "1") {
+					ds.getById(qid).set('q_state', oriState);
+					Ext.getCmp('btnUnlock').disable();
+				} else {
+					Ext.MessageBox.alert('提示', '问题可能已被系统自动解除锁定,请刷新问题列表!');
+				}
+			},
+			failure : function(result, request) {
+				Ext.MessageBox.alert('提示', '解除锁定问题出错,请重试!');
+			}
+		});
 	}
 
 	function submitAnswer(answer) {
@@ -378,6 +415,7 @@ Ext.onReady( function() {
 			},
 			method : 'POST',
 			success : function(result, request) {
+				ds.getById(qid).set('q_state', finishedState);
 				Ext.getCmp('btnAnswer').disable();
 			},
 			failure : function(result, request) {
@@ -490,10 +528,10 @@ Ext.onReady( function() {
 	var viewport = new Ext.Viewport( {
 		layout : 'border',
 		items : [ new Ext.BoxComponent( { // raw
-					region : 'north',
-					el : 'north',
-					height : 68
-				}), {
+			region : 'north',
+			el : 'north',
+			height : 68
+		}), {
 			region : 'center',
 			layout : 'border',
 			split : true,

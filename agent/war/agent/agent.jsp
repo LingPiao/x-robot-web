@@ -85,8 +85,14 @@ isSearch = false;
 function notify(){
 	if(!isSearch){
 		ds.reload();
-		if(document.getElementById("ring").value=="1"){
-			document.ringPlayer.play();
+	}
+	if(document.getElementById("ring").value=="1"){
+		document.ringPlayer.play();
+	}
+	if(isSearch){
+		var c = window.confirm("系统有新咨询问题,查询状态无法显示,需要自动切换到问题列表吗?");
+		if(c){
+			cleanSearch();
 		}
 	}
 }
