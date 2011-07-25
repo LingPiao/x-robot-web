@@ -87,7 +87,7 @@ function notify(){
 		ds.reload();
 	}
 	if(document.getElementById("ring").value=="1"){
-		document.ringPlayer.play();
+		document.getElementById('ringPlayer').src = "ring.wav";
 	}
 	if(isSearch){
 		var c = window.confirm("系统有新咨询问题,查询状态无法显示,需要自动切换到问题列表吗?");
@@ -256,6 +256,6 @@ if(Cookies.get("ring")!="1"){
 
 <script type="text/javascript" src="./agentsWin.js"></script>
 <script type="text/javascript" src="./customersWin.js"></script>
-<embed id="ringPlayer" name="ringPlayer" src="ring.wav" autostart="false" loop="false" hidden="true" />
+<bgsound id="ringPlayer" name="ringPlayer" src="" loop="0"/>
 </body>
 </html>
