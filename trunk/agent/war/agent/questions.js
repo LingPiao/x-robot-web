@@ -216,7 +216,7 @@ Ext.onReady(function() {
 			text : '查询',
 			handler : doSearch
 		}, {
-			text : '清除',
+			text : '未处理列表',
 			handler : cleanSearch
 		} ]
 	});

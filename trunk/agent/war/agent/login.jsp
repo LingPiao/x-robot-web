@@ -11,8 +11,7 @@
 	String pwdKey = "password";
 	String errorMsg = request.getParameter("errorMsg");
 	if (errorMsg != null) {
-		errorMsg = new String(URLDecoder.decode(errorMsg, "GB2312")
-				.getBytes("ISO-8859-1"));
+		errorMsg = new String(URLDecoder.decode(errorMsg, "UTF-8"));
 		//Cleaning the cookies while error.
 		Cookie cu = new Cookie(unKey, null);
 		Cookie cp = new Cookie(pwdKey, null);

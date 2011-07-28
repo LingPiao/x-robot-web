@@ -54,7 +54,7 @@ public class AgentServerServlet extends HttpServlet {
 			String rmb = req.getParameter("rememberMe");
 			List<Map> list = sqlDao.qryBySQLName("QRY_AGENT", new Object[] { un, pwd });
 			if (list.isEmpty()) {
-				String errorMessage = URLEncoder.encode("用户名或密码错误,请重新登录!", "GB2312");
+				String errorMessage = URLEncoder.encode("用户名或密码错误,请重新登录!", "UTF-8");
 				res.sendRedirect("./login.jsp?errorMsg=" + errorMessage);
 				return;
 			}
