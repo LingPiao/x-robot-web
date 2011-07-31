@@ -24,6 +24,53 @@ function cleanSearch() {
 	});
 }
 
+var srtAnswersMenu = new Ext.menu.Menu();
+var srtAnswersMenuHandler = function(item) {
+	var answerCont = Ext.get("resContent");
+	var a = saDs.getById(item.id);
+	if (a) {
+		answerCont.dom.value = a.data.answer;
+	}
+};
+// >> also for shortcutAnswersWin.js
+var LENGTH_LIMITATION = 30;
+var MAX_SHORTCUT_ANSWERS = 10;
+var shortcutAnswerCallbak = function(records, options, success) {
+	if (saDs) {
+		srtAnswersMenu.removeAll();
+		var c = saDs.getCount();
+		if (c < 1) {
+			srtAnswersMenu.add( {
+				text : '点击[快捷回复管理]添加快捷回复内容.',
+				handler : function() {
+					var tbnName = 'shortcutAnswerMan';
+					if (document.all) {
+						document.getElementById(tbnName).click();
+					} else {
+						var evt = document.createEvent("MouseEvents");
+						evt.initEvent("click", true, true);
+						document.getElementById(tbnName).dispatchEvent(evt);
+					}
+				}
+			});
+			return;
+		}
+		for ( var i = 0; i < c && i < MAX_SHORTCUT_ANSWERS; i++) {
+			var a = saDs.getAt(i).data;
+			var t = a.answer;
+			if (t.length >= LENGTH_LIMITATION) {
+				t = t.substring(0, LENGTH_LIMITATION) + "...";
+			}
+			srtAnswersMenu.add( {
+				id : a.id,
+				text : t,
+				handler : srtAnswersMenuHandler
+			});
+		}
+	}
+};
+// <<also for shortcutAnswersWin.js
+
 Ext.onReady(function() {
 	Ext.state.Manager.setProvider(new Ext.state.CookieProvider());
 	var cm = new Ext.grid.ColumnModel( [ new Ext.grid.RowNumberer(), {
@@ -45,6 +92,9 @@ Ext.onReady(function() {
 		header : '日期',
 		dataIndex : 'q_date',
 		renderer : Ext.util.Format.dateRenderer('Y-m-d H:i:s')
+	}, {
+		header : '回复',
+		dataIndex : 'answer_count'
 	}, {
 		header : '状态',
 		dataIndex : 'q_state',
@@ -98,6 +148,8 @@ Ext.onReady(function() {
 			type : 'date',
 			mapping : 'q_date.time',
 			dateFormat : 'time'
+		}, {
+			name : 'answer_count'
 		}, {
 			name : 'q_state'
 		}, {
@@ -512,6 +564,37 @@ Ext.onReady(function() {
 		});
 	};
 
+	saDs = new Ext.data.Store( {
+		proxy : new Ext.data.HttpProxy( {
+			url : './shortcutAnswers.action'
+		}),
+		reader : new Ext.data.JsonReader( {
+			root : 'shortcutAnswers',
+			id : 'id'
+		}, [ {
+			name : 'id'
+		}, {
+			name : 'userId'
+		}, {
+			name : 'answer'
+		}, {
+			name : 'disp_order'
+		}, {
+			name : 'created_date',
+			type : 'date',
+			mapping : 'created_date.time',
+			dateFormat : 'time'
+		} ])
+	});
+
+	var srtAnswersMenuHandler = function(item) {
+		var answerCont = Ext.get("resContent");
+		var a = saDs.getById(item.id);
+		if (a) {
+			answerCont.dom.value = a.data.answer;
+		}
+	};
+
 	var qaKeyListener = function(c) {
 		var qaSf = Ext.get('qaSearch-field');
 		var v = qaSf.dom.value.trim();
@@ -579,6 +662,10 @@ Ext.onReady(function() {
 				title : '回复内容',
 				margins : '0 0 3 1',
 				bbar : [ '->', {
+					text : '快捷回复',
+					iconCls : 'bmenu',
+					menu : srtAnswersMenu
+				}, '-', {
 					pressed : true,
 					text : '清除',
 					handler : function() {
@@ -640,6 +727,10 @@ Ext.onReady(function() {
 				} ]
 			} ]
 		} ]
+	});
+
+	saDs.load( {
+		callback : shortcutAnswerCallbak
 	});
 });
 
