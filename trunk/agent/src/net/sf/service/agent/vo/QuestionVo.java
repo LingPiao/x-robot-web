@@ -11,6 +11,7 @@ public class QuestionVo {
 	private String q_state;
 	private String q_validity;
 	private String user_tel;
+	private long answer_count;
 
 	public long getQ_id() {
 		return q_id;
@@ -66,6 +67,14 @@ public class QuestionVo {
 
 	public void setUser_tel(String user_tel) {
 		this.user_tel = user_tel;
+	}
+
+	public long getAnswer_count() {
+		return answer_count;
+	}
+
+	public void setAnswer_count(long answer_count) {
+		this.answer_count = answer_count;
 	}
 
 }

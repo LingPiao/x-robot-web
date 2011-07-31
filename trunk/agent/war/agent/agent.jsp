@@ -4,7 +4,8 @@
 	response.setHeader("Pragma", "No-cache");
 	response.setHeader("Cache-Control", "no-cache");
 	response.setDateHeader("Expires", 0);
-	Object agent = request.getSession().getAttribute(Constants.AGENT_SESSSION_KEY);
+	Object agent = request.getSession().getAttribute(
+			Constants.AGENT_SESSSION_KEY);
 	if (agent == null) {
 		response.sendRedirect("./login.jsp");
 	}
@@ -60,6 +61,15 @@ p {
 
 .save {
 	background-image: url(../js/ext/shared/icons/save.gif) !important;
+}
+
+.update {
+	background-image: url(../js/ext/shared/icons/fam/table_refresh.png)
+		!important;
+}
+
+.clean {
+	background-image: url(../js/ext/shared/icons/fam/cross.gif) !important;
 }
 
 #appletContainer {
@@ -190,7 +200,8 @@ function MM_swapImage() { //v3.0
 		<table width="100%" border="0" cellspacing="0" cellpadding="0">
 			<tr>
 				<td width="7%" align="left">&nbsp;&nbsp;&nbsp;&nbsp;<img src="../images/agent/logo.png" width="92" height="52" /></td>
-				<td width="63%" align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;欢迎 <%=agentName%> [<span class="red"><%=agentTypeLable%></span>]</td>
+				<td width="63%" align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;欢迎 <%=agentName%> [<span class="red"><%=agentTypeLable%></span>]
+				</td>
 				<td width="30%" align="right">
 				<table width="100%" border="0" cellspacing="2" cellpadding="2">
 					<tr>
@@ -199,6 +210,9 @@ function MM_swapImage() { //v3.0
 						<td><span id="showAgents" class="hand" onmouseout="MM_swapImgRestore()"
 							onmouseover="MM_swapImage('Image3','','../images/agent/b_1.png',1)"><img src="../images/agent/b.png" name="Image3"
 							width="66" height="65" border="0" id="Image3" alt="坐席查看" title="坐席查看" /></span></td>
+						<td><span id="shortcutAnswerMan" class="hand" onmouseout="MM_swapImgRestore()"
+							onmouseover="MM_swapImage('Image3','','../images/agent/b_1.png',1)"><img src="../images/agent/b.png" name="Image3"
+							width="66" height="65" border="0" id="Image3" alt="快捷回复管理" title="快捷回复管理" /></span></td>
 						<%
 							if (agentType != null && agentType.equals(Constants.VIP_MANAGER)) {
 						%>
@@ -256,6 +270,7 @@ if(Cookies.get("ring")!="1"){
 
 <script type="text/javascript" src="./agentsWin.js"></script>
 <script type="text/javascript" src="./customersWin.js"></script>
-<bgsound id="ringPlayer" name="ringPlayer" src="" loop="0"/>
+<script type="text/javascript" src="./shortcutAnswersWin.js"></script>
+<bgsound id="ringPlayer" name="ringPlayer" src="" loop="0" />
 </body>
 </html>

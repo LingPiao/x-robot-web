@@ -55,6 +55,36 @@
 			</result>
 			<interceptor-ref name="WSStack" />
 		</action>
+
+
+		<action name="shortcutAnswers" class="net.sf.service.agent.ShortcutAnswersAction">
+			<result name="success" type="dispatcher">
+				<param name="location">./agent/agent.jsp</param>
+			</result>
+			<interceptor-ref name="WSStack" />
+		</action>
+
+		<action name="addShortcutAnswer" class="net.sf.service.agent.ShortcutAnswersAction" method="addShortcutAnswer">
+			<result name="success" type="dispatcher">
+				<param name="location">./agent/agent.jsp</param>
+			</result>
+			<interceptor-ref name="WSStack" />
+		</action>
+
+		<action name="removeShortcutAnswer" class="net.sf.service.agent.ShortcutAnswersAction" method="removeShortcutAnswer">
+			<result name="success" type="dispatcher">
+				<param name="location">./agent/agent.jsp</param>
+			</result>
+			<interceptor-ref name="WSStack" />
+		</action>
+
+		<action name="updateShortcutAnswer" class="net.sf.service.agent.ShortcutAnswersAction" method="updateShortcutAnswer">
+			<result name="success" type="dispatcher">
+				<param name="location">./agent/agent.jsp</param>
+			</result>
+			<interceptor-ref name="WSStack" />
+		</action>
+
 	</package>
 
 </xwork>

@@ -82,6 +82,29 @@ public class AgentAction extends ActionSupport {
 			totalCount = sqlDao.qryAllCountBySqlName(queryName, para4Count);
 			if (totalCount > 0) {
 				questionList = (List<QuestionVo>) sqlDao.qryPageRecordsBySqlName(queryName, para4Paging, QuestionVo.class);
+
+				StringBuilder qidSb = new StringBuilder();
+				qidSb.append("(");
+				int size = questionList.size();
+				for (int i = 0; i < size; i++) {
+					QuestionVo qv = questionList.get(i);
+					qidSb.append(qv.getQ_id());
+					if (i < size - 1) {
+						qidSb.append(",");
+					}
+				}
+				qidSb.append(")");
+				String cntSql = "SELECT Q_ID,COUNT(*) answer_count FROM W_ANSWERS WHERE Q_ID IN " + qidSb.toString() + " GROUP BY Q_ID";
+				log.debug("问题回复数统计:" + cntSql);
+				List<QuestionVo> questionAnswerCountList = new ArrayList<QuestionVo>(0);
+				questionAnswerCountList = (List<QuestionVo>) sqlDao.qryBySQLText(cntSql, null, QuestionVo.class);
+				for (QuestionVo qAsnwerCnt : questionAnswerCountList) {
+					for (QuestionVo questionVo : questionList) {
+						if (qAsnwerCnt.getQ_id() == questionVo.getQ_id()) {
+							questionVo.setAnswer_count(qAsnwerCnt.getAnswer_count());
+						}
+					}
+				}
 				if (!isManager && startRowNo == 0 && !questionList.isEmpty()) {// 缓存数据
 					QuestionCacheManager.getInstance().put(Constants.QUESTION_COUNT_CACHE_KEY, totalCount);
 					QuestionCacheManager.getInstance().put(Constants.QUESTION_LIST_CACHE_KEY, questionList);
