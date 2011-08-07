@@ -189,7 +189,8 @@ function MM_swapImage() { //v3.0
 }
 </script>
 </head>
-<body onload="MM_preloadImages('images/a_1.png','images/b_1.png','images/e_1.png','images/c_1.png','images/d_1.png')">
+<body
+	onload="MM_preloadImages('images/a_1.png','images/b_1.png','images/e_1.png','images/c_1.png','images/d_1.png','images/k_1.png')">
 
 <script type="text/javascript" src="./questions.js"></script>
 
@@ -211,8 +212,8 @@ function MM_swapImage() { //v3.0
 							onmouseover="MM_swapImage('Image3','','../images/agent/b_1.png',1)"><img src="../images/agent/b.png" name="Image3"
 							width="66" height="65" border="0" id="Image3" alt="坐席查看" title="坐席查看" /></span></td>
 						<td><span id="shortcutAnswerMan" class="hand" onmouseout="MM_swapImgRestore()"
-							onmouseover="MM_swapImage('Image3','','../images/agent/b_1.png',1)"><img src="../images/agent/b.png" name="Image3"
-							width="66" height="65" border="0" id="Image3" alt="快捷回复管理" title="快捷回复管理" /></span></td>
+							onmouseover="MM_swapImage('Image7','','../images/agent/k_1.png',1)"><img src="../images/agent/k.png" name="Image7"
+							width="66" height="65" border="0" id="Image7" alt="快捷回复管理" title="快捷回复管理" /></span></td>
 						<%
 							if (agentType != null && agentType.equals(Constants.VIP_MANAGER)) {
 						%>
@@ -272,5 +273,7 @@ if(Cookies.get("ring")!="1"){
 <script type="text/javascript" src="./customersWin.js"></script>
 <script type="text/javascript" src="./shortcutAnswersWin.js"></script>
 <bgsound id="ringPlayer" name="ringPlayer" src="" loop="0" />
+
+<iframe src="./keepAlive.jsp" width="0" height="0" style="visibility: hidden;"></iframe>
 </body>
 </html>
