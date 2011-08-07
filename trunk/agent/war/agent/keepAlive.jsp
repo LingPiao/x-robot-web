@@ -9,7 +9,7 @@
 <head>
 <title>联通贝贝坐席</title>
 <meta http-equiv="Content-Type" content="text/html; charset=GBK" />
-<meta http-equiv="refresh" content="50" />
+<meta http-equiv="refresh" content="180" />
 
 </head>
 <body>
