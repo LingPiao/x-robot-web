@@ -164,5 +164,12 @@
 			</result>
 			<interceptor-ref name="WSStack" />
 		</action>
+		<action name="woshop" class="org.project.ww.WoshopAction">	
+		<external-ref name="msnDao">msnDao</external-ref>
+			<result name="main" type="dispatcher">
+				<param name="location">woshop.jsp</param>
+			</result>
+			<interceptor-ref name="WSStack" />
+		</action>
 	</package>
 </xwork>
