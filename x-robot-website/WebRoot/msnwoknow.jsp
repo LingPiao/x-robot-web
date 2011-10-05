@@ -75,7 +75,7 @@ a:visited img{
             <td><table width="100%" border="0" cellspacing="0" cellpadding="0" class="ban">
               <tr>
                 <td width="20" height="41" align="center" valign="middle"><img src="imagesmsn/dot.gif" width="11" height="10"></td>
-                <td valign="middle"><a href="http://www.x-robot.cn/unicom/index.jsp">业务定制和使用</a></td>
+                <td valign="middle"><a href="http://www.x-robot.cn/unicom/index.jsp">沃商城</a></td>
               </tr>
             </table></td>
             <td><table width="100%" border="0" cellspacing="0" cellpadding="0" class="ban">
