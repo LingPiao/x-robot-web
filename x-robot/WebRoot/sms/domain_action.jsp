@@ -1,29 +1,27 @@
-<%@ page language="java" import="java.net.URL" pageEncoding="GB2312" %>
+<%@ page language="java" import="java.net.URL" pageEncoding="UTF-8"%>
 <%@ page language="java" import="java.net.URLConnection,java.io.*"%>
 <%
 	response.setContentType("text/xml;charset=GB2312"); 
 	request.setCharacterEncoding("GB2312"); 
-	String Bcode = request.getParameter("Bcode");
-	String FromCode = request.getParameter("FromCode");
-	String ToCode = request.getParameter("ToCode");
-	String Msg = new String(request.getParameter("Msg").getBytes("8859_1"));
-
-	URL url = new URL("http://119.6.5.183:8081/"+Bcode);  
+	String calleds = request.getParameter("calleds");
+	System.out.println(calleds);
+	String content = request.getParameter("content");
+	String userid = request.getParameter("userid");
+	String caller = request.getParameter("caller");
+	URL url = new URL("http://www.x-robot.cn/SmsServlet");  
 	URLConnection connection = url.openConnection(); 
 	
 	connection.setDoOutput(true); 
-	OutputStreamWriter postinfo = new OutputStreamWriter(connection.getOutputStream(), "GB2312"); 
-
+	OutputStreamWriter postinfo = new OutputStreamWriter(connection.getOutputStream(), "UTF-8"); 
+	
 	String sendpara="";
-	sendpara = "FromCode="+FromCode;
-	sendpara = sendpara +"&ToCode="+ToCode;
-	sendpara = sendpara +"&Msg="+Msg;
-	//System.out.println(sendpara);
+	sendpara = "caller="+caller+"&calleds="+calleds+"&content="+content+"&userid="+userid;
+	System.out.println(sendpara);
 	postinfo.write(sendpara);
 	postinfo.flush(); 
 	postinfo.close(); 
 	
-	//获取返回数据 
+	//鑾峰彇杩斿洖鏁版嵁 
 	BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream())); 
 	
 	String line = null; 
@@ -31,7 +29,7 @@
 	while((line = in.readLine()) != null) 
 	{ 
 	   out.println(line);
-	   //System.out.println(line);
+	   System.out.println(line);
 	} 
 	
 	in.close() ; 

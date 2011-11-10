@@ -106,5 +106,9 @@ http://www.springframework.org/schema/aop http://www.springframework.org/schema/
 			<ref bean="sqlDao" />
 		</property>
 	</bean>
-	
+	<bean id="invitebuddyDao" class="org.project.impl.InviteBuddyImpl">
+		<property name="sqlDao">
+			<ref bean="sqlDao" />
+		</property>
+	</bean>
 </beans>

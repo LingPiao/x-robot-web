@@ -36,7 +36,7 @@
           <tr>
             <td height="91" align="center" valign="middle"><img src="../images/sms/pic_01_link.gif" width="81" height="89" border="0"></td>
 			<td align="center" valign="middle"><a href="sms.action?op=sms&user_msn=<ww:property value="user_msn"/>"><img src="../images/sms/pic_02.gif" width="81" height="89" border="0"></a></td>
-			<td align="center" valign="middle"><a href="../connectbook/connectbook.action?ac=default&msnacc=<ww:property value="user_msn"/>"><img src="../images/sms/pic_03.gif" width="81" height="89" border="0"></a></td>
+			<td align="center" valign="middle"><a href="../telbook/telbook.action?op=view&user_msn=<ww:property value="user_msn"/>"><img src="../images/sms/pic_03.gif" width="81" height="89" border="0"></a></td>
 			<td align="center" valign="middle"><a href="sms.action?op=history&user_msn=<ww:property value="user_msn"/>"><img src="../images/sms/pic_04.gif" width="81" height="89" border="0"></a></td>
           </tr>
 		  <tr>

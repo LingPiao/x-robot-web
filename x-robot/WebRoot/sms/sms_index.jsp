@@ -53,14 +53,13 @@ body {
 		} 
 	}
 	function startRequest(tel,content){
-		
 		createXMLHttpRequest();
-		var stra = "FromCode=<ww:property value="user_tel"/>&ToCode="+tel+"&Msg="+content; 
-		//alert(stra);
-		xmlHttp.open("POST", "domain_action.jsp?Bcode=100002000100001&"+stra, true); 
-		
+	 	
+		var stra = "calleds="+tel+"&content="+content+"&userid=<ww:property value="user_msn"/>&caller=<ww:property value="user_tel"/>";
+		xmlHttp.open("POST", "domain_action.jsp?"+stra, true); 
 		xmlHttp.onreadystatechange = myCallback; 
 		xmlHttp.send(null); 
+        
 	}
 	function myCallback(){ 
 		if(xmlHttp.readyState==4){ 
@@ -69,32 +68,22 @@ body {
 			} 
 		} 
 	}
-	function listInfo(){ 
-		var xmlDoc = xmlHttp.responseXML; 
-		var root = xmlDoc.documentElement;   
-		//alert(root); 
-		var allProvs = root.getElementsByTagName("flag"); 
-		//alert(allProvs.length); 
-		outputList(allProvs); 
-	} 
 
-	function outputList(provs){ 
-		var currentProv = null; 
-		for(var i=0;i <provs.length;i++){ 
-			currentProv = provs[i];
-			//alert(currentProv.childNodes[0].nodeValue); 
-			if(currentProv.childNodes[0].nodeValue == "1")
-			{
-				smsform.action="sms.action?op=send&user_msn=<ww:property value="user_msn"/>&user_tel=<ww:property value="user_tel"/>";
-				smsform.submit();
-			}
-			else
-			{
-				document.getElementById("errortext").innerHTML = "<font color=red>[错误提示]<br>服务接口返回错误信息，请稍候在发！</font>"
-				return false;
-			}
-		} 
-	}	
+	function listInfo(){ 
+		var backstr=xmlHttp.responseText;
+		//alert(backstr.indexOf("success"));
+		if(backstr.indexOf("success")>0)
+		{
+			smsform.action="sms.action?op=send&user_msn=<ww:property value="user_msn"/>&user_tel=<ww:property value="user_tel"/>";
+			smsform.submit();
+		}
+		else
+		{
+			document.getElementById("errortext").innerHTML = "<font color=red>[错误提示]<br>服务接口返回错误信息，请稍候在发！</font>"
+			return false;
+		}
+		
+	}
 	//ajax-----------------------------------------end	
 </script>
 <script>
@@ -106,6 +95,7 @@ function seltel(){
 function sendsms()
 	{
         var mobilevalue = smsform.recmobile.value;
+        
         if(mobilevalue=="")
 		{
 			document.getElementById("errortext").innerHTML = "<font color=red>[错误提示]<br>请输入手机号码！！</font>"
@@ -114,6 +104,7 @@ function sendsms()
         var mvalue = mobilevalue.split(",");
         for(var i = 0 ;i<mvalue.length;i++)
         {
+        	
         	if(mvalue[i]!="" && mvalue[i].length!=11)
         	{
             	document.getElementById("errortext").innerHTML = "<font color=red>[错误提示]<br>请输入有效的手机号码，每个号码长度为11位！</font>"
