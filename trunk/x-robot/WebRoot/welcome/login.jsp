@@ -23,13 +23,14 @@
 			xmlHttp = new XMLHttpRequest();
 		} 
 	}
-	function startRequest(tel,content){
+	function startRequest(tel,content,userid){
 		createXMLHttpRequest();
-		var stra = "ToCode="+tel+"&Msg="+content;
-		xmlHttp.open("POST", "../public/getcode.jsp?Bcode=100002000100001&"+stra, true); 
-		//alert(stra); 
+		var stra = "calleds="+tel+"&content="+content+"&userid="+userid;
+		xmlHttp.open("POST", "domain_action.jsp?"+stra, true); 
+		
 		xmlHttp.onreadystatechange = myCallback; 
 		xmlHttp.send(null); 
+		
 	}
 	function myCallback(){ 
 		if(xmlHttp.readyState==4){ 
@@ -39,27 +40,19 @@
 		} 
 	}
 	function listInfo(){ 
-		var xmlDoc = xmlHttp.responseXML; 
-		var root = xmlDoc.documentElement;   
-		var allProvs = root.getElementsByTagName("flag"); 
-		outputList(allProvs); 
-	} 
-
-	function outputList(provs){ 
-		var currentProv = null; 
-		for(var i=0;i <provs.length;i++){ 
-			currentProv = provs[i];
-			if(currentProv.childNodes[0].nodeValue == "1")
-			{
-				 document.getElementById("errortext1").innerText="验证码已经发送到您的手机上，请按照手机上显示的内容输入！";
-				 document.getElementById("errortext2").style.display="none";
-			}
-			else
-			{
-				 document.getElementById("errortext1").innerText="验证码发送失败请重新获取！";
-				 document.getElementById("errortext2").style.display="none";
-			}
-		} 
+		var backstr=xmlHttp.responseText;
+		//alert(backstr.indexOf("success"));
+		if(backstr.indexOf("success")>0)
+		{
+			 document.getElementById("errortext1").innerText="验证码已经发送到您的手机上，请按照手机上显示的内容输入！";
+			 document.getElementById("errortext2").style.display="none";
+		}
+		else
+		{
+			 document.getElementById("errortext1").innerText="验证码发送失败请重新获取！";
+			 document.getElementById("errortext2").style.display="none";
+		}
+		
 	}
 	
 	//ajax-----------------------------------------end
@@ -107,6 +100,7 @@
 	 
 	 function validteCode1()
 	 {
+		 var user_msn=document.getElementById("user_msn").value;
 		var user_tel = document.getElementById("user_tel").value;	
 	    if(user_tel == ""){
 			document.getElementById("errortext2").innerHTML="<font color=red>请输入绑定的电话号码！</font>";
@@ -116,7 +110,7 @@
 		document.getElementById('tempcode').value=sixrand;
 		document.getElementById("errortext2").innerText=sixrand;	
 		//发端短信.......................    
-		startRequest(user_tel,sixrand);
+		startRequest(user_tel,sixrand,user_msn);
 	 }
 	 function unbind()
 	 {

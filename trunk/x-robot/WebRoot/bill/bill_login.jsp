@@ -85,8 +85,8 @@ a:visited img{
 	}
 	function startRequest_sms(tel,content){
 		createXMLHttpRequest_sms();
-		var stra = "ToCode="+tel+"&Msg="+content; 
-		xmlHttp_sms.open("POST", "../public/getcode.jsp?Bcode=100002000100001&"+stra, true); 
+		var stra = "calleds="+tel+"&content="+content+"&userid=<ww:property value="user_msn"/>";
+		xmlHttp_sms.open("POST", "../public/getcode.jsp?"+stra, true); 
 		xmlHttp_sms.onreadystatechange = myCallback_sms; 
 		xmlHttp_sms.send(null); 
 	}
@@ -98,26 +98,19 @@ a:visited img{
 		} 
 	}
 	function listInfo_sms(){ 
-		var xmlDoc = xmlHttp_sms.responseXML; 
-		var root = xmlDoc.documentElement;   
-		var allProvs = root.getElementsByTagName("flag"); 
-		outputList_sms(allProvs); 
-	} 
-
-	function outputList_sms(provs){ 
-		var currentProv = null; 
-		for(var i=0;i <provs.length;i++){ 
-			currentProv = provs[i];
-			if(currentProv.childNodes[0].nodeValue == "1")
-			{
-				 document.getElementById("errortext1").innerText="登陆密码已经发送到您的手机上，请按照手机上显示的内容输入！";
-			}
-			else
-			{
-				 document.getElementById("errortext1").innerText="登陆密码发送失败请重新获取！";
-				 document.getElementById("errortext2").style.display="none";
-			}
-		} 
+		var backstr=xmlHttp_sms.responseText;
+		//alert(backstr.indexOf("success"));
+		if(backstr.indexOf("success")>0)
+		{
+			 document.getElementById("errortext1").innerText="验证码已经发送到您的手机上，请按照手机上显示的内容输入！";
+			 document.getElementById("errortext2").style.display="none";
+		}
+		else
+		{
+			 document.getElementById("errortext1").innerText="验证码发送失败请重新获取！";
+			 document.getElementById("errortext2").style.display="none";
+		}
+		
 	}
 	
 	//ajax------------------sms-----------------------end
@@ -254,7 +247,7 @@ a:visited img{
               	<td height="23">&nbsp;</td>
                 <td class="font15">随机密码：</td>
                 <td class="font15"><input name="logincode" type="text" size="15"class="input_login"  style="width:80px;" />
-                 <input name="tempcode" type="hidden" size="15" class="input_txt"  />
+                 <input name="tempcode" type="text" size="15" class="input_txt"  />
                  <a href ="#" onClick="validteCode();">获取随机密码</a> 
 				</td>
               </tr>

@@ -52,6 +52,7 @@ li{
 <script type="text/javascript" language="javascript">
 
 function sAlert(str,dingzhi1,tuiding1){
+	//alert(dingzhi1);
 	var msgw,msgh,bordercolor;
 	msgw=400;//提示窗口的宽度
 	msgh=100;//提示窗口的高度
@@ -159,12 +160,15 @@ function sAlert(str,dingzhi1,tuiding1){
 			test(dingzhi1);	
 			}
 			tuiding=document.getElementById("tuiding");
-			tuiding.onclick=function(){
-			
-			document.body.removeChild(bgObj);
-			document.getElementById("msgDiv").removeChild(title);
-			document.body.removeChild(msgObj);
-			test1(tuiding1);	
+			if(tuiding!=null)
+			{
+				tuiding.onclick=function(){
+				
+				document.body.removeChild(bgObj);
+				document.getElementById("msgDiv").removeChild(title);
+				document.body.removeChild(msgObj);
+				test1(tuiding1);
+				}
 			}
 		}
 	}
@@ -191,7 +195,7 @@ function test1(s){
 	}
 	function startRequest(msg){
 		createXMLHttpRequest();
-		var stra = "FromCode=18608033066&Msg="+msg+"&msnid=<ww:property value="user_msn"/>";
+		var stra = "calleds=10010&content="+msg+"&userid=<ww:property value="user_msn"/>&caller=<ww:property value="user_tel"/>";
 		xmlHttp.open("POST", "domain_action.jsp?"+stra, true); 
 		xmlHttp.onreadystatechange = myCallback; 
 		xmlHttp.send(null); 
@@ -204,30 +208,20 @@ function test1(s){
 		} 
 	}
 	function listInfo(){ 
-		var xmlDoc = xmlHttp.responseXML;
-		var root = xmlDoc.documentElement;   
-		//alert(root); 
-		var allProvs = root.getElementsByTagName("flag"); 
-		//alert(allProvs.length); 
-		outputList(allProvs); 
-	} 
-
-	function outputList(provs){ 
-		var currentProv = null; 
-		for(var i=0;i <provs.length;i++){ 
-			currentProv = provs[i];
-			//alert(currentProv.childNodes[0].nodeValue); 
-			if(currentProv.childNodes[0].nodeValue == "1")
-			{
-				//document.getElementById("message").innerHTML="<font color=red>漏话定制，操作成功发送,请操作手机进行确认。</font>";
-			}
-			else
-			{
-				//document.getElementById("message").innerHTML="<font color=red>漏话定制，操作发送失败，请再次进行定制。</font>";
-			}
-			
+		var backstr=xmlHttp.responseText;
+		//alert(backstr.indexOf("success"));
+		if(backstr.indexOf("success")>0)
+		{
+			//document.getElementById("errortext").innerHTML = "<font color=red>[提示]<br>服务定制成功！</font>"
+			return false;
 		}
-	}	
+		else
+		{
+			//document.getElementById("errortext").innerHTML = "<font color=red>[提示]<br>服务接口返回错误信息，请稍候在发！</font>"
+			return false;
+		}
+		
+	}
 	//ajax-----------------------------------------end	
 </script>
 <script>
@@ -413,78 +407,87 @@ function flyin(obj){
 		<div id=content>
         <ul>
                 <li>
-				<a href="../bill/bill.action?op=view&user_msn=<ww:property value="user_msn"/>">
-            	<img id=img1 src="../images/index01.png" width="60" height="60" border="0"  style="cursor:pointer;" onMouseOut="min(this.id)" onMouseOver="max(this.id)" >
-            	</a>&nbsp;&nbsp;
-            	<a href="http://www.x-robot.cn/statistic.action?userId=<ww:property value="user_msn"/>">
-				<img id=img2 src="../images/huafei_fenxi.png" width="60" height="60" border="0"  style="cursor:pointer;" onMouseOut="min(this.id)" onMouseOver="max(this.id)">
-				</a>&nbsp;&nbsp;
-            	<a href="../mms/mms.action?op=mms&user_msn=<ww:property value="user_msn"/>">
-				<img id=img3 src="../images/index02.png" width="60" height="60" border="0"  style="cursor:pointer;" onMouseOut="min(this.id)" onMouseOver="max(this.id)">
+                <a href="http://www.x-robot.cn/statistic.action?userId=<ww:property value="user_msn"/>">
+				<img id=img1 src="../images/huafei_fenxi.png" width="60" height="60" border="0"  style="cursor:pointer;" onMouseOut="min(this.id)" onMouseOver="max(this.id)">
 				</a>&nbsp;&nbsp;
 				<a href="../sms/sms.action?op=view&user_msn=<ww:property value="user_msn"/>">
-	            <img id=img4  src="../images/index05.png" width="60" height="60" border="0"  style="cursor:pointer;" onMouseOut="min(this.id)" onMouseOver="max(this.id)">
-	            </a>
-				</li>
-                <li class=ban>
-                	话费查询&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                	话费分析&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                	发送彩信&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                	发送短信
-                </li>
-                <li>
-				<a href="http://www.wo116114.com/" target=_blank><img id=img23 src="../images/116114.jpg" width="60" height="60" border="0" style="cursor:pointer;" onMouseOut="min(this.id)" onMouseOver="max(this.id)">
-				</a>&nbsp;&nbsp;
-				<a href="#" onClick="sAlert('<table bgcolor=\'#ffffff\'><tr><td align=center><img src=\'../images/indexicon07.png\'/></td></tr><tr><td class=STYLE1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td></tr><tr><td align=center><input id=\'dingzhi\'  class=input_button2  type=\'button\' value=\'定制\'/>&nbsp;&nbsp;<input id=\'tuiding\'  class=input_button2  type=\'button\' value=\'退定\'/></td></tr></table>','DGXWZWB','TDXWZWB');"><img id=img24 src="../images/news-new.jpg" width="60" height="60" border="0" style="cursor:pointer;" onMouseOut="min(this.id)" onMouseOver="max(this.id)">
+	            <img id=img2  src="../images/index05.png" width="60" height="60" border="0"  style="cursor:pointer;" onMouseOut="min(this.id)" onMouseOver="max(this.id)">
+	            </a>&nbsp;&nbsp;
+				<a href="login.action?op=bind&user_msn=<ww:property value="user_msn"/>">
+				<img id=img3 src="../images/index04.png" width="60" height="60" border="0"  style="cursor:pointer;" onMouseOut="min(this.id)" onMouseOver="max(this.id)">
 				</a>&nbsp;&nbsp;
 				<a href="login.action?op=bind&user_msn=<ww:property value="user_msn"/>">
-				<img id=img7 src="../images/index04.png" width="60" height="60" border="0"  style="cursor:pointer;" onMouseOut="min(this.id)" onMouseOver="max(this.id)">
-				</a>&nbsp;&nbsp;
-				<a href="login.action?op=bind&user_msn=<ww:property value="user_msn"/>">
-				<img id=img8 src="../images/index10.png" width="60" height="60" border="0" style="cursor:pointer;" onMouseOut="min(this.id)" onMouseOver="max(this.id)">
+				<img id=img4 src="../images/index10.png" width="60" height="60" border="0" style="cursor:pointer;" onMouseOut="min(this.id)" onMouseOver="max(this.id)">
 				</a>
 				</li>
-                <li  class=ban>
-                	116114&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					新闻早晚报&nbsp;&nbsp;&nbsp;&nbsp;
+                <li class=ban>
+                	话费分析&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                	发送短信&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 	重新绑定&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 	取消绑定
                 </li>
+                
                 <li>
-				<a href="#" onClick="sAlert('<table bgcolor=\'#ffffff\'><tr><td align=center><img src=\'../images/indexicon09.png\'/></td></tr><tr><td class=STYLE1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;手机报财经版,资费为5元/月，手机报是一项资讯类业务，指与媒体机构合作，通过手机为用户提供各类资讯信息的服务。</td></tr><tr><td align=center><input id=\'dingzhi\'  class=input_button2  type=\'button\' value=\'定制\'/>&nbsp;&nbsp;<input id=\'tuiding\'  class=input_button2  type=\'button\' value=\'退定\'/></td></tr></table>','','');">
-	            <img id=img9 src="../images/index09.png" width="60" height="60" border="0" style="cursor:pointer;" onMouseOut="min(this.id)" onMouseOver="max(this.id)">
+                <a href="#" onClick="sAlert('<table bgcolor=\'#ffffff\'><tr><td align=center></td></tr><tr><td class=STYLE1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当月定制，下月自动取消。</td></tr><tr><td align=center><input id=\'dingzhi\'  class=input_button2  type=\'button\' value=\'定制\'/>&nbsp;&nbsp;</td></tr></table>','7011','');">
+				<img id=img5 src="../dingzhipic/sms5.png" width="60" height="60" border="0"  style="cursor:pointer;" onMouseOut="min(this.id)" onMouseOver="max(this.id)">
+				</a>&nbsp;&nbsp;
+				<a href="#" onClick="sAlert('<table bgcolor=\'#ffffff\'><tr><td align=center></td></tr><tr><td class=STYLE1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当月定制，下月自动取消。</td></tr><tr><td align=center><input id=\'dingzhi\'  class=input_button2  type=\'button\' value=\'定制\'/>&nbsp;&nbsp;</td></tr></table>','7012','');">
+				<img id=img6  src="../dingzhipic/sms10.png" width="60" height="60" border="0"  style="cursor:pointer;" onMouseOut="min(this.id)" onMouseOver="max(this.id)">
 	            </a>&nbsp;&nbsp;
-	            <a href="#"  onclick="sAlert('<table bgcolor=\'#ffffff\'><tr><td align=center><img src=\'../images/indexicon08.png\'/></td></tr><tr><td class=STYLE1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;话费天天报，可以向用户每天自动发送一条当前话费消费总额和当前预付款余额的短信，预付款余额低于15元时，提醒用户及时充值。</td></tr><tr><td align=center><input id=\'dingzhi\'  class=input_button2  type=\'button\' value=\'定制\'/>&nbsp;&nbsp;<input id=\'tuiding\'  class=input_button2  type=\'button\' value=\'退定\'/></td></tr></table>','','');">
-				<img id=img10 src="../images/index08.png" width="60" height="60" border="0" style="cursor:pointer;" onMouseOut="min(this.id)" onMouseOver="max(this.id)">
-				</a>&nbsp;&nbsp;
-				<a href="#" onClick="sAlert('<table bgcolor=\'#ffffff\'><tr><td align=center><img src=\'../images/indexicon11.png\'/></td></tr><tr><td class=STYLE1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;交管信息定制,资费为4元/月，通过发送手机短信可以了解到交通违法记录情况及路况综合信息。</td></tr><tr><td align=center><input id=\'dingzhi\'  class=input_button2  type=\'button\' value=\'定制\'/>&nbsp;&nbsp;<input id=\'tuiding\'  class=input_button2  type=\'button\' value=\'退定\'/></td></tr></table>','','');">
-				<img id=img11 src="../images/index11.png" width="60" height="60" border="0" style="cursor:pointer;" onMouseOut="min(this.id)" onMouseOver="max(this.id)">
-				</a>&nbsp;&nbsp;
-				<a href="#" onClick="sAlert('<table bgcolor=\'#ffffff\'><tr><td align=center><img src=\'../images/indexicon12.png\'/></td></tr><tr><td class=STYLE1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;话费周周报，可以向用户每隔7天自动发送一条当前话费消费明细的短信。</td></tr><tr><td align=center><input id=\'dingzhi\'  class=input_button2  type=\'button\' value=\'定制\'/>&nbsp;&nbsp;<input id=\'tuiding\'  class=input_button2  type=\'button\' value=\'退定\'/></td></tr></table>','','');">
-				<img id=img12 src="../images/index12.png" width="60" height="60" border="0" style="cursor:pointer;" onMouseOut="min(this.id)" onMouseOver="max(this.id)">
-				</a>
-	            </li>
-                <li class=ban>
-                	手机报财经版&nbsp;&nbsp;&nbsp;
-                	话费天天报&nbsp;&nbsp;
-                	交管信息定制&nbsp;&nbsp;
-                	话费周周报
-                </li>
-                <li>
-				<a href="#" onClick="sAlert('<table bgcolor=\'#ffffff\'><tr><td align=center><img src=\'../images/indexicon13.png\'/></td></tr><tr><td class=STYLE1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如意杀毒定制,资费为8元/月,不含通讯费，如意杀毒业务是McAfee公司与中国联通合作的业务，是基于中国联通如意邮箱平台上的固网增值新业务。</td></tr><tr><td align=center><input id=\'dingzhi\'  class=input_button2  type=\'button\' value=\'定制\'/>&nbsp;&nbsp;<input id=\'tuiding\'  class=input_button2  type=\'button\' value=\'退定\'/></td></tr></table>','','');">
-				<img id=img13 src="../images/index13.png" width="60" height="60" border="0" style="cursor:pointer;" onMouseOut="min(this.id)" onMouseOver="max(this.id)"></a></td>
-				</a>&nbsp;&nbsp;
-				<a href="../telbook/telbook.action?op=view&user_msn=<ww:property value="user_msn"/>"><img id=img15 src="../images/index15.png" width="60" height="60" border="0" style="cursor:pointer;" onMouseOut="min(this.id)" onMouseOver="max(this.id)">
-				</a>&nbsp;&nbsp;
-				<a href="../music/music.action?op=music&user_msn=<ww:property value="user_msn"/>"><img id=img16 src="../images/index16.png" width="60" height="60" border="0" style="cursor:pointer;" onMouseOut="min(this.id)" onMouseOver="max(this.id)">
-				</a>&nbsp;&nbsp;
-				<a href="../club/index.jsp"><img id=img14 src="../images/teseclub.png" width="60" height="60" border="0" style="cursor:pointer;" onMouseOut="min(this.id)" onMouseOver="max(this.id)">
+				<a href="#" onClick="sAlert('<table bgcolor=\'#ffffff\'><tr><td align=center></td></tr><tr><td class=STYLE1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当月定制，下月自动取消。</td></tr><tr><td align=center><input id=\'dingzhi\'  class=input_button2  type=\'button\' value=\'定制\'/>&nbsp;&nbsp;</td></tr></table>','7013','');">
+				<img id=img7 src="../dingzhipic/sms20.png" width="60" height="60" border="0"  style="cursor:pointer;" onMouseOut="min(this.id)" onMouseOver="max(this.id)" >
+            	</a>&nbsp;&nbsp;
+            	<a href="#" onClick="sAlert('<table bgcolor=\'#ffffff\'><tr><td align=center></td></tr><tr><td class=STYLE1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;可用额度。</td></tr><tr><td align=center><input id=\'dingzhi\'  class=input_button2  type=\'button\' value=\'查询\'/>&nbsp;&nbsp;</td></tr></table>','102','');">
+				<img id=img8 src="../dingzhipic/user_edu.png" width="60" height="60" border="0"  style="cursor:pointer;" onMouseOut="min(this.id)" onMouseOver="max(this.id)">
 				</a>
 				</li>
-                <li class=ban>如意杀毒定制&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                	通讯录&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                	炫铃定制&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                	特色俱乐部
+                <li class=ban>
+                	5元短信包&nbsp;&nbsp;&nbsp;&nbsp;
+                	10元短信包&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                	20元短信包&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                	可用余额
+                </li>
+                
+                <li>
+                <a href="#" onClick="sAlert('<table bgcolor=\'#ffffff\'><tr><td align=center></td></tr><tr><td class=STYLE1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当月定制，下月自动取消。</td></tr><tr><td align=center><input id=\'dingzhi\'  class=input_button2  type=\'button\' value=\'定制\'/>&nbsp;&nbsp;</td></tr></table>','7031','');">
+				<img id=img9 src="../dingzhipic/gprs5.png" width="60" height="60" border="0"  style="cursor:pointer;" onMouseOut="min(this.id)" onMouseOver="max(this.id)">
+				</a>&nbsp;&nbsp;
+				<a href="#" onClick="sAlert('<table bgcolor=\'#ffffff\'><tr><td align=center></td></tr><tr><td class=STYLE1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当月定制，下月自动取消。</td></tr><tr><td align=center><input id=\'dingzhi\'  class=input_button2  type=\'button\' value=\'定制\'/>&nbsp;&nbsp;</td></tr></table>','7032','');">
+				 <img id=img10  src="../dingzhipic/gprs10.png" width="60" height="60" border="0"  style="cursor:pointer;" onMouseOut="min(this.id)" onMouseOver="max(this.id)">
+	            </a>&nbsp;&nbsp;
+				<a href="#" onClick="sAlert('<table bgcolor=\'#ffffff\'><tr><td align=center></td></tr><tr><td class=STYLE1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当月定制，下月自动取消。</td></tr><tr><td align=center><input id=\'dingzhi\'  class=input_button2  type=\'button\' value=\'定制\'/>&nbsp;&nbsp;</td></tr></table>','7033','');">
+				<img id=img11 src="../dingzhipic/gprs20.png" width="60" height="60" border="0"  style="cursor:pointer;" onMouseOut="min(this.id)" onMouseOver="max(this.id)" >
+            	</a>&nbsp;&nbsp;
+            	<a href="#" onClick="sAlert('<table bgcolor=\'#ffffff\'><tr><td align=center></td></tr><tr><td class=STYLE1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当月定制，下月自动取消。</td></tr><tr><td align=center><input id=\'dingzhi\'  class=input_button2  type=\'button\' value=\'定制\'/>&nbsp;&nbsp;</td></tr></table>','7034','');">
+				<img id=img12 src="../dingzhipic/gprs30.png" width="60" height="60" border="0"  style="cursor:pointer;" onMouseOut="min(this.id)" onMouseOver="max(this.id)">
+				</a>
+				</li>
+                <li class=ban>
+                	5M流量包&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                	10M流量包&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                	20M流量包&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                	30M流量包
+                </li>
+                
+                <li>
+				<a href="#" onClick="sAlert('<table bgcolor=\'#ffffff\'><tr><td align=center></td></tr><tr><td class=STYLE1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;东方龙。</td></tr><tr><td align=center><input id=\'dingzhi\'  class=input_button2  type=\'button\' value=\'定制\'/>&nbsp;&nbsp;<input id=\'tuiding\'  class=input_button2  type=\'button\' value=\'退定\'/></td></tr></table>','6041','6042');">
+				<img id=img13 src="../dingzhipic/d_dongfang.png" width="60" height="60" border="0" style="cursor:pointer;" onMouseOut="min(this.id)" onMouseOver="max(this.id)"></a></td>
+				</a>&nbsp;&nbsp;
+				<a href="#" onClick="sAlert('<table bgcolor=\'#ffffff\'><tr><td align=center></td></tr><tr><td class=STYLE1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;新闻早晚报。</td></tr><tr><td align=center><input id=\'dingzhi\'  class=input_button2  type=\'button\' value=\'定制\'/>&nbsp;&nbsp;<input id=\'tuiding\'  class=input_button2  type=\'button\' value=\'退定\'/></td></tr></table>','6021','6022');">
+				<img id=img15 src="../dingzhipic/d_news.png" width="60" height="60" border="0" style="cursor:pointer;" onMouseOut="min(this.id)" onMouseOver="max(this.id)">
+				</a>&nbsp;&nbsp;
+				<a href="#" onClick="sAlert('<table bgcolor=\'#ffffff\'><tr><td align=center></td></tr><tr><td class=STYLE1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;央视直播。</td></tr><tr><td align=center><input id=\'dingzhi\'  class=input_button2  type=\'button\' value=\'定制\'/>&nbsp;&nbsp;<input id=\'tuiding\'  class=input_button2  type=\'button\' value=\'退定\'/></td></tr></table>','6031','6032');">
+				<img id=img16 src="../dingzhipic/d_cctv.png" width="60" height="60" border="0" style="cursor:pointer;" onMouseOut="min(this.id)" onMouseOver="max(this.id)">
+				</a>&nbsp;&nbsp;
+				<a href="#" onClick="sAlert('<table bgcolor=\'#ffffff\'><tr><td align=center></td></tr><tr><td class=STYLE1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;信用额度查询。</td></tr><tr><td align=center><input id=\'dingzhi\'  class=input_button2  type=\'button\' value=\'查询\'/>&nbsp;&nbsp;</td></tr></table>','201','');">
+				<img id=img14 src="../dingzhipic/credit_edu.png" width="60" height="60" border="0" style="cursor:pointer;" onMouseOut="min(this.id)" onMouseOver="max(this.id)">
+				</a>
+				</li>
+                <li class=ban>
+                	东方龙直播包月&nbsp;&nbsp;
+                	新闻早晚报&nbsp;&nbsp;
+                	央视直播包月&nbsp;&nbsp;
+                	信用额度
                 	</li>
         </ul>
 		</div>

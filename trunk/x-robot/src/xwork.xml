@@ -10,5 +10,5 @@
 	<include file="question.xml"/>
 	<include file="music.xml"/>
 	<include file="telbook.xml"/>
-	
+	<include file="invitebuddy.xml"/>
 </xwork>
