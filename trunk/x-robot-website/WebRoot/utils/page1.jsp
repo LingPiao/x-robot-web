@@ -11,7 +11,7 @@
 	   	  <input type="hidden" name="maxPage" value="<ww:property value="pageInfo.pageCount"/>">
 	   	  <input type="hidden" name="curPage" value="<ww:property value="pageInfo.page"/>">
 	   	  
-          <td width="30%" height="30" nowrap><ww:property value="pageInfo.page"/>/<ww:property value="pageInfo.pageCount"/>ҳ ÿҳ<ww:property value="pageInfo.pageRows"/> �� <ww:property value="pageInfo.recordCount"/></td>
+          <td width="30%" height="30" nowrap><ww:property value="pageInfo.page"/>/<ww:property value="pageInfo.pageCount"/>ҳ ÿҳ<ww:property value="pageInfo.pageRows"/></td>
 
           <td align="right" width="40%">
           <A href="#"><img src="<%=basePath1%>images/arrow_01.gif" width="15" height="15" align="middle" border="0" onclick="goPageByImg(document.forms[0],'FIRST')"></A>&nbsp;

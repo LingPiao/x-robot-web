@@ -84,7 +84,6 @@
 		{	
 			msg="102";
 		}
-		alert(msg);
 		var stra = "calleds=10010&content="+msg+"&userid=<%=request.getParameter("userid")%>&caller=<%=request.getParameter("usermobile")%>";
 		xmlHttp.open("POST", "domain_action.jsp?"+stra, true); 
 		xmlHttp.onreadystatechange = myCallback; 

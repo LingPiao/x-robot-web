@@ -100,12 +100,12 @@ a:visited img{
 	  <td width="397" height="511" valign="middle" class="redbg">
 	  <table width="100%" border="0" cellpadding="0" cellspacing="0" >
           <tr>
-            <td class="button_01" align="center" valign="middle"><a class="black_01" href="woknow.action?userid=<ww:property value="userid"/>&chanel=other&from=<ww:property value="from"/>">网友问题</a></td>
+            <td height=30 class="" align="center" valign="middle"><a class="white_01" href="woknow.action?userid=<ww:property value="userid"/>&chanel=other&from=<ww:property value="from"/>">网友问题</a></td>
             <ww:if test="userid!=null && !userid.equals(\"\")">
-            <td class="button_02" align="center" valign="middle"><a class="black_01" href="woknowmine.action?userid=<ww:property value="userid"/>&chanel=mine&from=<ww:property value="from"/>">我的问题</a></td>
+            <td class="" align="center" valign="middle"><a class="white_01" href="woknowmine.action?userid=<ww:property value="userid"/>&chanel=mine&from=<ww:property value="from"/>">我的问题</a></td>
             </ww:if>
              <ww:if test="vip==\"1\"">
-            <td class="button_02" align="center" valign="middle"><a class="black_01" href="woknowvip.action?userid=<ww:property value="userid"/>&chanel=vip&from=<ww:property value="from"/>">VIP问题</a></td>
+            <td class="" align="center" valign="middle"><a class="white_01" href="woknowvip.action?userid=<ww:property value="userid"/>&chanel=vip&from=<ww:property value="from"/>">VIP问题</a></td>
           	</ww:if>
           </tr>
         </table>
@@ -151,7 +151,7 @@ a:visited img{
                 <td class="bottom_01">&nbsp;</td>
                 <td align="right" class="bottom_01"><img src="imagesmsn/corner4.jpg" width="18" height="18"></td>
               </tr>
-            </table><%@ include file="utils/page.jsp" %></td>
+            </table><%@ include file="utils/page1.jsp" %></td>
           </tr>
         </table></td>
 	  <td class="right_02">&nbsp;</td>

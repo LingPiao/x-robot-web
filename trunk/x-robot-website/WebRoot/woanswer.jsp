@@ -20,14 +20,15 @@ function link(){
     document.getElementById("fom").submit();
 }
 function back(){
-	var chanel="<ww:property value="['chanel']"/>";
-	if(chanel == "other")
-		document.getElementById("fom").action="woknow.action?userid=<ww:property value="['userid']"/>&chanel=<ww:property value="['chanel']"/>&from=<ww:property value="from"/>";
-	if(chanel == "mine")
-		document.getElementById("fom").action="woknowmine.action?userid=<ww:property value="['userid']"/>&chanel=<ww:property value="['chanel']"/>&from=<ww:property value="from"/>";
-	if(chanel == "vip")
-		document.getElementById("fom").action="woknowvip.action?userid=<ww:property value="['userid']"/>&chanel=<ww:property value="['chanel']"/>&from=<ww:property value="from"/>";
-	document.getElementById("fom").submit();
+	//var chanel="<ww:property value="['chanel']"/>";
+	//if(chanel == "other")
+	//	document.getElementById("fom").action="woknow.action?userid=<ww:property value="['userid']"/>&chanel=<ww:property value="['chanel']"/>&from=<ww:property value="from"/>";
+	//if(chanel == "mine")
+	//	document.getElementById("fom").action="woknowmine.action?userid=<ww:property value="['userid']"/>&chanel=<ww:property value="['chanel']"/>&from=<ww:property value="from"/>";
+	//if(chanel == "vip")
+	//	document.getElementById("fom").action="woknowvip.action?userid=<ww:property value="['userid']"/>&chanel=<ww:property value="['chanel']"/>&from=<ww:property value="from"/>";
+	//document.getElementById("fom").submit();
+	history.go(-1);
 }
 function over(){
     document.getElementById("fom").action="woanswer.action?&userid=<ww:property value="['userid']"/>&op=over&from=<ww:property value="from"/>&chanel=<ww:property value="['chanel']"/>";
