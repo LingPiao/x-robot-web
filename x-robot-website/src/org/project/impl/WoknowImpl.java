@@ -23,9 +23,9 @@ public class WoknowImpl implements WoknowDao {
 		
 		String sql="";
 		if(!qry_con.equals(""))
-			sql ="select * from w_question w,w_question_visit wv,MSN_CERTIFICATION m where ("+ qry_con +") and w.q_id=wv.qid(+)  and w.q_user = m.user_msn(+) order by q_id desc";
+			sql ="select * from w_question w,w_question_visit wv,MSN_CERTIFICATION m where ("+ qry_con +") and w.q_id=wv.qid(+)  and  (w.q_clusterid is null or w.q_clusterid not in (select id from t_cluster t where t.privated =1)) and w.q_user = m.user_msn(+) order by q_id desc";
 		else
-			sql ="select * from w_question w,w_question_visit wv,MSN_CERTIFICATION m where w.q_id=wv.qid(+)  and w.q_user = m.user_msn(+)  order by q_id desc";
+			sql ="select * from w_question w,w_question_visit wv,MSN_CERTIFICATION m where w.q_id=wv.qid(+)  and  (w.q_clusterid is null or w.q_clusterid not in (select id from t_cluster t where t.privated =1)) and w.q_user = m.user_msn(+)  order by q_id desc";
 		System.out.println(sql);
 		PageCtrl pageCtrl = new PageCtrl();
         pageCtrl.setSqlDao(sqlDao);

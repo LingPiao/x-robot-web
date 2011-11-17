@@ -50,14 +50,15 @@ function link(){
     document.getElementById("fom").submit();
 }
 function back(){
-	var chanel="<ww:property value="['chanel']"/>";
-	if(chanel == "other")
-		document.getElementById("fom").action="woknow.action?userid=<ww:property value="['userid']"/>&chanel=<ww:property value="['chanel']"/>&from=<ww:property value="from"/>";
-	if(chanel == "mine")
-		document.getElementById("fom").action="woknowmine.action?userid=<ww:property value="['userid']"/>&chanel=<ww:property value="['chanel']"/>&from=<ww:property value="from"/>";
-	if(chanel == "vip")
-		document.getElementById("fom").action="woknowvip.action?userid=<ww:property value="['userid']"/>&chanel=<ww:property value="['chanel']"/>&from=<ww:property value="from"/>";
-	document.getElementById("fom").submit();
+	//var chanel="<ww:property value="['chanel']"/>";
+	//if(chanel == "other")
+	//	document.getElementById("fom").action="woknow.action?userid=<ww:property value="['userid']"/>&chanel=<ww:property value="['chanel']"/>&from=<ww:property value="from"/>";
+	//if(chanel == "mine")
+	//	document.getElementById("fom").action="woknowmine.action?userid=<ww:property value="['userid']"/>&chanel=<ww:property value="['chanel']"/>&from=<ww:property value="from"/>";
+	//if(chanel == "vip")
+	//	document.getElementById("fom").action="woknowvip.action?userid=<ww:property value="['userid']"/>&chanel=<ww:property value="['chanel']"/>&from=<ww:property value="from"/>";
+	//document.getElementById("fom").submit();
+	history.go(-1);
 }
 function over(){
     document.getElementById("fom").action="woanswer.action?&userid=<ww:property value="['userid']"/>&op=over&from=<ww:property value="from"/>&chanel=<ww:property value="['chanel']"/>";
@@ -133,12 +134,12 @@ function over(){
 	  <td width="397" height="511" valign="top" class="redbg">
 	  <table width="100%" border="0" cellpadding="0" cellspacing="0" >
            <tr>
-            <td class="button_01" align="center" valign="middle"><a class="black_01" href="woknow.action?userid=<ww:property value="userid"/>&from=<ww:property value="from"/>">网友问题</a></td>
+            <td height=30 class="" align="center" valign="middle"><a class="white_01" href="woknow.action?userid=<ww:property value="userid"/>&from=<ww:property value="from"/>&chanel=other">网友问题</a></td>
             <ww:if test="userid!=null && !userid.equals(\"\")">
-            <td class="button_02" align="center" valign="middle"><a class="black_01" href="woknowmine.action?userid=<ww:property value="userid"/>&from=<ww:property value="from"/>">我的问题</a></td>
+            <td class="" align="center" valign="middle"><a class="white_01" href="woknowmine.action?userid=<ww:property value="userid"/>&from=<ww:property value="from"/>&chanel=mine">我的问题</a></td>
             </ww:if>
              <ww:if test="vip==\"1\"">
-            <td class="button_02" align="center" valign="middle"><a class="black_01" href="woknowvip.action?userid=<ww:property value="userid"/>&from=<ww:property value="from"/>">VIP问题</a></td>
+            <td class="" align="center" valign="middle"><a class="white_01" href="woknowvip.action?userid=<ww:property value="userid"/>&from=<ww:property value="from"/>&chanel=vip">VIP问题</a></td>
           	</ww:if>
           </tr>
         </table>

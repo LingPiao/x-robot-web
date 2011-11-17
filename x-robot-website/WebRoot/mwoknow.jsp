@@ -94,7 +94,7 @@ href="cssjp/main1.css" type=text/css rel=stylesheet>
                     <TD height=6></TD>
                   </TR>
                   <TR>
-                    <TD height=33 align="center"><%@ include file="utils/page.jsp" %></TD>
+                    <TD height=33 align="center"><%@ include file="utils/page1.jsp" %></TD>
                   </TR>
                 </TBODY>
               </TABLE></TD>
