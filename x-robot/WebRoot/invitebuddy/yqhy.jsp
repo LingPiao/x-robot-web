@@ -213,7 +213,7 @@ return (0);
                 <tr>
                   <td height="88" align="right"><table width="100%" border="0" cellspacing="0" cellpadding="0">
                     <tr>
-                      <td valign="bottom"><span class="fontStyle">&nbsp;&nbsp;&nbsp;&nbsp;由于邀请好友数量较大及每日邀请次数的限制，现在出现好友邀请排队情况；为确保邀请好友赢大奖活动不受影响，建议填写好友MSN帐号后，再填写好友Email通知。或将这句话发送给您的好友：邀请你体验联通MSN机器人，请添加www.10010.com@hotmail.com为好友，谢谢！ </span></td>
+                      <td valign="bottom"><span class="fontStyle">&nbsp;&nbsp;&nbsp;&nbsp;由于邀请好友数量较大及每日邀请次数的限制，现在出现好友邀请排队情况；为确保邀请好友不受影响，建议填写好友MSN帐号后，再填写好友Email通知。或将这句话发送给您的好友：邀请你体验联通MSN机器人，请添加www.10010.com@hotmail.com为好友，谢谢！ </span></td>
                     </tr>
                   </table></td>
                 </tr>
