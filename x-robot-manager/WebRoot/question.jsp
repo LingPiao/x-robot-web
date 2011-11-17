@@ -10,6 +10,8 @@
 
 	
 	String classesid=request.getParameter("classid");
+	String questionId = request.getParameter("questionId");
+
 	String text=request.getParameter("searchtext");
 	String text1=request.getParameter("searchtext1");
 	String text2=request.getParameter("searchtext2");
@@ -259,6 +261,10 @@
 																condition=" 1=1 ";
 														}
 														if("search".equals(r_action)){
+															if(!"".equals(questionId)&&!"null".equals(questionId)&&questionId!=null){
+																questionId=new String(questionId.getBytes("8859_1"));
+																condition+=" and QUESTIONID=" + questionId;
+															}
 															if(!"".equals(text)&&!"null".equals(text)&&text!=null){
 																text=new String(text.getBytes("8859_1"));
 																condition+=" and QUESTION like '%"+text+"%'";
@@ -345,6 +351,7 @@
 																		class="zl_huitxt" >问题查询：</td>
 																	<td   align="left" valign="middle" bgcolor="#FFFFFF"
 																		class="zl_huitxt" colspan="5">
+																		ID：<input type=text name="questionId" id="questionId" value=""/>
 																		问题：<input type=text name="searchtext" id="searchtext" value=""/>
 																		词组：<input type=text name="searchtext1" id="searchtext1" value=""/>
 																		单词：<input type=text name="searchtext2" id="searchtext2" value=""/>
@@ -426,6 +433,11 @@
 																			if(!"".equals(text3)&&!"null".equals(text3)&&text3!=null){
 								
 																				condition+=" and ANSWER like '%"+text3+"%'";
+																				
+																			}
+																			
+																			if(!"".equals(questionId)&&!"null".equals(questionId)&&questionId!=null){
+																				condition+=" and QUESTIONID=" + questionId;
 																				
 																			}
 																			if(!"".equals(text)&&!"null".equals(text)&&text!=null){
