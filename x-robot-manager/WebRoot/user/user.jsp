@@ -312,7 +312,7 @@
 																<td align="right" valign="top" bgcolor="#FFFFFF" class="zl_huitxt">
 																	ÓÃ»§½ÇÉ«£º
 																</td>
-																<td bgcolor="#FFFFFF" class="zl_huitxt"  align="left"><input name='user_role' type="hidden" class="" value="00">&nbsp;&nbsp;
+																<td bgcolor="#FFFFFF" class="zl_huitxt"  align="left"><input name='user_role' type="hidden" class="" value="all">&nbsp;&nbsp;
 																<%
 																	String strrole="";
 																	String sTable="t_private";

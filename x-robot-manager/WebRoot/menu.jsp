@@ -53,10 +53,11 @@ String par_id="";
 	var delaultTitle;		//默认展开的标题
 	var delaultTarget;		//默认打开页面的位置,不定义则弹出新窗口
 	<%
+		System.out.println("userrole"+userrole);
 		int childcount=0;
 		while (rs.next()){
 			par_id=rs.getString("seqid");
-			if(!userrole.equals("0"))
+			if(!userrole.equals("all"))
 			{
 				sTable="USER_ROLE_VIEW";
 				sField="*";
@@ -64,6 +65,7 @@ String par_id="";
 			}
 			else
 			{
+				System.out.println("beigin1");
 				sTable="t_dict";
 				sField="*";
 				sCondition="dict_sort ='CHANNEL_CHILD' and dict_value='"+par_id+"'";
@@ -77,8 +79,9 @@ String par_id="";
 			node[<%=par_id%>]=outlookbar.addtitle("<%=rs.getString("dict_name")%>");
 		<%
 			rschild=null;		
-			if(userrole.equals("0"))
+			if(userrole.equals("all"))
 			{
+				System.out.println("beigin2");
 				sTable="t_dict";
 				sField="seqid,dict_name,dict_url";
 				sCondition="dict_sort ='CHANNEL_CHILD' and dict_value='"+par_id+"' order by dict_order";

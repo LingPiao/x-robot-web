@@ -45,7 +45,7 @@ public class KeyWordAction
         this.sCond = "1=1 order by KEYWORD_ID";
       }
       System.out.println(this.sCond);
-      this.queryData.setRecordSet("T_UNICOM_KEYWORD", "KEYWORD_ID,KEYWORD_NAME", this.sCond);
+      this.queryData.setRecordSet("T_UNICOM_KEYWORD", "KEYWORD_ID,KEYWORD_NAME,KEYWORD_LEVEL", this.sCond);
       this.rs = this.queryData.getResultSet();
 
       while (this.rs.next())
@@ -53,6 +53,7 @@ public class KeyWordAction
         Map map = new HashMap();
         map.put("KEYWORD_ID", this.rs.getString("KEYWORD_ID"));
         map.put("KEYWORD_NAME", this.rs.getString("KEYWORD_NAME"));
+        map.put("KEYWORD_LEVEL", this.rs.getString("KEYWORD_LEVEL"));
         list.add(map);
       }
       this.rs.close();
@@ -100,23 +101,25 @@ public class KeyWordAction
     try {
       int iKey = this.queryData.KeyNextValue("T_UNICOM_KEYWORD", "KEYWORD_ID");
       tempValueStr = iKey + ",'" + CLASS_NAME + "'";
+      System.out.println(tempValueStr);
       int iReturn = this.insertData.insert("T_UNICOM_KEYWORD", "KEYWORD_ID,KEYWORD_NAME", tempValueStr);
       if (iReturn == 0)
         flag = true;
-      this.dataConn.close();
-      this.insertData.close();
+      
     }
     catch (Exception e) {
       throw e;
     }
+    this.dataConn.close();
+    this.insertData.close();
     return flag;
   }
-  public boolean update(String CLASS_ID, String CLASS_NAME) throws Exception {
+  public boolean update(String CLASS_ID, String CLASS_NAME,String mes_level) throws Exception {
     boolean flag = false;
     String tempStr = "";
     this.updateData = new UpdateData(this.dataConn);
     try {
-      tempStr = "KEYWORD_NAME='" + CLASS_NAME + "'";
+      tempStr = "KEYWORD_NAME='" + CLASS_NAME + "',KEYWORD_LEVEL='"+mes_level+"'";
       this.sCond = ("KEYWORD_ID='" + CLASS_ID + "'");
       int iReturn = this.updateData.update("T_UNICOM_KEYWORD", tempStr, this.sCond);
       if (iReturn == 0)

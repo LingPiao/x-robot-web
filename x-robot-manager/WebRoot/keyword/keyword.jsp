@@ -8,10 +8,10 @@
 <jsp:useBean id="mgr" scope="page" class="com.catic.tool.mgr.Manager" />
 
 <%
+	System.out.println(request.getParameter("hot_keyword"));
 	String hot_keyword = mgr.getStr(request.getParameter("hot_keyword")).toUpperCase();
 	if(hot_keyword == null || hot_keyword.equalsIgnoreCase("NULL")) hot_keyword = "";
 	KeyWordAction smAction = new KeyWordAction();
-	
 %>
 
 <html>
@@ -47,6 +47,8 @@
 			document.getElementById("action").value = "add";
 			document.getElementById("add").style.display = "block";
 			document.getElementById("listform").style.display="none";
+			document.getElementById("leveles").style.display="none";
+			document.getElementById("mes_level").value=1;
 			
 		}
 		function canceladd()
@@ -83,25 +85,26 @@
 	        else
 	        {   alert("请在复选框内选择要删除的数据");  }
 	   	}
-		function editmes(theForm,mescategoryid,mescontent)
+		function editmes(theForm,mescategoryid,mescontent,mes_level)
 		{
 			document.getElementById("add").style.display = "block";
 			document.getElementById("action").value = "edit";
 			document.getElementById("listform").style.display="none";
 			document.getElementById("mes_id").value=mescategoryid;
 			document.getElementById("mes_content").value=mescontent;
+			document.getElementById("mes_level").value=mes_level;
 			
 		
 		}
-		function hotSub(theForm)
+		function hotSub()
 	   {
 	   		var hot_keyword = document.getElementById('hot_keyword').value;
-	        theForm.action="keyword.jsp?hot_keyword="+hot_keyword;
-	        theForm.submit();
+	   		searchform.action="keyword.jsp";
+	   		searchform.submit();
 	   	}
 		function show_ywck(){
 			if(formCheck()){
-				var v = encodeURIComponent(addform.mes_content.value);
+				var v = encodeURIComponent(encodeURIComponent(addform.mes_content.value));
 				document.getElementById('ywck').src="ywck.jsp?mes_content="+v;
 			}
 		}
@@ -132,6 +135,13 @@
 
 											<table width="90%" border="0" align="center" cellpadding="2"
 												cellspacing="0">
+												<form action="#" method=post name="searchform" id="searchform">
+												<tr>
+																	<td height="25" colspan="3" align="left" bgcolor="#FFFFFF" class="zl_huitxt">关键热词查询：
+																	  <input name="hot_keyword" type=text id="hot_keyword" value="<%=hot_keyword%>" />
+                                                                      <input type="button" name="button" value="查询" onclick="hotSub();"/></td>
+															      </tr>
+												</form>
 												<page:pager total='<%=count%>' defaultPageSize="20">
 													<tr>
 														<td width="100%" align="left" valign="middle"
@@ -146,11 +156,7 @@
 														<td align="center" valign="top">
 															<table width="100%" border="0" cellpadding="3"
 																cellspacing="1" bgcolor="#666666">
-                                                                <tr>
-																	<td height="25" colspan="2" align="left" bgcolor="#FFFFFF" class="zl_huitxt">关键热词查询：
-																	  <input name="hot_keyword" type=text id="hot_keyword" value="<%=hot_keyword%>" />
-                                                                      <input type="button" name="button" value="查询" onclick="hotSub(pager);"/></td>
-															      </tr>
+                                                                
 																<%
 																	int step=0;
 																	int indexs=1;
@@ -166,7 +172,11 @@
 																		<input type="checkbox" name="mesid"
 																			value="<%=map.get("KEYWORD_ID")%>">
 																		&nbsp;&nbsp;
-																		<a href="#" onclick="javaScript:editmes(pager,'<%=map.get("KEYWORD_ID")%>','<%=map.get("KEYWORD_NAME")%>');"><%=map.get("KEYWORD_NAME")%>																		</a>																	</td>
+																		<a href="#" onclick="javaScript:editmes(pager,'<%=map.get("KEYWORD_ID")%>','<%=map.get("KEYWORD_NAME")%>','<%=map.get("KEYWORD_LEVEL")%>');"><%=map.get("KEYWORD_NAME")%>
+																	</a>
+																	</td>
+																	<td align="left" bgcolor="#FFFFFF" class="zl_huitxt">
+																	<%=map.get("KEYWORD_LEVEL")%></td></tr>
 															<%
 																	}
 																	indexs++;
@@ -222,10 +232,17 @@
 																<input type = text name=mes_content id=mes_content value="">
 &nbsp;<input type="button" name="ywckbutton" value="显示业务词库" onclick="show_ywck();"/>															</td>
 															</tr>
+															<tr id=leveles>
+																<td align="right" valign="top" bgcolor="#FFFFFF" class="zl_huitxt">
+																	关键词级别：																</td>
+																<td bgcolor="#FFFFFF" class="zl_huitxt"  align="left">
+																<input type = text name=mes_level id=mes_level value="">														</td>
+															</tr>
 															<tr>
 																<td colspan="2" align="center" valign="middle" bgcolor="#FFFFFF" class="zl_huitxt">
 																	<input type = hidden name=action id=action value="">
 																	<input type = hidden name=mes_id id=mes_id value="">
+																	
 																	<input name="save" type="submit" class="button"
 																		value="保  存">
 																	&nbsp;

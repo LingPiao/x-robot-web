@@ -27,6 +27,7 @@ public class QueryData {
 	 * QueryData构造函数，获得一个连接
 	 */
 	public QueryData(DataConn dataConn) {
+		dataConn = new DataConn();
 		conn = dataConn.getConnection();
 	}
 
@@ -160,23 +161,27 @@ public class QueryData {
 		
 		String sqlstr = "";
 		int recordCount = 0;
-		
+		System.out.println("ttttttttttttttttttttttttt");
 		try {
 			sqlstr = " Select max(" + key + ") as num from " + tablename;
-			
+			System.out.println(sqlstr);
 			Statement stmt = conn.createStatement();
 			ResultSet rs_count = stmt.executeQuery(sqlstr);
+			
 			if (rs_count.next()) {
-
+				
 				recordCount = rs_count.getInt("num");
+				System.out.println(recordCount);
 			}
 			rs_count.close();
 			stmt.close();
 		} catch (SQLException sqle) {
 			query_errcode = sqle.getErrorCode();
 			query_errstr = sqle.getMessage();
-			// System.out.println(query_errstr);
+			System.out.println(query_errcode);
+			System.out.println(query_errstr);
 		}
+		System.out.println(recordCount);
 		return ++recordCount;
 	}
 	public void close() {
