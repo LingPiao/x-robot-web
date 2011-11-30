@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import com.sun.java_cup.internal.internal_error;
 
 import net.sf.robot.util.SpringInstance;
 import net.sf.robot.util.chinese.Sentence;

@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%@page contentType="text/html;charset=GBK"
+<%@page contentType="text/html;charset=gb2312"
 	import="java.sql.*,java.util.*"%>
 <%@ taglib uri="/xdevelop.net/taglibs/page" prefix="page"%>
 <%@ page import="com.catic.tool.*"%>
@@ -15,7 +15,8 @@ response.setCharacterEncoding("gb2312");
 	String classesid=request.getParameter("classid");
 	String text=request.getParameter("searchtext");
 	String text1= request.getParameter("mes_content");
-	
+	text1=java.net.URLDecoder.decode(text1,"UTF-8");
+	System.out.println(text1);
 	String text2=request.getParameter("searchtext2");
 	String text3=request.getParameter("searchtext3");
 	String r_action=request.getParameter("r_action");

@@ -12,6 +12,7 @@
 	KeyWordAction mcAction = new KeyWordAction();
 	String cate_id = request.getParameter("mes_id");
 	String cate_name = request.getParameter("mes_content");
+	String mes_level=request.getParameter("mes_level");
 	String action = request.getParameter("action");
 	if(action!= null)
 	{
@@ -36,8 +37,8 @@
 		if (action.equals("edit"))
 		{
 			name=mcAction.getCategoryNameById(cate_name);
-			if(name==0){
-				if(mcAction.update(cate_id,cate_name))
+			//if(name==0){
+				if(mcAction.update(cate_id,cate_name,mes_level))
 				{
 					out.println("<script>alert('修改成功！');window.location.href='keyword.jsp';</script>");
 				}
@@ -45,10 +46,10 @@
 				{
 					out.println("<script>alert('修改失败！');window.location.href='keyword.jsp';</script>");
 				}
-			}else
-			{
-			out.println("<script>alert('内容重复！');window.location.href='keyword.jsp';</script>");		
-			}
+			//}else
+			//{
+			//out.println("<script>alert('内容重复！');window.location.href='keyword.jsp';</script>");		
+			//}
 		}
 		if (action.equals("del"))
 		{
